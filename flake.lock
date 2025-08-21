@@ -63,6 +63,24 @@
         "type": "github"
       }
     },
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1753121425,
+        "narHash": "sha256-TVcTNvOeWWk1DXljFxVRp+E0tzG1LhrVjOGGoMHuXio=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "644e0fc48951a860279da645ba77fe4a6e814c5e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_2"
@@ -137,6 +155,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-lib": {
+      "locked": {
+        "lastModified": 1751159883,
+        "narHash": "sha256-urW/Ylk9FIfvXfliA1ywh75yszAbiTEVgpPeinFyVZo=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "14a40a1d7fb9afa4739275ac642ed7301a9ba1ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1752950548,
@@ -169,12 +202,66 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1753939845,
+        "narHash": "sha256-K2ViRJfdVGE8tpJejs8Qpvvejks1+A4GQej/lBk5y7I=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "94def634a20494ee057c76998843c015909d6311",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "playit-agent-source": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1752866398,
+        "narHash": "sha256-1MMYotqo34Rj+nKDeGwLHE3epamdnRfQQEztpM/yk6M=",
+        "owner": "playit-cloud",
+        "repo": "playit-agent",
+        "rev": "5a08445d8927de98fb2315740fa3acc96555c406",
+        "type": "github"
+      },
+      "original": {
+        "owner": "playit-cloud",
+        "repo": "playit-agent",
+        "type": "github"
+      }
+    },
+    "playit-nixos-module": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": "nixpkgs_4",
+        "playit-agent-source": "playit-agent-source",
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1754565422,
+        "narHash": "sha256-HS0WaJ0Z55YX+zsVctt0ObBkXXerMUj69gSwYscR+DA=",
+        "owner": "pedorich-n",
+        "repo": "playit-nixos-module",
+        "rev": "b2d89fb47a5b9e9ae70b1456c23fdf0948f67155",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pedorich-n",
+        "repo": "playit-nixos-module",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
         "comin": "comin",
         "mc-astronaut-server": "mc-astronaut-server",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_3",
+        "playit-nixos-module": "playit-nixos-module"
       }
     },
     "systems": {
@@ -193,6 +280,21 @@
       }
     },
     "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

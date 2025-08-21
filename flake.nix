@@ -9,11 +9,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix.url = "github:ryantm/agenix";
+    playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
   };
 
   outputs = {
     nixpkgs,
     agenix,
+    playit-nixos-module,
     ...
   } @ inputs: let
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
@@ -41,6 +43,8 @@
       hostname = "carbon";
       modules = [
         ./hosts/carbon/configuration.nix
+        agenix.nixosModules.default
+        playit-nixos-module.nixosModules.default
       ];
     };
 
@@ -48,8 +52,12 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       default = pkgs.mkShell {
+        env = {
+          RULES = "./secrets/secrets.nix";
+        };
         packages = [
           agenix.outputs.packages.${system}.default
+          playit-nixos-module.outputs.packages.${system}.playit-cli
         ];
       };
     });
