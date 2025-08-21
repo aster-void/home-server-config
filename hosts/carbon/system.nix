@@ -5,12 +5,12 @@
     bash
     fish
     curl
-    rg
+    ripgrep
 
     # monitor & analyze
     btop
     ncdu
-    nushll
+    nushell
   ];
 
   # Enable systemd for service management
