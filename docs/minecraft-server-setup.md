@@ -1,63 +1,63 @@
-# Minecraft Server Setup
+# Minecraft サーバーセットアップ
 
-This document describes the setup of the Minecraft server service on the carbon host.
+このドキュメントは、carbon ホストでの Minecraft サーバーサービスのセットアップについて説明します。
 
-## Overview
+## 概要
 
-The carbon host runs the `mc-astronaut-server` as a systemd service that automatically clones and updates the server repository, then starts the Minecraft server.
+carbon ホストは `mc-astronaut-server` を systemd サービスとして実行し、サーバーリポジトリを自動的にクローンして更新し、その後 Minecraft サーバーを起動します。
 
-## Service Configuration
+## サービス設定
 
-The service is configured in `hosts/carbon/services/minecraft.nix` and provides:
+サービスは `hosts/carbon/services/minecraft.nix` で設定され、以下を提供します：
 
-- Automatic git repository cloning/updating from `github:aster-void/mc-astronaut-server`
-- Dedicated minecraft user for security
-- Systemd service with restart capabilities
-- Firewall configuration for Minecraft port (25565)
+- `github:aster-void/mc-astronaut-server` からの自動 git リポジトリクローン/更新
+- セキュリティのための専用 minecraft ユーザー
+- 再起動機能を持つ Systemd サービス
+- Minecraft ポート（25565）のファイアウォール設定
 
-## Files Created
+## 作成されたファイル
 
-1. `hosts/carbon/configuration.nix` - Main host configuration
-2. `hosts/carbon/hardware-configuration.nix` - Hardware-specific settings (template)
-3. `hosts/carbon/services/default.nix` - Service module imports
-4. `hosts/carbon/services/minecraft.nix` - Minecraft service configuration
+1. `hosts/carbon/configuration.nix` - メインホスト設定
+2. `hosts/carbon/hardware-configuration.nix` - ハードウェア固有設定（テンプレート）
+3. `hosts/carbon/services/default.nix` - サービスモジュールインポート
+4. `hosts/carbon/services/minecraft.nix` - Minecraft サービス設定
 
-## Service Details
+## サービス詳細
 
-- **Service name**: `minecraft-astronaut`
-- **User**: `minecraft` (system user, created automatically)
-- **Group**: `minecraft` (created automatically)
-- **Working directory**: `/var/lib/minecraft`
-- **Repository**: `https://github.com/aster-void/mc-astronaut-server.git`
-- **Java**: OpenJDK 17 with 2GB max heap, 1GB min heap
-- **Port**: 25565 (configured in firewall rules)
-- **Restart policy**: Always restart with 10s delay
-- **Security**: NoNewPrivileges, PrivateTmp, ProtectSystem=strict, ProtectHome
+- **サービス名**: `minecraft-astronaut`
+- **ユーザー**: `minecraft`（システムユーザー、自動作成）
+- **グループ**: `minecraft`（自動作成）
+- **作業ディレクトリ**: `/var/lib/minecraft`
+- **リポジトリ**: `https://github.com/aster-void/mc-astronaut-server.git`
+- **Java**: OpenJDK 17、最大ヒープ 2GB、最小ヒープ 1GB
+- **ポート**: 25565（ファイアウォールルールで設定）
+- **再起動ポリシー**: 10秒遅延で常に再起動
+- **セキュリティ**: NoNewPrivileges、PrivateTmp、ProtectSystem=strict、ProtectHome
 
-## Deployment Commands
+## デプロイコマンド
 
 ```bash
-# Build configuration
+# 設定をビルド
 nix build .#nixosConfigurations.carbon.config.system.build.toplevel
 
-# Deploy to carbon host (run on target machine)
+# carbon ホストにデプロイ（ターゲットマシンで実行）
 sudo nixos-rebuild switch --flake .#carbon
 
-# Deploy from remote machine
+# リモートマシンからデプロイ
 nixos-rebuild switch --flake .#carbon --target-host carbon
 ```
 
-## Service Behavior
+## サービス動作
 
-The service performs the following operations on startup:
-1. Creates `/var/lib/minecraft` directory if it doesn't exist
-2. Clones the repository if not present, or pulls latest changes if it exists
-3. Starts the Minecraft server with `java -Xmx2G -Xms1G -jar server.jar nogui`
-4. Automatically restarts if the service fails
+サービスは起動時に以下の操作を実行します：
+1. `/var/lib/minecraft` ディレクトリが存在しない場合は作成
+2. リポジトリが存在しない場合はクローン、存在する場合は最新の変更をプル
+3. `java -Xmx2G -Xms1G -jar server.jar nogui` で Minecraft サーバーを起動
+4. サービスが失敗した場合は自動的に再起動
 
-## Important Notes
+## 重要な注意事項
 
-- The hardware-configuration.nix file needs to be customized for the actual hardware
-- SSH is configured for key-based authentication only
-- The service runs with strict security restrictions for isolation
-- Git and OpenJDK 17 are installed system-wide as required packages
+- hardware-configuration.nix ファイルは実際のハードウェアに合わせてカスタマイズする必要があります
+- SSH は鍵ベース認証のみで設定されています
+- サービスは分離のため厳格なセキュリティ制限下で実行されます
+- Git と OpenJDK 17 は必要なパッケージとしてシステム全体にインストールされます
