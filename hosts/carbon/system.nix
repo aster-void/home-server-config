@@ -3,7 +3,7 @@
     coreutils-full
     bash
     fish
-    nu
+    nushell
     curl
     btop
     ncdu
@@ -18,6 +18,9 @@
 
   # Enable sudo for wheel group
   security.sudo.enable = true;
+
+  # Enable fish shell
+  programs.fish.enable = true;
 
   # Nix configuration
   nix.settings.experimental-features = ["nix-command" "flakes"];
