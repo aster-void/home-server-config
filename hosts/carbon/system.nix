@@ -1,4 +1,14 @@
-{...}: {
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    coreutils-full
+    bash
+    fish
+    nu
+    curl
+    btop
+    ncdu
+  ];
+
   # Enable systemd for service management
   systemd.enableEmergencyMode = false;
 
@@ -36,10 +46,10 @@
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-  
+
   # Enable Wayland
   services.displayManager.gdm.wayland = true;
-  
+
   # NetworkManager for GNOME
   networking.networkmanager.enable = true;
 
