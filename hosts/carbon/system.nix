@@ -32,5 +32,16 @@
   # Network configuration
   networking.firewall.allowedTCPPorts = [22 25565]; # SSH + Minecraft
 
+  # Desktop environment configuration
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  
+  # Enable Wayland
+  services.xserver.displayManager.gdm.wayland = true;
+  
+  # NetworkManager for GNOME
+  networking.networkmanager.enable = true;
+
   system.stateVersion = "25.05";
 }
