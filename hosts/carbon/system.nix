@@ -1,0 +1,36 @@
+{...}: {
+  # Enable systemd for service management
+  systemd.enableEmergencyMode = false;
+
+  # Basic system configuration
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Enable sudo for wheel group
+  security.sudo.enable = true;
+
+  # Nix configuration
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
+  # Enable comin for GitOps deployment
+  services.comin = {
+    enable = true;
+    remotes = [
+      {
+        name = "origin";
+        url = "https://github.com/aster-void/home-server-config.git";
+        branches.main.name = "main";
+      }
+    ];
+  };
+
+  # Network configuration
+  networking.firewall.allowedTCPPorts = [22 25565]; # SSH + Minecraft
+
+  system.stateVersion = "25.05";
+}

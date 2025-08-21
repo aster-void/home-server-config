@@ -1,52 +1,16 @@
-{inputs, meta, ...}: {
+{
+  inputs,
+  meta,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./services
     ./users.nix
+    ./system.nix
+
     inputs.comin.nixosModules.comin
   ];
 
   networking.hostName = meta.hostname;
-
-  # Enable systemd for service management
-  systemd.enableEmergencyMode = false;
-
-  # Basic system configuration
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Enable SSH for remote management
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
-    };
-  };
-
-  # Enable sudo for wheel group
-  security.sudo.enable = true;
-
-  # Nix configuration
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
-
-  # Network configuration
-  networking.firewall.allowedTCPPorts = [22 25565]; # SSH + Minecraft
-
-  # Enable comin for GitOps deployment
-  services.comin = {
-    enable = true;
-    remotes = [{
-      name = "origin";
-      url = "https://github.com/aster-void/home-server-config.git";
-      branches.main.name = "main";
-    }];
-  };
-
-  system.stateVersion = "25.05";
 }
