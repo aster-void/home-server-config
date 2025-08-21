@@ -34,11 +34,11 @@
 
   # Desktop environment configuration
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
   
   # Enable Wayland
-  services.xserver.displayManager.gdm.wayland = true;
+  services.displayManager.gdm.wayland = true;
   
   # NetworkManager for GNOME
   networking.networkmanager.enable = true;
