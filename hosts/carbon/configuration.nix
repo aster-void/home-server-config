@@ -26,6 +26,14 @@
   # Enable sudo for wheel group
   security.sudo.enable = true;
 
+  # Nix configuration
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
   # Network configuration
   networking.firewall.allowedTCPPorts = [22 25565]; # SSH + Minecraft
   system.stateVersion = "25.05";
