@@ -1,8 +1,9 @@
-{meta, ...}: {
+{inputs, meta, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./services
     ./users.nix
+    inputs.comin.nixosModules.comin
   ];
 
   networking.hostName = meta.hostname;
@@ -36,5 +37,16 @@
 
   # Network configuration
   networking.firewall.allowedTCPPorts = [22 25565]; # SSH + Minecraft
+
+  # Enable comin for GitOps deployment
+  services.comin = {
+    enable = true;
+    remotes = [{
+      name = "origin";
+      url = "https://github.com/aster-void/home-server-config.git";
+      branches.main.name = "main";
+    }];
+  };
+
   system.stateVersion = "25.05";
 }
