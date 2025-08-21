@@ -126,11 +126,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1755794252,
-        "narHash": "sha256-dhmz2CgRULkCdayEZwshQYwrSlJ+sIMwJVAgKFKZiWM=",
+        "lastModified": 1755805923,
+        "narHash": "sha256-3SJegwmENwmqyFtYYs/+oEwFkea7HfnZcnOYV4rsJnM=",
         "owner": "aster-void",
         "repo": "mc-astronaut-server",
-        "rev": "c7442e5bc5905e9ccc49a7fbf984917e40e44321",
+        "rev": "cfabec29443ba6d5aa20cc8dd56de1c7d3e32c7e",
         "type": "github"
       },
       "original": {
