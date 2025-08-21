@@ -1,4 +1,8 @@
-{meta, pkgs, ...}: {
+{
+  meta,
+  pkgs,
+  ...
+}: {
   # Create admin user with SSH keys
   users.users.aster = {
     isNormalUser = true;
@@ -7,16 +11,16 @@
     openssh.authorizedKeys.keys = meta.sshAuthorizedKeys;
   };
 
-  # Create minecraft user
+  users.users.root = {
+    openssh.authorizedKeys.keys = meta.sshAuthorizedKeys;
+    shell = pkgs.fish;
+  };
+
   users.users.minecraft = {
     isSystemUser = true;
     group = "minecraft";
     home = "/srv/minecraft";
     createHome = true;
   };
-
   users.groups.minecraft = {};
-
-  # Set default shell for root user
-  users.users.root.shell = pkgs.fish;
 }
