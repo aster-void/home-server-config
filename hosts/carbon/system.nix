@@ -51,6 +51,12 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
+  # Keyboard configuration
+  services.xserver.xkb = {
+    layout = "workman";
+    options = "caps:escape";
+  };
+
   # Enable Wayland
   services.displayManager.gdm.wayland = true;
 
