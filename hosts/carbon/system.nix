@@ -7,6 +7,7 @@
     curl
     btop
     ncdu
+    git
   ];
 
   # Enable systemd for service management
