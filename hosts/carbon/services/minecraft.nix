@@ -24,6 +24,7 @@
       NoNewPrivileges = true;
       PrivateTmp = true;
       ProtectSystem = "strict";
+      ReadWritePaths = ["/srv/minecraft"];
       ProtectHome = true;
     };
   };
