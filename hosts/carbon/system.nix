@@ -1,12 +1,16 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    # core utils
     coreutils-full
     bash
     fish
-    nushell
     curl
+    rg
+
+    # monitor & analyze
     btop
     ncdu
+    nushll
   ];
 
   # Enable systemd for service management
