@@ -3,20 +3,33 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    mc-astronaut-server.url = "github:aster-void/mc-astronaut-server";
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
-    nixosConfigurations."carbon" = nixpkgs.lib.nixosSystem {
+  outputs = {nixpkgs, ...} @ inputs: let
+    sshAuthorizedKeys = builtins.fromJSON (builtins.readFile ./config/ssh-authorized-keys.json);
+
+    mkSystem = {
+      system,
+      hostname,
+      modules,
+    }:
+      nixpkgs.lib.nixosSystem {
+        inherit system modules;
+        specialArgs = {
+          inherit inputs;
+          meta = {
+            inherit hostname sshAuthorizedKeys;
+          };
+        };
+      };
+  in {
+    nixosConfigurations."carbon" = mkSystem {
       system = "x86_64-linux";
+      hostname = "carbon";
       modules = [
         ./hosts/carbon/configuration.nix
       ];
-      specialArgs = {
-        inherit inputs;
-        meta = {
-          hostname = "carbon";
-        };
-      };
     };
   };
 }

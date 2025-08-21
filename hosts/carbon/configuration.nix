@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./services
+    ./users.nix
   ];
 
   system.stateVersion = "24.05";
@@ -25,6 +26,9 @@
       KbdInteractiveAuthentication = false;
     };
   };
+
+  # Enable sudo for wheel group
+  security.sudo.enable = true;
   
   # Network configuration
   networking.firewall.allowedTCPPorts = [ 22 25565 ]; # SSH + Minecraft
