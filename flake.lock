@@ -123,14 +123,16 @@
     "mc-astronaut-server": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1755805923,
+        "lastModified": 1755806370,
         "narHash": "sha256-3SJegwmENwmqyFtYYs/+oEwFkea7HfnZcnOYV4rsJnM=",
         "owner": "aster-void",
         "repo": "mc-astronaut-server",
-        "rev": "cfabec29443ba6d5aa20cc8dd56de1c7d3e32c7e",
+        "rev": "59bd8a929ad07bbfffc19344adbc0e54a859fa93",
         "type": "github"
       },
       "original": {
@@ -172,22 +174,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1752950548,
-        "narHash": "sha256-NS6BLD0lxOrnCiEOcvQCDVPXafX1/ek1dfJHX1nUIzc=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "c87b95e25065c028d31a94f06a62927d18763fdf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1755615617,
         "narHash": "sha256-HMwfAJBdrr8wXAkbGhtcby1zGFvs+StOp19xNsbqdOg=",
         "owner": "nixos",
@@ -202,7 +188,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1753939845,
         "narHash": "sha256-K2ViRJfdVGE8tpJejs8Qpvvejks1+A4GQej/lBk5y7I=",
@@ -237,7 +223,7 @@
     "playit-nixos-module": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_3",
         "playit-agent-source": "playit-agent-source",
         "systems": "systems_3"
       },
@@ -260,7 +246,7 @@
         "agenix": "agenix",
         "comin": "comin",
         "mc-astronaut-server": "mc-astronaut-server",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "playit-nixos-module": "playit-nixos-module"
       }
     },

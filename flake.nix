@@ -3,7 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    mc-astronaut-server.url = "github:aster-void/mc-astronaut-server";
+    mc-astronaut-server = {
+      url = "github:aster-void/mc-astronaut-server?submodules=1;";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     comin = {
       url = "github:nlewo/comin";
       inputs.nixpkgs.follows = "nixpkgs";
