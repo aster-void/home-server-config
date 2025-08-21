@@ -7,7 +7,6 @@
     curl
     btop
     ncdu
-    git
   ];
 
   # Enable systemd for service management
@@ -27,8 +26,17 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.gc = {
     automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
+    dates = "daily";
+    options = "--delete-older-than 7d";
+  };
+
+  programs.git = {
+    enable = true;
+    config = {
+      user.name = "aster@carbon";
+      user.email = "137767097+aster-void@users.noreply.github.com";
+      pull.rebase = true;
+    };
   };
 
   # Enable comin for GitOps deployment
