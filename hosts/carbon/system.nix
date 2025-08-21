@@ -15,6 +15,7 @@
   # Basic system configuration
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot";
 
   # Enable sudo for wheel group
   security.sudo.enable = true;
