@@ -3,9 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nix-mc.url = "github:aster-void/nix-mc";
     mc-astronaut-server = {
-      url = "github:aster-void/mc-astronaut-server?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:aster-void/mc-astronaut-server";
+      flake = false;
+    };
+    mc-astronaut-mods = {
+      url = "github:aster-void/mc-astronaut-mods/server";
+      flake = false;
     };
     comin = {
       url = "github:nlewo/comin";
@@ -17,6 +22,7 @@
 
   outputs = {
     nixpkgs,
+    nix-mc,
     agenix,
     playit-nixos-module,
     ...
@@ -46,6 +52,7 @@
       hostname = "carbon";
       modules = [
         ./hosts/carbon/configuration.nix
+        nix-mc.nixosModules.nix-mc
         agenix.nixosModules.default
         playit-nixos-module.nixosModules.default
       ];

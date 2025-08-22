@@ -1,63 +1,81 @@
 # Minecraft サーバーセットアップ
 
-このドキュメントは、carbon ホストでの Minecraft サーバーサービスのセットアップについて説明します。
+## システム構成
 
-## 概要
+- **flake.nix**: nix-mc ライブラリと関連リポジトリの定義
+- **hosts/carbon/services/minecraft.nix**: Minecraft サーバー設定
 
-carbon ホストは `mc-astronaut-server` を systemd サービスとして実行し、サーバーリポジトリを自動的にクローンして更新し、その後 Minecraft サーバーを起動します。
+## 関連リンク・ライブラリ
 
-## サービス設定
+### [Infinidoge/nix-minecraft](https://github.com/Infinidoge/nix-minecraft)
+Nix での Minecraft サーバー管理ライブラリ。Fabric、Quilt サーバーをサポート。
 
-サービスは `hosts/carbon/services/minecraft.nix` で設定され、以下を提供します：
+**基本的な使用方法:**
+```nix
+# flake.nix
+inputs = {
+  nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+};
 
-- `github:aster-void/mc-astronaut-server` からの自動 git リポジトリクローン/更新
-- セキュリティのための専用 minecraft ユーザー
-- 再起動機能を持つ Systemd サービス
-- Minecraft ポート（25565）のファイアウォール設定
-
-## 作成されたファイル
-
-1. `hosts/carbon/configuration.nix` - メインホスト設定
-2. `hosts/carbon/hardware-configuration.nix` - ハードウェア固有設定（テンプレート）
-3. `hosts/carbon/services/default.nix` - サービスモジュールインポート
-4. `hosts/carbon/services/minecraft.nix` - Minecraft サービス設定
-
-## サービス詳細
-
-- **サービス名**: `minecraft-astronaut`
-- **ユーザー**: `minecraft`（システムユーザー、自動作成）
-- **グループ**: `minecraft`（自動作成）
-- **作業ディレクトリ**: `/var/lib/minecraft`
-- **リポジトリ**: `https://github.com/aster-void/mc-astronaut-server.git`
-- **Java**: OpenJDK 17、最大ヒープ 2GB、最小ヒープ 1GB
-- **ポート**: 25565（ファイアウォールルールで設定）
-- **再起動ポリシー**: 10秒遅延で常に再起動
-- **セキュリティ**: NoNewPrivileges、PrivateTmp、ProtectSystem=strict、ProtectHome
-
-## デプロイコマンド
-
-```bash
-# 設定をビルド
-nix build .#nixosConfigurations.carbon.config.system.build.toplevel
-
-# carbon ホストにデプロイ（ターゲットマシンで実行）
-sudo nixos-rebuild switch --flake .#carbon
-
-# リモートマシンからデプロイ
-nixos-rebuild switch --flake .#carbon --target-host carbon
+# configuration.nix
+{
+  imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
+  nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+  
+  services.minecraft-servers = {
+    enable = true;
+    eula = true;
+    servers.my-server = {
+      enable = true;
+      package = pkgs.fabricServers.fabric-1_18_2; # Fabric サーバー例
+    };
+  };
+}
 ```
 
-## サービス動作
+### [aster-void/nix-mc](https://github.com/aster-void/nix-mc)
+Forge、NeoForge、Bedrock サーバーをサポートする Minecraft サーバー用 Nix 設定ライブラリ。セキュリティ強化と柔軟なファイル管理を提供。
 
-サービスは起動時に以下の操作を実行します：
-1. `/var/lib/minecraft` ディレクトリが存在しない場合は作成
-2. リポジトリが存在しない場合はクローン、存在する場合は最新の変更をプル
-3. `java -Xmx2G -Xms1G -jar server.jar nogui` で Minecraft サーバーを起動
-4. サービスが失敗した場合は自動的に再起動
+**主な機能:**
+- Forge、NeoForge、Bedrock サーバーのサポート
+- セキュリティ強化
+- 複数サーバーインスタンス対応
+- 柔軟なファイル管理（symlinks、コピー）
 
-## 重要な注意事項
+**使用方法:**
+```nix
+# flake.nix
+inputs = {
+  nix-mc.url = "github:aster-void/nix-mc";
+  # バージョン固定されたサーバーソース
+  forge-server.url = "github:YourUsername/forge-server-configs/1.20.1";
+  forge-server.flake = false;
+}
 
-- hardware-configuration.nix ファイルは実際のハードウェアに合わせてカスタマイズする必要があります
-- SSH は鍵ベース認証のみで設定されています
-- サービスは分離のため厳格なセキュリティ制限下で実行されます
-- Git と OpenJDK 17 は必要なパッケージとしてシステム全体にインストールされます
+# configuration.nix
+services.minecraft = {
+  enable = true;
+  openFirewall = true;
+  
+  servers.myserver = {
+    type = "forge";
+    upstreamDir = forge-server; # バージョン固定ソース
+    symlinks = {
+      mods = "${forge-server}/mods";
+      config = "${forge-server}/config";
+    };
+    serverProperties = {
+      "server-port" = 25565;
+      difficulty = "normal";
+      "max-players" = 20;
+    };
+  };
+}
+```
+
+**設定オプション:**
+- `type`: "forge", "neoforge", "bedrock" から選択
+- `upstreamDir`: 読み取り専用サーバーファイルの指定
+- `symlinks`: MODs、設定ファイルのシンボリックリンク作成
+- `serverProperties`: サーバー設定
+- `ports`: カスタムポート指定（デフォルト: Java TCP 25565, Bedrock UDP 19132）

@@ -81,24 +81,6 @@
         "type": "github"
       }
     },
-    "flake-utils": {
-      "inputs": {
-        "systems": "systems_2"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -120,24 +102,54 @@
         "type": "github"
       }
     },
-    "mc-astronaut-server": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
+    "mc-astronaut-mods": {
+      "flake": false,
       "locked": {
-        "lastModified": 1755806370,
-        "narHash": "sha256-3SJegwmENwmqyFtYYs/+oEwFkea7HfnZcnOYV4rsJnM=",
+        "lastModified": 1755806355,
+        "narHash": "sha256-dkoKwP3WjjJMQnvy4V91++XUmCECSSzJkFRBf0Em2Sw=",
+        "owner": "aster-void",
+        "repo": "mc-astronaut-mods",
+        "rev": "31b0f18733625875f524f19fad87303377edbd7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aster-void",
+        "ref": "server",
+        "repo": "mc-astronaut-mods",
+        "type": "github"
+      }
+    },
+    "mc-astronaut-server": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1755884123,
+        "narHash": "sha256-RsmMLZyCO3aCSecc8Q0XedrOFUgl45yOS7oZqECp69U=",
         "owner": "aster-void",
         "repo": "mc-astronaut-server",
-        "rev": "59bd8a929ad07bbfffc19344adbc0e54a859fa93",
+        "rev": "49e8f6aa16f91001ea5dd0a763b5853c1c37c213",
         "type": "github"
       },
       "original": {
         "owner": "aster-void",
         "repo": "mc-astronaut-server",
+        "type": "github"
+      }
+    },
+    "nix-mc": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1755888368,
+        "narHash": "sha256-e33wHyx/xBoX9uRwyLtgDflv0a/oyM85UOf2h5AVg1o=",
+        "owner": "aster-void",
+        "repo": "nix-mc",
+        "rev": "6d7b7e823ee352a2ab87482ae3ce57028759aae2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aster-void",
+        "repo": "nix-mc",
         "type": "github"
       }
     },
@@ -190,6 +202,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1755615617,
+        "narHash": "sha256-HMwfAJBdrr8wXAkbGhtcby1zGFvs+StOp19xNsbqdOg=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "20075955deac2583bb12f07151c2df830ef346b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1753939845,
         "narHash": "sha256-K2ViRJfdVGE8tpJejs8Qpvvejks1+A4GQej/lBk5y7I=",
         "owner": "NixOS",
@@ -223,9 +251,9 @@
     "playit-nixos-module": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "playit-agent-source": "playit-agent-source",
-        "systems": "systems_3"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1754565422,
@@ -245,8 +273,10 @@
       "inputs": {
         "agenix": "agenix",
         "comin": "comin",
+        "mc-astronaut-mods": "mc-astronaut-mods",
         "mc-astronaut-server": "mc-astronaut-server",
-        "nixpkgs": "nixpkgs_2",
+        "nix-mc": "nix-mc",
+        "nixpkgs": "nixpkgs_3",
         "playit-nixos-module": "playit-nixos-module"
       }
     },
@@ -266,21 +296,6 @@
       }
     },
     "systems_2": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_3": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

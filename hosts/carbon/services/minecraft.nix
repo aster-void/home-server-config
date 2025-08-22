@@ -1,31 +1,24 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}: {
-  systemd.services.minecraft-astronaut = {
-    description = "Minecraft Astronaut Server";
-    wantedBy = ["multi-user.target"];
-    after = ["network.target"];
+{inputs, ...}: {
+  services.minecraft = {
+    enable = true;
+    openFirewall = true;
 
-    serviceConfig = {
-      Type = "simple";
-      User = "minecraft";
-      Group = "minecraft";
-      WorkingDirectory = "/srv/minecraft";
-      Restart = "on-failure";
-      RestartSec = "2s";
-
-      # Run the server using flake package
-      ExecStart = lib.getExe inputs.mc-astronaut-server.packages.${pkgs.system}.default;
-
-      # Security settings
-      NoNewPrivileges = true;
-      PrivateTmp = true;
-      ProtectSystem = "strict";
-      ReadWritePaths = ["/srv/minecraft"];
-      ProtectHome = true;
+    servers.astronaut = {
+      type = "forge";
+      symlinks = {
+        mods = "${inputs.mc-astronaut-mods}";
+        libraries = "${inputs.mc-astronaut-server}/libraries";
+        "eula.txt" = "${inputs.mc-astronaut-server}/eula.txt"; # TODO: remove
+        "run.sh" = "${inputs.mc-astronaut-server}/run.sh";
+        "user_jvm_args.txt" = "${inputs.mc-astronaut-server}/user_jvm_args.txt";
+      };
+      ExecStart = "${inputs.mc-astronaut-server}/run.sh";
+      serverProperties = {
+        "server-port" = 25565;
+        difficulty = "normal";
+        "max-players" = 20;
+        motd = "Astronaut Server - Powered by NixOS";
+      };
     };
   };
 }
