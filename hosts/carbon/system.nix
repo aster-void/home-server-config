@@ -64,6 +64,12 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
+  # don't sleep on display close
+  services.logind.extraConfig = ''
+    HandleLidSwitch=ignore
+    HandleLidSwitchDocked=ignore
+  '';
+
   # Keyboard configuration
   services.xserver.xkb = {
     layout = "us";
