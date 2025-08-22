@@ -10,9 +10,9 @@
         libraries = "${inputs.mc-astronaut-server}/libraries";
         "eula.txt" = "${inputs.mc-astronaut-server}/eula.txt"; # TODO: remove
         "run.sh" = "${inputs.mc-astronaut-server}/run.sh";
-        "user_jvm_args.txt" = "${inputs.mc-astronaut-server}/user_jvm_args.txt";
+        "user_jvm_args.txt" = "${inputs.mc-astronaut-server.files.default}/user_jvm_args.txt";
       };
-      ExecStart = "${inputs.mc-astronaut-server}/run.sh";
+      ExecStart = "${inputs.mc-astronaut-server.files.default}/run.sh";
       serverProperties = {
         "server-port" = 25565;
         difficulty = "normal";

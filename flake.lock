@@ -103,13 +103,12 @@
       }
     },
     "mc-astronaut-mods": {
-      "flake": false,
       "locked": {
-        "lastModified": 1755806355,
-        "narHash": "sha256-dkoKwP3WjjJMQnvy4V91++XUmCECSSzJkFRBf0Em2Sw=",
+        "lastModified": 1755889332,
+        "narHash": "sha256-2KwFQK+4LxBAUl05FO0XrKkrBF7DlM0wC3zHyFMggIc=",
         "owner": "aster-void",
         "repo": "mc-astronaut-mods",
-        "rev": "31b0f18733625875f524f19fad87303377edbd7a",
+        "rev": "3f0dd688ecaba7526ffbdf5363866300ebe3eb1d",
         "type": "github"
       },
       "original": {
@@ -120,13 +119,12 @@
       }
     },
     "mc-astronaut-server": {
-      "flake": false,
       "locked": {
-        "lastModified": 1755884123,
-        "narHash": "sha256-RsmMLZyCO3aCSecc8Q0XedrOFUgl45yOS7oZqECp69U=",
+        "lastModified": 1755889209,
+        "narHash": "sha256-F8s0hbNte6G/AWTf4JWTZiH152G2SYYHltY3xBGFlFQ=",
         "owner": "aster-void",
         "repo": "mc-astronaut-server",
-        "rev": "49e8f6aa16f91001ea5dd0a763b5853c1c37c213",
+        "rev": "ed389710f1961164c53fa2079fe5f0e0aaf157e6",
         "type": "github"
       },
       "original": {
