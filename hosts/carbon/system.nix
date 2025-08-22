@@ -73,6 +73,7 @@
   # Keyboard configuration
   services.xserver.xkb = {
     layout = "us";
+    variant = "workman";
     options = "caps:escape";
   };
 
