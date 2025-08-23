@@ -23,7 +23,8 @@
         credentialsFile = config.age.secrets.cloudflared-cert-pem.path;
         default = "http_status:404";
         ingress = {
-          "ssh.aster-void.dev" = "ssh://localhost:22";
+          "carbon.aster-void.dev" = "ssh://localhost:22";
+          "mc.aster-void.dev" = "tcp://localhost:25565";
         };
       };
     };
