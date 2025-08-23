@@ -13,7 +13,7 @@
         "run.sh" = "${inputs.mc-astronaut-server}/run.sh";
         "user_jvm_args.txt" = "${inputs.mc-astronaut-server.files.default}/user_jvm_args.txt";
       };
-      startScript = "./run.sh";
+      startScript = "/var/lib/minecraft/astronaut/run.sh";
       serverProperties = {
         "server-port" = 25565;
         difficulty = "normal";
