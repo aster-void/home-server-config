@@ -12,6 +12,7 @@
     fish
     curl
     ripgrep
+    zellij
 
     # monitor & analyze
     btop
