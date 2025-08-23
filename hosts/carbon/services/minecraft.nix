@@ -5,6 +5,7 @@
 
     servers.astronaut = {
       type = "forge";
+      dataDir = "/var/lib/minecraft/astronaut";
       symlinks = {
         mods = "${inputs.mc-astronaut-mods}";
         libraries = "${inputs.mc-astronaut-server}/libraries";
@@ -12,7 +13,7 @@
         "run.sh" = "${inputs.mc-astronaut-server}/run.sh";
         "user_jvm_args.txt" = "${inputs.mc-astronaut-server.files.default}/user_jvm_args.txt";
       };
-      ExecStart = "${inputs.mc-astronaut-server.files.default}/run.sh";
+      ExecStart = "/var/lib/minecraft/astronaut/run.sh";
       serverProperties = {
         "server-port" = 25565;
         difficulty = "normal";
