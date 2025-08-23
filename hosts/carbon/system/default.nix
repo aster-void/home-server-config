@@ -8,6 +8,7 @@
     ./gui.nix
     ./users.nix
     ./networking.nix
+    ./locale.nix
   ];
   environment.systemPackages = with pkgs; [
     # core utils
