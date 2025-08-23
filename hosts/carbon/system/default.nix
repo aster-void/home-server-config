@@ -25,6 +25,10 @@
     macchina
     nushell
     inputs.nix-mc.packages.${pkgs.system}.nix-mc-cli
+
+    # devel
+    git
+    helix
   ];
 
   # Enable systemd for service management
