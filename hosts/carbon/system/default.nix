@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./boot.nix
     ./gui.nix
@@ -18,6 +22,7 @@
     btop
     ncdu
     nushell
+    inputs.nix-mc.packages.${pkgs.system}.nix-mc-cli
   ];
 
   # Enable systemd for service management
