@@ -1,4 +1,10 @@
 {pkgs, ...}: {
+  imports = [
+    ./boot.nix
+    ./gui.nix
+    ./users.nix
+    ./networking.nix
+  ];
   environment.systemPackages = with pkgs; [
     # core utils
     coreutils-full
@@ -15,11 +21,6 @@
 
   # Enable systemd for service management
   systemd.enableEmergencyMode = false;
-
-  # Basic system configuration
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
 
   # Enable sudo for wheel group
   security.sudo.enable = true;
@@ -43,18 +44,6 @@
       pull.rebase = true;
     };
   };
-
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-    publish = {
-      enable = true;
-      addresses = true;
-      domain = true;
-      workstation = true;
-    };
-  };
-
   # Enable comin for GitOps deployment
   services.comin = {
     enable = true;
@@ -67,32 +56,12 @@
     ];
   };
 
-  # Network configuration
-  networking.firewall.allowedTCPPorts = [22 25565]; # SSH + Minecraft
-
-  # Desktop environment configuration
-  services.xserver.enable = true;
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-
-  # don't sleep on display close
-  services.logind.extraConfig = ''
-    HandleLidSwitch=ignore
-    HandleLidSwitchDocked=ignore
-  '';
-
   # Keyboard configuration
   services.xserver.xkb = {
     layout = "us";
     variant = "workman";
     options = "caps:escape";
   };
-
-  # Enable Wayland
-  services.displayManager.gdm.wayland = true;
-
-  # NetworkManager for GNOME
-  networking.networkmanager.enable = true;
 
   system.stateVersion = "25.05";
 }

@@ -6,8 +6,7 @@
   imports = [
     ./hardware-configuration.nix
     ./services
-    ./users.nix
-    ./system.nix
+    ./system
 
     inputs.comin.nixosModules.comin
     inputs.agenix.nixosModules.default
