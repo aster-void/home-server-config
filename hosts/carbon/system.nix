@@ -44,6 +44,17 @@
     };
   };
 
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      domain = true;
+      workstation = true;
+    };
+  };
+
   # Enable comin for GitOps deployment
   services.comin = {
     enable = true;
