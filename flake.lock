@@ -138,11 +138,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1755965368,
-        "narHash": "sha256-sL15Kz0jvRIi0psJcJ6gCSz7BCPsylzNk3m5hdMaxZk=",
+        "lastModified": 1755965878,
+        "narHash": "sha256-Giy85CvHFLVrMow13M6JOjBV0ZF4UP0Q5Ku9CCjXTj4=",
         "owner": "aster-void",
         "repo": "nix-mc",
-        "rev": "c75f7d84541e4bd40136d70b182058962b9007f4",
+        "rev": "e1c2139b226d31fe9511bd1816070f17cf12eca4",
         "type": "github"
       },
       "original": {
