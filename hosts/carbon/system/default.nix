@@ -21,6 +21,7 @@
     # monitor & analyze
     btop
     ncdu
+    macchina
     nushell
     inputs.nix-mc.packages.${pkgs.system}.nix-mc-cli
   ];
