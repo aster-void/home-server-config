@@ -27,6 +27,9 @@
         difficulty = 3;
         hardcore = true;
       };
+      enableReload = true;
+      extraReload = ''
+      '';
     };
   };
 
