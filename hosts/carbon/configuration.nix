@@ -13,4 +13,6 @@
   ];
 
   networking.hostName = meta.hostname;
+
+  nixpkgs.config.allowUnfree = true;
 }
