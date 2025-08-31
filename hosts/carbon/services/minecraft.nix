@@ -7,7 +7,7 @@
     inputs.nix-mc.nixosModules.nix-mc
     inputs.nix-minecraft.nixosModules.minecraft-servers
   ];
-  overlays = [
+  nixpkgs.overlays = [
     inputs.nix-minecraft.overlay
   ];
 
@@ -19,11 +19,11 @@
     enable = true;
     eula = true;
     servers.my-fabric = {
-      package = pkgs.fabricServers.fabric;
       enable = true;
-    };
-    serverProperties = {
-      port = 25566;
+      package = pkgs.fabricServers.fabric;
+      serverProperties = {
+        port = 25566;
+      };
     };
   };
 
