@@ -22,7 +22,7 @@
       enable = true;
       package = pkgs.fabricServers.fabric;
       serverProperties = {
-        port = 25566;
+        server-port = 25566;
       };
     };
   };

@@ -6,10 +6,4 @@
 
   # Enable Wayland
   services.displayManager.gdm.wayland = true;
-
-  # don't sleep on display close
-  services.logind.extraConfig = ''
-    HandleLidSwitch=ignore
-    HandleLidSwitchDocked=ignore
-  '';
 }
