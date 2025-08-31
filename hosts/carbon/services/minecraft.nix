@@ -23,6 +23,9 @@
       package = pkgs.fabricServers.fabric;
       serverProperties = {
         server-port = 25566;
+        gamemode = 0;
+        difficulty = 3;
+        hardcore = true;
       };
     };
   };
