@@ -11,6 +11,10 @@
     inputs.nix-minecraft.overlay
   ];
 
+  environment.systemPackages = with pkgs; [
+    minecraftctl
+  ];
+
   services.minecraft-servers = {
     enable = true;
     eula = true;
