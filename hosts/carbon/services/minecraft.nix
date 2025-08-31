@@ -1,4 +1,28 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports = [
+    inputs.nix-mc.nixosModules.nix-mc
+    inputs.nix-minecraft.nixosModules.minecraft-servers
+  ];
+  overlays = [
+    inputs.nix-minecraft.overlay
+  ];
+
+  services.minecraft-servers = {
+    enable = true;
+    eula = true;
+    servers.my-fabric = {
+      package = pkgs.fabricServers.fabric;
+      enable = true;
+    };
+    serverProperties = {
+      port = 25566;
+    };
+  };
+
   services.minecraft = {
     enable = true;
     openFirewall = true;

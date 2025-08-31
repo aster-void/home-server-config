@@ -10,17 +10,20 @@
     mc-astronaut-mods = {
       url = "github:aster-void/mc-astronaut-mods/server";
     };
-    comin = {
-      url = "github:nlewo/comin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    nix-minecraft.url = "github:aster-void/nix-minecraft?ref=feat/minecraftctl";
+    nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
+
+    comin.url = "github:nlewo/comin";
+    comin.inputs.nixpkgs.follows = "nixpkgs";
+
     agenix.url = "github:ryantm/agenix";
+
     playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
   };
 
   outputs = {
     nixpkgs,
-    nix-mc,
     agenix,
     playit-nixos-module,
     ...
@@ -50,7 +53,6 @@
       hostname = "carbon";
       modules = [
         ./hosts/carbon/configuration.nix
-        nix-mc.nixosModules.nix-mc
         agenix.nixosModules.default
         playit-nixos-module.nixosModules.default
       ];
