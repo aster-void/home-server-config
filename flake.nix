@@ -68,6 +68,7 @@
         packages = [
           agenix.outputs.packages.${system}.default
           playit-nixos-module.outputs.packages.${system}.playit-cli
+          inputs.nix-minecraft.outputs.packages.${system}.minecraftctl
         ];
       };
     });

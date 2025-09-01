@@ -26,6 +26,11 @@
         gamemode = 0;
         difficulty = 3;
         hardcore = true;
+
+        whitelist = true;
+      };
+      whitelist = {
+        Frgd = "1cb95bd4-beeb-4940-a3b2-ab5dac408d71";
       };
       enableReload = true;
       extraReload = ''
