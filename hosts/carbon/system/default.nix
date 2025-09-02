@@ -64,6 +64,7 @@
         name = "origin";
         url = "https://github.com/aster-void/home-server-config.git";
         branches.main.name = "main";
+        poller.period = 5;
       }
     ];
   };
