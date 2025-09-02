@@ -20,102 +20,26 @@
     eula = true;
     openFirewall = true;
 
-    servers =
-      {
-        my-fabric = {
-          enable = true;
-          package = pkgs.fabricServers.fabric;
-          serverProperties = {
-            server-port = 25566;
-            gamemode = 0;
-            difficulty = 3;
-            hardcore = true;
+    servers = {
+      my-fabric = {
+        enable = true;
+        package = pkgs.fabricServers.fabric;
+        serverProperties = {
+          server-port = 25566;
+          gamemode = 0;
+          difficulty = 3;
+          hardcore = true;
 
-            whitelist = true;
-          };
-          whitelist = {
-            Frgd = "1cb95bd4-beeb-4940-a3b2-ab5dac408d71";
-          };
-          enableReload = true;
-          extraReload = ''
-          '';
+          whitelist = true;
         };
-      }
-      # === debugging ===
-      // (let
         whitelist = {
           Frgd = "1cb95bd4-beeb-4940-a3b2-ab5dac408d71";
         };
-        mkServerProperties = port: {
-          whitelist = true;
-          server-port = port;
-          gamemode = 1;
-          difficulty = 0;
-        };
-      in {
-        # from nixpkgs
-        dbg-nixpkgs-minecraft = {
-          enable = true;
-          package = pkgs.minecraft-server;
-          inherit whitelist;
-          serverProperties = mkServerProperties 25567;
-        };
-        dbg-nixpkgs-paper = {
-          enable = true;
-          package = pkgs.papermc;
-          inherit whitelist;
-          serverProperties = mkServerProperties 25568;
-        };
-        dbg-nixpkgs-purpur = {
-          enable = true;
-          package = pkgs.purpur;
-          inherit whitelist;
-          serverProperties = mkServerProperties 25569;
-        };
-        dbg-nixpkgs-mchprs = {
-          enable = true;
-          package = pkgs.mchprs;
-          inherit whitelist;
-          serverProperties = mkServerProperties 25570;
-        };
-        dbg-nixpkgs-velocity = {
-          enable = true;
-          package = pkgs.velocity;
-          inherit whitelist;
-          serverProperties = mkServerProperties 25571;
-        };
-        # from nix-minecraft
-        dbg-vanilla = {
-          enable = true;
-          package = pkgs.vanillaServers.vanilla;
-          inherit whitelist;
-          serverProperties = mkServerProperties 25573;
-        };
-        dbg-quilt = {
-          enable = true;
-          package = pkgs.quiltServers.quilt;
-          inherit whitelist;
-          serverProperties = mkServerProperties 25572;
-        };
-        dbg-legacy-fabric = {
-          enable = true;
-          package = pkgs.legacyFabricServers.legacy-fabric-1_13_2;
-          inherit whitelist;
-          serverProperties = mkServerProperties 25574;
-        };
-        dbg-paper = {
-          enable = true;
-          package = pkgs.paperServers.paper;
-          inherit whitelist;
-          serverProperties = mkServerProperties 25575;
-        };
-        dbg-velocity = {
-          enable = true;
-          package = pkgs.paperServers.paper;
-          inherit whitelist;
-          serverProperties = mkServerProperties 25576;
-        };
-      });
+        enableReload = true;
+        extraReload = ''
+        '';
+      };
+    };
   };
 
   services.minecraft = {
