@@ -21,13 +21,12 @@
     openFirewall = true;
 
     servers = {
-      my-fabric = {
+      hardcore = {
         enable = true;
-        package = pkgs.fabricServers.fabric;
+        package = pkgs.paperServers.paper;
         serverProperties = {
           server-port = 25566;
           gamemode = 0;
-          difficulty = 3;
           hardcore = true;
 
           whitelist = true;
@@ -37,6 +36,8 @@
         };
         enableReload = true;
         extraReload = ''
+          minecraftctl send hardcore reload
+          minecraftctl send hardcore whitelist reload
         '';
       };
     };
