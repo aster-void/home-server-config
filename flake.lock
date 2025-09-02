@@ -194,11 +194,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756710091,
-        "narHash": "sha256-J/ThT5LyUc7hyld3ju0JpcRdiiVN45ts47Mcd3mwm08=",
+        "lastModified": 1756801269,
+        "narHash": "sha256-R7DLZJ2ZEhQEj4AJuujhNcBFy9bZSQTDLG7rRJwT4ks=",
         "owner": "aster-void",
         "repo": "nix-minecraft",
-        "rev": "ba76a17bfca5bc18e19e108075cc0e6f54ee3ab7",
+        "rev": "90040ab720d6eee81b7304a54ce8cb894d3bb80a",
         "type": "github"
       },
       "original": {
