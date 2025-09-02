@@ -58,13 +58,13 @@
           enable = true;
           package = pkgs.minecraft-server;
           inherit whitelist;
-          serverProperties = mkServerProperties 25568;
+          serverProperties = mkServerProperties 25567;
         };
         dbg-nixpkgs-paper = {
           enable = true;
           package = pkgs.papermc;
           inherit whitelist;
-          serverProperties = mkServerProperties 25567;
+          serverProperties = mkServerProperties 25568;
         };
         dbg-nixpkgs-purpur = {
           enable = true;
@@ -101,19 +101,19 @@
           enable = true;
           package = pkgs.legacyFabricServers.legacy-fabric-1_13_2;
           inherit whitelist;
-          serverProperties = mkServerProperties 25572;
+          serverProperties = mkServerProperties 25574;
         };
         dbg-paper = {
           enable = true;
           package = pkgs.paperServers.paper;
           inherit whitelist;
-          serverProperties = mkServerProperties 25572;
+          serverProperties = mkServerProperties 25575;
         };
         dbg-velocity = {
           enable = true;
           package = pkgs.paperServers.paper;
           inherit whitelist;
-          serverProperties = mkServerProperties 25572;
+          serverProperties = mkServerProperties 25576;
         };
       });
   };
