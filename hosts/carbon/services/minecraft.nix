@@ -28,11 +28,6 @@
           server-port = 25566;
           gamemode = 0;
           hardcore = true;
-
-          whitelist = true;
-        };
-        whitelist = {
-          Frgd = "1cb95bd4-beeb-4940-a3b2-ab5dac408d71";
         };
         enableReload = true;
         extraReload = ''
@@ -44,7 +39,7 @@
   };
 
   services.minecraft = {
-    enable = true;
+    enable = false;
     openFirewall = true;
 
     servers.astronaut = {
@@ -55,7 +50,7 @@
         libraries = "${inputs.mc-astronaut-server}/libraries";
         "eula.txt" = "${inputs.mc-astronaut-server}/eula.txt"; # TODO: remove
         "run.sh" = "${inputs.mc-astronaut-server}/run.sh";
-        "user_jvm_args.txt" = "${inputs.mc-astronaut-server.files.default}/user_jvm_args.txt";
+        "user_jvm_args.txt" = "${inputs.mc-astronaut-server}/user_jvm_args.txt";
       };
       startScript = "/var/lib/minecraft/astronaut/run.sh";
       serverProperties = {

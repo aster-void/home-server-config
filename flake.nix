@@ -6,9 +6,11 @@
     nix-mc.url = "github:aster-void/nix-mc";
     mc-astronaut-server = {
       url = "github:aster-void/mc-astronaut-server";
+      flake = false;
     };
     mc-astronaut-mods = {
       url = "github:aster-void/mc-astronaut-mods/server";
+      flake = false;
     };
 
     nix-minecraft.url = "github:aster-void/nix-minecraft?ref=feat/minecraftctl";
