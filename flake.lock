@@ -28,11 +28,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756416055,
-        "narHash": "sha256-13b/OmlVWgKQvEzLhzABw7e7EjcNjvA+fOw/pRHyGKc=",
+        "lastModified": 1757250234,
+        "narHash": "sha256-jHyksmOz9yQPUlsJwAgs0jQlz9dwstoS4M/hT+JA5Z0=",
         "owner": "nlewo",
         "repo": "comin",
-        "rev": "238850e8ed3cad2f99e2d38bc395b57d08538623",
+        "rev": "b8ab3eccbc3acf171b9ea377e88b8194f81c579d",
         "type": "github"
       },
       "original": {
@@ -137,6 +137,7 @@
       }
     },
     "mc-astronaut-mods": {
+      "flake": false,
       "locked": {
         "lastModified": 1755889332,
         "narHash": "sha256-2KwFQK+4LxBAUl05FO0XrKkrBF7DlM0wC3zHyFMggIc=",
@@ -153,12 +154,13 @@
       }
     },
     "mc-astronaut-server": {
+      "flake": false,
       "locked": {
-        "lastModified": 1755889209,
-        "narHash": "sha256-F8s0hbNte6G/AWTf4JWTZiH152G2SYYHltY3xBGFlFQ=",
+        "lastModified": 1757137319,
+        "narHash": "sha256-d0Spih+G2da0RKRu6mYXJYX5EmeTQIEtwLDYNDHOXKw=",
         "owner": "aster-void",
         "repo": "mc-astronaut-server",
-        "rev": "ed389710f1961164c53fa2079fe5f0e0aaf157e6",
+        "rev": "5b0b4a0e5059c632512dbc46614fb7be279efb0c",
         "type": "github"
       },
       "original": {
@@ -194,16 +196,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1757442709,
-        "narHash": "sha256-IZaHy7sHx/ZnVUWvzrGHcKKiJFwLj+D17JPk88EZ9C4=",
+        "lastModified": 1757567736,
+        "narHash": "sha256-x8EsaKzSxv/fUK2B1Wwj+nFJi+RcqWjiZzBe32dgu9M=",
         "owner": "aster-void",
         "repo": "nix-minecraft",
-        "rev": "bdc13770c10bfa18f6794087b7938573b942dadf",
+        "rev": "87b2b63aec6fc42021acb5cbfe8edb46be1fc970",
         "type": "github"
       },
       "original": {
         "owner": "aster-void",
-        "ref": "wip/minecraftctl",
+        "ref": "feat/minecraftctl",
         "repo": "nix-minecraft",
         "type": "github"
       }
@@ -257,11 +259,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1756542300,
-        "narHash": "sha256-tlOn88coG5fzdyqz6R93SQL5Gpq+m/DsWpekNFhqPQk=",
+        "lastModified": 1757347588,
+        "narHash": "sha256-tLdkkC6XnsY9EOZW9TlpesTclELy8W7lL2ClL+nma8o=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d7600c775f877cd87b4f5a831c28aa94137377aa",
+        "rev": "b599843bad24621dcaa5ab60dac98f9b0eb1cabe",
         "type": "github"
       },
       "original": {
@@ -311,11 +313,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1754565422,
-        "narHash": "sha256-HS0WaJ0Z55YX+zsVctt0ObBkXXerMUj69gSwYscR+DA=",
+        "lastModified": 1756689640,
+        "narHash": "sha256-L4bxYsGIy8igm6cn2y+eL/cBNjkxV0IfZjRWSJg1MOw=",
         "owner": "pedorich-n",
         "repo": "playit-nixos-module",
-        "rev": "b2d89fb47a5b9e9ae70b1456c23fdf0948f67155",
+        "rev": "345252ffd2c60fa84adeff7713667a09f1c2bfb3",
         "type": "github"
       },
       "original": {

@@ -41,6 +41,7 @@
         let
           mkServer = package: port: manager: {
             enable = true;
+            inherit package;
             serverProperties = {
               server-port = port;
               gamemode = 1;
