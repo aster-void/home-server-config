@@ -30,7 +30,13 @@
     # devel
     git
     helix
+    
+    # terminal compatibility
+    kitty.terminfo
   ];
+
+  # Enable comprehensive terminal support
+  environment.enableAllTerminfo = true;
 
   # Enable systemd for service management
   systemd.enableEmergencyMode = false;
