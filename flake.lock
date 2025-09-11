@@ -196,16 +196,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1757567736,
-        "narHash": "sha256-x8EsaKzSxv/fUK2B1Wwj+nFJi+RcqWjiZzBe32dgu9M=",
+        "lastModified": 1757580915,
+        "narHash": "sha256-1uG5DJFh//gLmsXc/zMBSMc5NKGeSFY6vI5ZU6yUQ7U=",
         "owner": "aster-void",
         "repo": "nix-minecraft",
-        "rev": "87b2b63aec6fc42021acb5cbfe8edb46be1fc970",
+        "rev": "26cf8c8d0a4be27023dac69df02e86329304a222",
         "type": "github"
       },
       "original": {
         "owner": "aster-void",
-        "ref": "feat/minecraftctl",
+        "ref": "wip/minecraftctl",
         "repo": "nix-minecraft",
         "type": "github"
       }

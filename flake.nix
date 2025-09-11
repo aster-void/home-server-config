@@ -13,7 +13,7 @@
       flake = false;
     };
 
-    nix-minecraft.url = "github:aster-void/nix-minecraft?ref=feat/minecraftctl";
+    nix-minecraft.url = "github:aster-void/nix-minecraft?ref=wip/minecraftctl";
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
 
     comin.url = "github:nlewo/comin";
