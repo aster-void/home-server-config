@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ../../common
     ./hardware-configuration.nix
     ./services
     ./system
@@ -13,6 +14,4 @@
   ];
 
   networking.hostName = meta.hostname;
-
-  nixpkgs.config.allowUnfree = true;
 }

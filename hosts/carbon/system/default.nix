@@ -11,59 +11,14 @@
     ./locale.nix
     ./power.nix
   ];
-  environment.systemPackages = with pkgs; [
-    # core utils
-    coreutils-full
-    bash
-    fish
-    curl
-    ripgrep
-    zellij
 
-    # monitor & analyze
-    btop
-    ncdu
-    macchina
-    nushell
-    inputs.nix-mc.packages.${pkgs.system}.nix-mc-cli
-
-    # devel
-    git
-    helix
-    
-    # terminal compatibility
-    kitty.terminfo
-  ];
-
-  # Enable comprehensive terminal support
-  environment.enableAllTerminfo = true;
-
-  # Enable systemd for service management
-  systemd.enableEmergencyMode = false;
-
-  # Enable sudo for wheel group
-  security.sudo.enable = true;
-
-  # Enable fish shell
-  programs.fish.enable = true;
-
-  # Nix configuration
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 7d";
+  # Host-specific git configuration
+  programs.git.config = {
+    user.name = "aster@carbon";
+    user.email = "137767097+aster-void@users.noreply.github.com";
   };
 
-  programs.git = {
-    enable = true;
-    config = {
-      user.name = "aster@carbon";
-      user.email = "137767097+aster-void@users.noreply.github.com";
-      pull.rebase = true;
-    };
-  };
-  # Enable comin for GitOps deployment
+  # Enable comin for GitOps deployment (host-specific)
   services.comin = {
     enable = true;
     remotes = [
@@ -75,13 +30,4 @@
       }
     ];
   };
-
-  # Keyboard configuration
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "workman";
-    options = "caps:escape";
-  };
-
-  system.stateVersion = "25.05";
 }
