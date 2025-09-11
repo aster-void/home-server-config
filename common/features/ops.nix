@@ -1,11 +1,11 @@
 {pkgs, ...}: {
-  # Development tools
+  # Operational tools required for GitOps management
   environment.systemPackages = with pkgs; [
-    git
-    helix
+    git    # Required for GitOps operations
+    helix  # Required for system administration
   ];
 
-  # Common git configuration
+  # Git configuration for operations
   programs.git = {
     enable = true;
     config = {
@@ -13,7 +13,7 @@
     };
   };
 
-  # Enable comin for GitOps deployment
+  # Comin GitOps deployment - required for all hosts
   services.comin = {
     enable = true;
     remotes = [

@@ -85,7 +85,7 @@ hosts/
 
 ### Always Enabled (common/features/)
 - **base.nix**: Core system packages, nix config, boot, locale, keyboard
-- **development.nix**: Git, helix, comin GitOps
+- **ops.nix**: GitOps operations (git, helix, comin) - required for all hosts
 - **networking.nix**: NetworkManager, SSH server, mDNS, basic firewall  
 - **users.nix**: Admin user (aster) with SSH keys
 
