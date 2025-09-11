@@ -9,6 +9,7 @@
     ./users.nix
     ./networking.nix
     ./locale.nix
+    ./power.nix
   ];
   environment.systemPackages = with pkgs; [
     # core utils
