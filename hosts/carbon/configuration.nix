@@ -4,10 +4,8 @@
   ...
 }: {
   imports = [
-    ../../common
     ./hardware-configuration.nix
-    ./services
-    ./system
+    ./default.nix
 
     inputs.comin.nixosModules.comin
     inputs.agenix.nixosModules.default

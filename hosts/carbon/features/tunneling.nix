@@ -1,19 +1,5 @@
 {config, ...}: {
-  networking.networkmanager.enable = true;
-
-  networking.firewall.allowedTCPPorts = [22 25565]; # SSH + Minecraft
-
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    publish = {
-      enable = true;
-      addresses = true;
-      domain = true;
-      workstation = true;
-    };
-  };
-
+  # Cloudflare tunnel configuration
   age.secrets.cloudflared-tunnel-token.file = ../../../secrets/cloudflared-tunnel-token.age;
 
   services.cloudflared = {

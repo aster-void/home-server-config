@@ -54,6 +54,7 @@
       system = "x86_64-linux";
       hostname = "carbon";
       modules = [
+        ./common
         ./hosts/carbon/configuration.nix
         agenix.nixosModules.default
         playit-nixos-module.nixosModules.default

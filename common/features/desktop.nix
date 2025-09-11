@@ -1,4 +1,4 @@
-{
+{...}: {
   # Desktop environment configuration
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;

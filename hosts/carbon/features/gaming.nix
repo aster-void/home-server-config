@@ -1,12 +1,34 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }: {
+  # Minecraft server user and group
+  users.users.minecraft = {
+    isSystemUser = true;
+    group = "minecraft";
+    home = "/srv/minecraft";
+    createHome = true;
+  };
+  users.groups.minecraft = {};
+
+  # System user for playit service
+  users.groups.playit = {};
+  users.users.playit = {
+    isSystemUser = true;
+    group = "playit";
+  };
+
+  # Minecraft server ports
+  networking.firewall.allowedTCPPorts = [25565 25566 25567 25568 25569 25570];
+
+  # Minecraft server configuration
   imports = [
     inputs.nix-mc.nixosModules.nix-mc
     inputs.nix-minecraft.nixosModules.minecraft-servers
   ];
+  
   nixpkgs.overlays = [
     inputs.nix-minecraft.overlay
   ];
@@ -69,7 +91,7 @@
       symlinks = {
         mods = "${inputs.mc-astronaut-mods}";
         libraries = "${inputs.mc-astronaut-server}/libraries";
-        "eula.txt" = "${inputs.mc-astronaut-server}/eula.txt"; # TODO: remove
+        "eula.txt" = "${inputs.mc-astronaut-server}/eula.txt";
         "run.sh" = "${inputs.mc-astronaut-server}/run.sh";
         "user_jvm_args.txt" = "${inputs.mc-astronaut-server}/user_jvm_args.txt";
       };
@@ -81,5 +103,28 @@
         motd = "Astronaut Server - Powered by NixOS";
       };
     };
+  };
+
+  # Age identity paths for decryption
+  age.identityPaths = [
+    "/root/.ssh/id_ed25519"
+    "/home/aster/.ssh/id_ed25519"
+    "/etc/ssh/ssh_host_ed25519_key"
+  ];
+
+  # Age secret for playit configuration
+  age.secrets.playit-secret = {
+    file = ../../../secrets/playit.toml.age;
+    owner = "playit";
+    group = "playit";
+    mode = "0400";
+  };
+
+  # playit.gg service configuration
+  services.playit = {
+    enable = true;
+    user = "playit";
+    group = "playit";
+    secretPath = config.age.secrets.playit-secret.path;
   };
 }

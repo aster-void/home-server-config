@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  # Create admin user with SSH keys
+  # Common admin user with SSH keys
   users.users.aster = {
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager"];
@@ -15,12 +15,4 @@
     openssh.authorizedKeys.keys = meta.sshAuthorizedKeys;
     shell = pkgs.fish;
   };
-
-  users.users.minecraft = {
-    isSystemUser = true;
-    group = "minecraft";
-    home = "/srv/minecraft";
-    createHome = true;
-  };
-  users.groups.minecraft = {};
 }

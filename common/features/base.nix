@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  # Common system packages for all hosts
+  # Core system packages
   environment.systemPackages = with pkgs; [
     # core utils
     coreutils-full
@@ -20,10 +20,6 @@
     nushell
     inputs.nix-mc.packages.${pkgs.system}.nix-mc-cli
 
-    # devel
-    git
-    helix
-    
     # terminal compatibility
     kitty.terminfo
   ];
@@ -48,20 +44,33 @@
     options = "--delete-older-than 7d";
   };
 
-  # Common git configuration
-  programs.git = {
-    enable = true;
-    config = {
-      pull.rebase = true;
-    };
-  };
-
   # Common keyboard configuration
   services.xserver.xkb = {
     layout = "us";
     variant = "workman";
     options = "caps:escape";
   };
+
+  # Boot configuration
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot";
+
+  # Locale settings
+  i18n.defaultLocale = "ja_JP.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_IDENTIFICATION = "ja_JP.UTF-8";
+    LC_ADDRESS = "ja_JP.UTF-8";
+    LC_MEASUREMENT = "ja_JP.UTF-8";
+    LC_MONETARY = "ja_JP.UTF-8";
+    LC_NAME = "ja_JP.UTF-8";
+    LC_NUMERIC = "ja_JP.UTF-8";
+    LC_PAPER = "ja_JP.UTF-8";
+    LC_TELEPHONE = "ja_JP.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
+
+  time.timeZone = "Asia/Tokyo";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
