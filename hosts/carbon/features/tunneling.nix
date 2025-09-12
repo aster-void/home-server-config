@@ -18,7 +18,7 @@ in {
         credentialsFile = secrets.cloudflared-carbon.path;
         default = "http_status:404";
         ingress = {
-          "carbon.aster-void.dev" = "tcp://localhost:22";
+          "carbon.aster-void.dev" = "ssh://localhost:22";
           "mc.aster-void.dev" = "tcp://localhost:25565";
         };
       };
