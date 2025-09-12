@@ -1,8 +1,4 @@
 {
-  pkgs,
-  inputs,
-  ...
-}: {
   imports = [
     ./features/gaming.nix
     ./features/tunneling.nix
