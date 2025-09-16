@@ -21,7 +21,7 @@
         "type": "github"
       }
     },
-    "aster-void.dev": {
+    "aster-void-dev": {
       "inputs": {
         "bun2nix": "bun2nix",
         "flake-utils": "flake-utils",
@@ -46,12 +46,12 @@
     "blueprint": {
       "inputs": {
         "nixpkgs": [
-          "aster-void.dev",
+          "aster-void-dev",
           "bun2nix",
           "nixpkgs"
         ],
         "systems": [
-          "aster-void.dev",
+          "aster-void-dev",
           "bun2nix",
           "systems"
         ]
@@ -74,7 +74,7 @@
       "inputs": {
         "blueprint": "blueprint",
         "nixpkgs": [
-          "aster-void.dev",
+          "aster-void-dev",
           "nixpkgs"
         ],
         "systems": "systems_2",
@@ -420,7 +420,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "aster-void.dev": "aster-void.dev",
+        "aster-void-dev": "aster-void-dev",
         "comin": "comin",
         "mc-astronaut-mods": "mc-astronaut-mods",
         "mc-astronaut-server": "mc-astronaut-server",
@@ -508,7 +508,7 @@
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
-          "aster-void.dev",
+          "aster-void-dev",
           "bun2nix",
           "nixpkgs"
         ]

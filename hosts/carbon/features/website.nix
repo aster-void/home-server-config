@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  imports = [inputs."aster-void.dev".nixosModules.default];
+  imports = [inputs.aster-void-dev.nixosModules.default];
 
   services."aster-void.dev" = {
     enable = true;

@@ -22,7 +22,7 @@
       flake = false;
     };
 
-    "aster-void.dev" = {
+    aster-void-dev = {
       url = "github:aster-void/aster-void.dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
