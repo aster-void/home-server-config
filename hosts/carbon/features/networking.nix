@@ -20,6 +20,9 @@ in {
         ingress = {
           "carbon.aster-void.dev" = "ssh://localhost:22";
           "mc.aster-void.dev" = "tcp://localhost:25565";
+
+          "aster-void.dev" = "tcp://localhost:4001";
+          "www.aster-void.dev" = "tcp://localhost:4001";
         };
       };
     };

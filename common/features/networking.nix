@@ -1,10 +1,11 @@
-{...}: {
+{meta, ...}: {
   # Basic networking setup
   networking.networkmanager.enable = true;
-  
+  networking.hostName = meta.hostname;
+
   # SSH access
   networking.firewall.allowedTCPPorts = [22];
-  
+
   # mDNS discovery for local network
   services.avahi = {
     enable = true;

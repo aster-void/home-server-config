@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{
+  meta,
+  pkgs,
+  ...
+}: {
   # Operational tools required for GitOps management
   environment.systemPackages = with pkgs; [
-    git    # Required for GitOps operations
-    helix  # Required for system administration
+    git # Required for GitOps operations
+    helix # Required for system administration
   ];
 
   # Git configuration for operations
@@ -10,6 +14,8 @@
     enable = true;
     config = {
       pull.rebase = true;
+      user.name = "aster@${meta.hostname}";
+      user.email = "137767097+aster-void@users.noreply.github.com";
     };
   };
 

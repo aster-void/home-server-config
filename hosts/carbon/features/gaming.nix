@@ -28,7 +28,7 @@
     inputs.nix-mc.nixosModules.nix-mc
     inputs.nix-minecraft.nixosModules.minecraft-servers
   ];
-  
+
   nixpkgs.overlays = [
     inputs.nix-minecraft.overlay
   ];

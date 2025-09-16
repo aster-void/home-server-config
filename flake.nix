@@ -3,6 +3,15 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
+    comin.url = "github:nlewo/comin";
+    comin.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
+    playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
+
+    # gaming
+    nix-minecraft.url = "github:aster-void/nix-minecraft?ref=wip/minecraftctl";
+    nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
     nix-mc.url = "github:aster-void/nix-mc";
     mc-astronaut-server = {
       url = "github:aster-void/mc-astronaut-server";
@@ -13,15 +22,10 @@
       flake = false;
     };
 
-    nix-minecraft.url = "github:aster-void/nix-minecraft?ref=wip/minecraftctl";
-    nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
-
-    comin.url = "github:nlewo/comin";
-    comin.inputs.nixpkgs.follows = "nixpkgs";
-
-    agenix.url = "github:ryantm/agenix";
-
-    playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
+    "aster-void.dev" = {
+      url = "github:aster-void/aster-void.dev";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -38,10 +42,19 @@
     mkSystem = {
       system,
       hostname,
-      modules,
+      modules ? [],
     }:
       nixpkgs.lib.nixosSystem {
-        inherit system modules;
+        inherit system;
+        modules =
+          modules
+          ++ [
+            ./common
+            ./hosts/${hostname}
+            ./hosts/${hostname}/hardware-configuration.nix
+            agenix.nixosModules.default
+            playit-nixos-module.nixosModules.default
+          ];
         specialArgs = {
           inherit inputs;
           meta = {
@@ -53,12 +66,6 @@
     nixosConfigurations."carbon" = mkSystem {
       system = "x86_64-linux";
       hostname = "carbon";
-      modules = [
-        ./common
-        ./hosts/carbon/configuration.nix
-        agenix.nixosModules.default
-        playit-nixos-module.nixosModules.default
-      ];
     };
 
     devShells = forAllSystems (system: let
