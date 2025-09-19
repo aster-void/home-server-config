@@ -68,6 +68,7 @@
       hostname = "carbon";
     };
 
+    formatter = forAllSystems (system: let pkgs = nixpkgs.legacyPackages.${system}; in pkgs.alejandra);
     devShells = forAllSystems (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in {

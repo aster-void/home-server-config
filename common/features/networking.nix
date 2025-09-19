@@ -1,4 +1,12 @@
-{meta, ...}: {
+{
+  meta,
+  pkgs,
+  ...
+}: {
+  environment.systemPackages = with pkgs; [
+    cloudflared
+  ];
+
   # Basic networking setup
   networking.networkmanager.enable = true;
   networking.hostName = meta.hostname;
