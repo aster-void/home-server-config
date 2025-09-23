@@ -20,6 +20,7 @@
       }
     ];
     config = {
+      networking.firewall.allowedTCPPorts = [80 3000];
       imports = [inputs.nix-dokploy.nixosModules.default];
       virtualisation.docker.enable = true;
       virtualisation.docker.daemon.settings.live-restore = false;
