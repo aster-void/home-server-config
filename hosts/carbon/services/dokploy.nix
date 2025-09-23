@@ -1,6 +1,10 @@
 # SOURCE:
 # https://github.com/el-kurto/nix-dokploy/blob/main/nix-dokploy.nix
-{pkgs, ...}: let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   cfg = {
     dataDir = "/var/lib/dokploy";
     database.password = "amukds4wi9001583845717ad2";
@@ -56,7 +60,7 @@ in {
             POSTGRES_PASSWORD="${cfg.database.password}" \
             DOKPLOY_IMAGE="${cfg.dokployImage}" \
             DATA_DIR="${cfg.dataDir}" \
-            docker stack deploy -c ${./dokploy.stack.yml} dokploy
+            docker stack deploy -c ${inputs.nix-dokploy}/dokploy.stack.yml dokploy
           '';
         };
       in "${script}/bin/dokploy-stack-start";
