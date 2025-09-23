@@ -25,7 +25,7 @@ in {
           "www.aster-void.dev" = "http://localhost:3004";
 
           # habit-relay
-          "habit.aster-void.dev" = "http://localhost:3001";
+          "habit.aster-void.dev" = "http://localhost:80";
         };
       };
     };
