@@ -3,6 +3,6 @@
 
   services."aster-void.dev" = {
     enable = true;
-    port = 4001;
+    port = 3004;
   };
 }

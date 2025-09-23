@@ -260,6 +260,21 @@
         "type": "github"
       }
     },
+    "nix-dokploy": {
+      "locked": {
+        "lastModified": 1758191075,
+        "narHash": "sha256-nFP238vyQec5aSvvDdPj0Fh7UEpuNBygv+pwtbDKLow=",
+        "owner": "el-kurto",
+        "repo": "nix-dokploy",
+        "rev": "f6a8b2a1ae406fd38c57658d45732eeebc6e8c10",
+        "type": "github"
+      },
+      "original": {
+        "owner": "el-kurto",
+        "repo": "nix-dokploy",
+        "type": "github"
+      }
+    },
     "nix-mc": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -424,6 +439,7 @@
         "comin": "comin",
         "mc-astronaut-mods": "mc-astronaut-mods",
         "mc-astronaut-server": "mc-astronaut-server",
+        "nix-dokploy": "nix-dokploy",
         "nix-mc": "nix-mc",
         "nix-minecraft": "nix-minecraft",
         "nixpkgs": "nixpkgs_3",

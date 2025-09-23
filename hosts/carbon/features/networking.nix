@@ -19,8 +19,13 @@ in {
         default = "http_status:404";
         ingress = {
           "carbon.aster-void.dev" = "ssh://localhost:22";
-          "aster-void.dev" = "http://localhost:4001";
-          "www.aster-void.dev" = "http://localhost:4001";
+
+          # aster-void.dev
+          "aster-void.dev" = "http://localhost:3004";
+          "www.aster-void.dev" = "http://localhost:3004";
+
+          # habit-relay
+          "habit.aster-void.dev" = "http://localhost:3001";
         };
       };
     };

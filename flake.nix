@@ -26,6 +26,8 @@
       url = "github:aster-void/aster-void.dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-dokploy.url = "github:el-kurto/nix-dokploy";
   };
 
   outputs = {
