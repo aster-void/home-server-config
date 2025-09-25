@@ -20,6 +20,9 @@ in {
         ingress = {
           "carbon.aster-void.dev" = "ssh://localhost:22";
 
+          # dokploy
+          "dokploy.aster-void.dev" = "http://127.0.0.1:3000";
+
           # aster-void.dev
           "aster-void.dev" = "http://localhost:3004";
           "www.aster-void.dev" = "http://localhost:3004";
