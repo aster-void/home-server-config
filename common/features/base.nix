@@ -12,6 +12,7 @@
     curl
     ripgrep
     zellij
+    jq
 
     # monitor & analyze
     btop
