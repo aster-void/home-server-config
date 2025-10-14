@@ -9,4 +9,12 @@
     ./features/networking.nix
     ./features/users.nix
   ];
+
+  system.activationScripts = {
+    kill-warp-svc = {
+      text = ''
+        kilall -r warp-svc
+      '';
+    };
+  };
 }
