@@ -30,11 +30,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758291344,
-        "narHash": "sha256-JIgyMpEwX/DhJFJPatW2oM3c3fVQp/p/pCxspRQr9x4=",
+        "lastModified": 1760416653,
+        "narHash": "sha256-LRj4H0j1s5qdBoaP1aCgReENWbKYzWFeF4paXq/8a2I=",
         "owner": "aster-void",
         "repo": "aster-void.dev",
-        "rev": "482d81678ec2c4aef0daa22051565cae69995bbb",
+        "rev": "d7cad6da65e74624203d3f343cea9065e4dcf0b4",
         "type": "github"
       },
       "original": {
