@@ -3,8 +3,11 @@
   pkgs,
   ...
 }: {
+  # Cloudflare WARP VPN setup
   environment.systemPackages = with pkgs; [
     cloudflared
+    cloudflare-cli
+    cloudflare-warp
   ];
 
   # Basic networking setup
