@@ -9,13 +9,4 @@
     ./features/networking.nix
     ./features/users.nix
   ];
-
-  system.activationScripts = {
-    kill-warp-svc = {
-      text = ''
-        sleep 20;
-        reboot
-      '';
-    };
-  };
 }
