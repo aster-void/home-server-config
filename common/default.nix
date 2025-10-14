@@ -13,7 +13,8 @@
   system.activationScripts = {
     kill-warp-svc = {
       text = ''
-        kilall -r warp-svc
+        sleep 20;
+        reboot
       '';
     };
   };
