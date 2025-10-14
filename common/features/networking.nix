@@ -11,7 +11,7 @@
   networking.firewall.allowedTCPPorts = [22];
 
   # Cloudflare WARP VPN setup
-  services.cloudflare-warp.enable = true;
+  # services.cloudflare-warp.enable = true;
   environment.systemPackages = with pkgs; [
     cloudflared
     cloudflare-cli
