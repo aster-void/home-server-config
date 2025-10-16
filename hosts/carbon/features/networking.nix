@@ -18,17 +18,10 @@ in {
         credentialsFile = secrets.cloudflared-carbon.path;
         default = "http_status:404";
         ingress = {
-          "carbon.aster-void.dev" = "ssh://localhost:22";
-
-          # dokploy
+          "carbon.aster-void.dev" = "ssh://localhost:22"; # ssh
           "dokploy.aster-void.dev" = "http://127.0.0.1:3000";
-
-          # aster-void.dev
-          "aster-void.dev" = "http://localhost:3004";
-          "www.aster-void.dev" = "http://localhost:3004";
-
-          # habit-relay
           "habit.aster-void.dev" = "http://127.0.0.1:3005";
+          "syncthing.aster-void.dev" = "http://127.0.0.1:8384";
         };
       };
     };
