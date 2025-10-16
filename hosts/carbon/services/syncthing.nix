@@ -1,7 +1,11 @@
-let
+{config, ...}: let
   dataDir = "/var/lib/syncthing";
   wallpaperDir = "${dataDir}/Pictures/Wallpapers";
+  secretId = "syncthing-password";
+  passwordFile = config.age.secrets.${secretId}.path;
 in {
+  age.secrets.${secretId}.file = ../../../secrets/syncthing-password.age;
+
   # Enable Syncthing service
   services.syncthing = {
     enable = true;
@@ -10,6 +14,7 @@ in {
 
     configDir = "${dataDir}/.config/syncthing";
     dataDir = dataDir;
+    guiPasswordFile = passwordFile;
 
     settings = {
       gui = {
