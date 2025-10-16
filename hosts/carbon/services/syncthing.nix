@@ -1,48 +1,47 @@
 let
   dataDir = "/var/lib/syncthing";
   wallpaperDir = "${dataDir}/Pictures/Wallpapers";
-in
-{
+in {
   # Enable Syncthing service
   services.syncthing = {
     enable = true;
     user = "syncthing";
     group = "syncthing";
-    
+
     configDir = "${dataDir}/.config/syncthing";
     dataDir = dataDir;
-    
+
     settings = {
       gui = {
         address = "127.0.0.1:8384";
       };
-      
+
       folders = {
         "Wallpapers" = {
           path = wallpaperDir;
-          type = "sendreceive"; 
-          devices = [ "server" ];
+          type = "sendreceive";
+          devices = ["server"];
         };
       };
-      globalAnnounceEnabled = true;   
-      localAnnounceEnabled  = true;   
-      
+      globalAnnounceEnabled = true;
+      localAnnounceEnabled = true;
+
       devices = {
         "server" = {
           id = "default";
           name = "SoT Server (Carbon)";
-          addresses = [ "dynamic" ];
-          introducer = true;  
+          addresses = ["dynamic"];
+          introducer = true;
         };
       };
     };
-    
+
     overrideDevices = true;
     overrideFolders = true;
   };
-  
+
   systemd.tmpfiles.rules = [
-    "d ${dataDir} 660 syncthing syncthing - -"
+    "d ${dataDir} 770 syncthing syncthing - -"
   ];
 
   users.users.syncthing = {
@@ -51,6 +50,6 @@ in
     home = "/var/lib/syncthing";
     createHome = true;
   };
-  
+
   users.groups.syncthing = {};
 }
