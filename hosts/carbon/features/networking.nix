@@ -21,7 +21,10 @@ in {
           "carbon.aster-void.dev" = "ssh://localhost:22"; # ssh
           "dokploy.aster-void.dev" = "http://127.0.0.1:3000";
           "habit.aster-void.dev" = "http://127.0.0.1:3005";
-          "syncthing.aster-void.dev" = "http://127.0.0.1:8384";
+          "syncthing.aster-void.dev" = {
+            service = "http://127.0.0.1:8384";
+            originRequest.httpHostHeader = "127.0.0.1";
+          };
         };
       };
     };
