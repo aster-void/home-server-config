@@ -262,15 +262,16 @@
     },
     "nix-dokploy": {
       "locked": {
-        "lastModified": 1759152137,
-        "narHash": "sha256-FOcGr44BHPKR+WW4FMLjPCnwy7uy/Wzs0/65LnTTzS4=",
-        "owner": "el-kurto",
+        "lastModified": 1760021369,
+        "narHash": "sha256-8IqmJUkSfnJIxrRuWsZQlkYvM6nw1GNkH6B9QBFbPCc=",
+        "owner": "songpola",
         "repo": "nix-dokploy",
-        "rev": "0e7744c088d13b23465e6ee20c9289941b7ea6b6",
+        "rev": "b94b09d645b17156d777f214e842964da2174c8d",
         "type": "github"
       },
       "original": {
-        "owner": "el-kurto",
+        "owner": "songpola",
+        "ref": "fix-sc2034",
         "repo": "nix-dokploy",
         "type": "github"
       }

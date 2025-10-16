@@ -27,7 +27,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-dokploy.url = "github:el-kurto/nix-dokploy";
+    # with patch https://github.com/el-kurto/nix-dokploy/pull/4
+    nix-dokploy.url = "github:songpola/nix-dokploy?ref=fix-sc2034";
   };
 
   outputs = {
