@@ -4,7 +4,12 @@
   secretId = "syncthing-password";
   passwordFile = config.age.secrets.${secretId}.path;
 in {
-  age.secrets.${secretId}.file = ../../../secrets/syncthing-password.age;
+  age.secrets.${secretId} = {
+    file = ../../../secrets/syncthing-password.age;
+    owner = "syncthing";
+    group = "syncthing";
+    mode = "400";
+  };
 
   # Enable Syncthing service
   services.syncthing = {
@@ -51,6 +56,7 @@ in {
 
   systemd.tmpfiles.rules = [
     "d ${dataDir} 770 syncthing syncthing - -"
+    "d ${wallpaperDir} 755 syncthing syncthing - -"
   ];
 
   users.users.syncthing = {
