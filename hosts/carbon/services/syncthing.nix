@@ -25,7 +25,7 @@ in {
         "Wallpapers" = {
           path = wallpaperDir;
           type = "sendreceive";
-          devices = ["server"];
+          devices = ["server" "dusk"];
         };
       };
       globalAnnounceEnabled = true;
