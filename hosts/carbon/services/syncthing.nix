@@ -33,10 +33,14 @@ in {
 
       devices = {
         "server" = {
-          id = "default";
+          id = "FB3QSEV-JPUF3O2-GCJ4X67-NRT6BXY-KDZPDFF-GDV5ZKT-V2ZN5FF-PP532A7";
           name = "SoT Server (Carbon)";
           addresses = ["dynamic"];
           introducer = true;
+        };
+        "dusk" = {
+          id = "LVI5EMJ-JQGPXLL-MDYFRKK-YCFRKQL-BJNPQSD-HJGNRZ6-HVREWL2-UCLGRQV";
+          name = "dusk";
         };
       };
     };
