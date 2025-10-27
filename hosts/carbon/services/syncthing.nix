@@ -1,6 +1,7 @@
 {config, ...}: let
   dataDir = "/var/lib/syncthing";
   wallpaperDir = "${dataDir}/Pictures/Wallpapers";
+  schoolDocsDir = "${dataDir}/Documents/School";
   secretId = "syncthing-password";
   passwordFile = config.age.secrets.${secretId}.path;
 in {
@@ -31,7 +32,12 @@ in {
         "Wallpapers" = {
           path = wallpaperDir;
           type = "sendreceive";
-          devices = ["server" "dusk"];
+          devices = ["amberwood" "server" "dusk"];
+        };
+        "School" = {
+          path = schoolDocsDir;
+          type = "sendreceive";
+          devices = ["amberwood" "server" "dusk"];
         };
       };
       globalAnnounceEnabled = true;
