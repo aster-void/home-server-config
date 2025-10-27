@@ -54,6 +54,10 @@ in {
           id = "LVI5EMJ-JQGPXLL-MDYFRKK-YCFRKQL-BJNPQSD-HJGNRZ6-HVREWL2-UCLGRQV";
           name = "dusk";
         };
+        "amberwood" = {
+          id = "HPGTUXX-BA563I2-QEOJJLQ-RXD7JJ7-DUOAJGT-HAYAWMG-3IWBVFR-QMIOZQ7";
+          name = "amberwood";
+        };
       };
     };
 
