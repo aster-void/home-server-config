@@ -64,6 +64,10 @@ in {
             ForceCommand ${fhs}/bin/fhs
         '';
       };
+      systemd.services.sshd = {
+        restartIfChanged = false;
+        reloadIfChanged = true;
+      };
 
       users.users.aster = {
         isNormalUser = true;

@@ -39,4 +39,8 @@
       PermitRootLogin = "yes";
     };
   };
+  systemd.services.sshd = {
+    restartIfChanged = false;
+    reloadIfChanged = true;
+  };
 }
