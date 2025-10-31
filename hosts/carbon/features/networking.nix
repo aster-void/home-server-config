@@ -26,7 +26,7 @@ in {
             originRequest.httpHostHeader = "127.0.0.1";
           };
           "workspace.aster-void.dev" = "ssh://10.233.0.2:2222";
-          "fhs.workspace.aster-void.dev" = "ssh://10.233.0.2:2223";
+          "fhs.aster-void.dev" = "ssh://10.233.0.2:2223";
         };
       };
     };
