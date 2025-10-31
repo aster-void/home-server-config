@@ -91,10 +91,12 @@ in {
     {
       sourcePort = 2222;
       destination = "10.233.0.2:2222";
+      destinationPort = 2222;
     }
     {
       sourcePort = 2223;
       destination = "10.233.0.2:2223";
+      destinationPort = 2223;
     }
   ];
 }
