@@ -6,5 +6,6 @@
     ./aster-void.dev.nix
     ./minecraft.nix
     ./syncthing.nix
+    ./workspace.nix
   ];
 }

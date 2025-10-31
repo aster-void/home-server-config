@@ -25,6 +25,8 @@ in {
             service = "http://127.0.0.1:8384";
             originRequest.httpHostHeader = "127.0.0.1";
           };
+          "workspace.aster-void.dev" = "ssh://localhost:2222";
+          "fhs.workspace.aster-void.dev" = "ssh://localhost:2223";
         };
       };
     };
