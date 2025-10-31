@@ -29,13 +29,12 @@
       helix
       claude-code
       codex
+      kitty.terminfo
     ];
 in {
   containers.workspace = {
     autoStart = true;
-    privateNetwork = true;
-    hostAddress = "10.233.0.1";
-    localAddress = "10.233.0.2";
+    privateNetwork = false;
     config = {pkgs, ...}: let
       workspacePackages = basePackages pkgs;
       fhsPromptProfile = pkgs.writeTextFile {
@@ -75,6 +74,7 @@ in {
       };
 
       programs.fish.enable = true;
+      programs.zoxide.enable = true;
       environment.systemPackages = workspacePackages ++ [fhs];
 
       fileSystems."/run/workspace-secrets" = {
@@ -87,19 +87,5 @@ in {
     };
   };
 
-  networking.nat.enable = true;
   networking.firewall.allowedTCPPorts = [2222 2223];
-  networking.nat.internalInterfaces = ["ve-+"];
-  networking.nat.externalInterface = "eth0";
-
-  networking.nat.forwardPorts = [
-    {
-      sourcePort = 2222;
-      destination = "10.233.0.2:2222";
-    }
-    {
-      sourcePort = 2223;
-      destination = "10.233.0.2:2223";
-    }
-  ];
 }

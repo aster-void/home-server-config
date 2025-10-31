@@ -1,6 +1,7 @@
 # Workspace Access
 
 - Workspace container listens on host ports `2222` (nix shell) and `2223` (FHS shell).
+- The container reuses the host network namespace, so those ports are bound directly on the host.
 - `2222` drops you into the native nix environment (`fish` login shell).
 - `2223` forces the `buildFHSEnv` shell wrapper.
 - Both entry points authenticate with the same SSH keys defined in `meta.sshAuthorizedKeys`.
@@ -12,7 +13,7 @@
 
 ## Over Cloudflare Tunnel
 
-- `workspace.aster-void.dev` targets the nix shell, `fhs.workspace.aster-void.dev` targets the FHS shell. Both Cloudflare ingress rules forward straight to the workspace container IP (`10.233.0.2`) on their respective ports so Cloudflared bypasses host NAT edge cases.
+- `workspace.aster-void.dev` targets the nix shell, `fhs.workspace.aster-void.dev` targets the FHS shell. Both Cloudflare ingress rules forward to `localhost` on their respective ports and are served directly by the workspace container.
 - Cloudflare Access fronts both hostnames, so the SSH client must be proxied through `cloudflared`.
 - For ad-hoc sessions run `cloudflared access ssh --hostname workspace.aster-void.dev --` (or `fhs.workspace.aster-void.dev`) and append your normal SSH arguments.
 - For day-to-day use add to `~/.ssh/config`:
