@@ -12,7 +12,7 @@
 
 ## Over Cloudflare Tunnel
 
-- `workspace.aster-void.dev` targets the nix shell, `fhs.workspace.aster-void.dev` targets the FHS shell. Both tunnel directly to the workspace container IP (`10.233.0.2`) on their respective ports.
+- `workspace.aster-void.dev` targets the nix shell, `fhs.workspace.aster-void.dev` targets the FHS shell. Both Cloudflare ingress rules forward straight to the workspace container IP (`10.233.0.2`) on their respective ports so Cloudflared bypasses host NAT edge cases.
 - Cloudflare Access fronts both hostnames, so the SSH client must be proxied through `cloudflared`.
 - For ad-hoc sessions run `cloudflared access ssh --hostname workspace.aster-void.dev --` (or `fhs.workspace.aster-void.dev`) and append your normal SSH arguments.
 - For day-to-day use add to `~/.ssh/config`:
@@ -25,8 +25,9 @@ Host fhs.workspace.aster-void.dev
   Port 2223
 
 Host *.aster-void.dev
-  ProxyCommand cloudflared access ssh --hostname %h --ssh-port %p
+  ProxyCommand cloudflared access ssh --hostname %h --destination localhost:%p
   User aster
 ```
 
 - With that config `ssh workspace.aster-void.dev` opens the nix shell and `ssh fhs.workspace.aster-void.dev` opens the FHS shell without websocket handshake errors.
+- The FHS shell ships a vendor Fish profile that sets `__fish_prompt_hostname=FHS`, so prompts clearly show when you are inside the FHS environment without runtime markers.

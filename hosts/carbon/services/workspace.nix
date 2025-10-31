@@ -38,9 +38,14 @@ in {
     localAddress = "10.233.0.2";
     config = {pkgs, ...}: let
       workspacePackages = basePackages pkgs;
+      fhsPromptProfile = pkgs.writeTextFile {
+        name = "fhs-fish-prompt";
+        destination = "/etc/fish/conf.d/fhs-prompt.fish";
+        text = "set -gx __fish_prompt_hostname FHS\n";
+      };
       fhs = pkgs.buildFHSEnv {
         name = "fhs";
-        targetPkgs = pkgs: (basePackages pkgs) ++ [pkgs.nix];
+        targetPkgs = pkgs: (basePackages pkgs) ++ [pkgs.nix fhsPromptProfile];
         runScript = "fish";
       };
     in {
