@@ -14,6 +14,7 @@
       ripgrep
       fzf
       yazi
+      btop
       nushell
       zip
       unzip
