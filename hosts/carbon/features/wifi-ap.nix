@@ -20,19 +20,18 @@ in {
 
   services.hostapd = {
     enable = true;
-    interface = "wlp2s0";
-    ssid = "carbon-wifi";
-    countryCode = "JP";
-    hwMode = "a";
-    channel = 36;
-    wpa = 2;
-    wpaPassphraseFile = wifiSecret.path;
-    extraConfig = ''
-      wpa_key_mgmt=SAE
-      ieee80211w=2
-      sae_require_mfp=1
-      sae_pwe=1
-    '';
+    radios.wlp2s0 = {
+      band = "5g";
+      channel = 36;
+      countryCode = "JP";
+      networks.wlp2s0 = {
+        ssid = "carbon-wifi";
+        authentication = {
+          mode = "wpa3-sae";
+          saePasswordsFile = wifiSecret.path;
+        };
+      };
+    };
   };
 
   services.dnsmasq = {
@@ -44,7 +43,7 @@ in {
       "bogus-priv" = true;
       "dhcp-range" = "10.88.0.10,10.88.0.100,12h";
       "dhcp-option" = ["3,10.88.0.1" "6,1.1.1.1"];
-      server = "1.1.1.1";
+      server = ["1.1.1.1"];
     };
   };
 

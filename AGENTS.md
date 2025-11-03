@@ -16,7 +16,7 @@
 
 ```bash
 # システム設定をビルド
-nix build .#nixosConfigurations.carbon.config.system.build.toplevel
+nixos-rebuild build --flake .#carbon
 
 # 設定をテスト（ドライラン）
 nixos-rebuild dry-build --flake .#carbon
