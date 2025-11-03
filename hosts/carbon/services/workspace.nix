@@ -31,6 +31,10 @@
       claude-code
       codex
       kitty.terminfo
+
+      # LS
+      nil
+      nixd
     ];
 in {
   containers.workspace = {
