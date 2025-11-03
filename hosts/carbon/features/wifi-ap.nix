@@ -1,0 +1,53 @@
+{config, ...}: let
+  wifiSecret = config.age.secrets."carbon-wifi-pass";
+in {
+  age.secrets."carbon-wifi-pass" = {
+    file = ../../../secrets/wifi/carbon-wifi.age;
+    owner = "root"; group = "root"; mode = "0400";
+  };
+
+  networking.networkmanager.unmanaged = ["wlp2s0"];
+
+  networking.interfaces.wlp2s0 = {
+    useDHCP = false;
+    ipv4.addresses = [
+      {
+        address = "10.88.0.1";
+        prefixLength = 24;
+      }
+    ];
+  };
+
+  services.hostapd = {
+    enable = true;
+    interface = "wlp2s0";
+    ssid = "carbon-wifi";
+    countryCode = "JP";
+    hwMode = "a";
+    channel = 36;
+    wpa = 2;
+    wpaPassphraseFile = wifiSecret.path;
+    extraConfig = ''
+      wpa_key_mgmt=SAE
+      ieee80211w=2
+      sae_require_mfp=1
+      sae_pwe=1
+    '';
+  };
+
+  services.dnsmasq = {
+    enable = true;
+    settings = {
+      interface = "wlp2s0";
+      "bind-interfaces" = true;
+      "domain-needed" = true;
+      "bogus-priv" = true;
+      "dhcp-range" = "10.88.0.10,10.88.0.100,12h";
+      "dhcp-option" = ["3,10.88.0.1" "6,1.1.1.1"];
+      server = "1.1.1.1";
+    };
+  };
+
+  networking.firewall.allowedTCPPorts = [53];
+  networking.firewall.allowedUDPPorts = [53 67 68];
+}

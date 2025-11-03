@@ -6,4 +6,5 @@ in {
   "secrets/cloudflared/cert.pem.age".publicKeys = publicKeys;
   "secrets/cloudflared/certificate.pem.age".publicKeys = publicKeys;
   "secrets/syncthing-password.age".publicKeys = publicKeys;
+  "secrets/wifi/carbon-wifi.age".publicKeys = publicKeys;
 }
