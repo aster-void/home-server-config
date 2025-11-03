@@ -49,4 +49,10 @@ in {
 
   networking.firewall.allowedTCPPorts = [53];
   networking.firewall.allowedUDPPorts = [53 67 68];
+
+  networking.nat = {
+    enable = true;
+    externalInterface = "enp3s0f4u2";
+    internalInterfaces = ["wlp2s0"];
+  };
 }
