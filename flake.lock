@@ -21,49 +21,6 @@
         "type": "github"
       }
     },
-    "aster-void-dev": {
-      "inputs": {
-        "blueprint": "blueprint",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1760420982,
-        "narHash": "sha256-v3j73un/RnXTkMJga018liXSoERHTR5124EV6/ltFhI=",
-        "owner": "aster-void",
-        "repo": "aster-void.dev",
-        "rev": "191e9bedce43afefa536d4f193bbd2e3033553ad",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aster-void",
-        "repo": "aster-void.dev",
-        "type": "github"
-      }
-    },
-    "blueprint": {
-      "inputs": {
-        "nixpkgs": [
-          "aster-void-dev",
-          "nixpkgs"
-        ],
-        "systems": "systems_2"
-      },
-      "locked": {
-        "lastModified": 1758687491,
-        "narHash": "sha256-sy8Q+MfBe+MZzYj4MJwBDe4lkLnmhy1POO86hWZgqO8=",
-        "owner": "numtide",
-        "repo": "blueprint",
-        "rev": "7ecaeb70f63d14a397c73b38f57177894bb795c8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "blueprint",
-        "type": "github"
-      }
-    },
     "comin": {
       "inputs": {
         "nixpkgs": [
@@ -142,7 +99,7 @@
     },
     "flake-utils": {
       "inputs": {
-        "systems": "systems_3"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -368,7 +325,7 @@
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs_4",
         "playit-agent-source": "playit-agent-source",
-        "systems": "systems_4"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1760846965,
@@ -387,7 +344,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "aster-void-dev": "aster-void-dev",
         "comin": "comin",
         "mc-astronaut-mods": "mc-astronaut-mods",
         "mc-astronaut-server": "mc-astronaut-server",
