@@ -8,6 +8,10 @@
     comin.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
     playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # gaming
     nix-minecraft.url = "github:aster-void/nix-minecraft?ref=wip/minecraftctl";
@@ -34,10 +38,16 @@
     nixpkgs,
     agenix,
     playit-nixos-module,
+    treefmt-nix,
     ...
   } @ inputs: let
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
+    treefmtFor = system:
+      treefmt-nix.lib.mkWrapper nixpkgs.legacyPackages.${system} {
+        projectRootFile = "flake.nix";
+        programs.alejandra.enable = true;
+      };
 
     sshAuthorizedKeys = builtins.fromJSON (builtins.readFile ./config/ssh-authorized-keys.json);
 
@@ -70,9 +80,10 @@
       hostname = "carbon";
     };
 
-    formatter = forAllSystems (system: let pkgs = nixpkgs.legacyPackages.${system}; in pkgs.alejandra);
+    formatter = forAllSystems treefmtFor;
     devShells = forAllSystems (system: let
       pkgs = nixpkgs.legacyPackages.${system};
+      treefmt = treefmtFor system;
     in {
       default = pkgs.mkShell {
         env = {
@@ -82,7 +93,11 @@
           agenix.outputs.packages.${system}.default
           playit-nixos-module.outputs.packages.${system}.playit-cli
           inputs.nix-minecraft.outputs.packages.${system}.minecraftctl
+          pkgs.lefthook
         ];
+        shellHook = ''
+          lefthook install
+        '';
       };
     });
   };
