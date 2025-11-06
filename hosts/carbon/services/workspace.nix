@@ -92,6 +92,9 @@ in {
             "......" = "cd ../../../../..";
             h = "hx";
             zel = "zellij";
+            gf = "git fetch --prune";
+            gl = "git pull";
+            gs = "git status -s";
           };
         };
         starship = {
@@ -101,6 +104,7 @@ in {
         git = {
           enable = true;
           config.alias = {
+            aa = "add -A";
             sync = "fetch --prune --all";
             behead = ''
               !bash -c '
@@ -113,9 +117,7 @@ in {
             detach = "switch --detach";
             u = "push --set-upstream origin HEAD";
             vacuum = "!git branch | grep -v --fixed-string '*' | xargs --no-run-if-empty git branch -d";
-            gf = "fetch --prune";
-            gl = "pull";
-            gs = "status -s";
+            last = "log -1 HEAD";
           };
         };
         zoxide.enable = true;
