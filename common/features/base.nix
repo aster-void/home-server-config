@@ -36,6 +36,7 @@
 
   # Enable fish shell
   programs.fish.enable = true;
+  programs.zoxide.enable = true;
 
   # Nix configuration
   nix.settings.experimental-features = ["nix-command" "flakes"];

@@ -28,11 +28,10 @@
       zellij
       tmux
       helix
+      nh
       claude-code
       codex
       kitty.terminfo
-
-      # LS
       nil
       nixd
     ];
@@ -56,7 +55,6 @@ in {
       networking.hostName = "workspace";
       nixpkgs.config.allowUnfree = true;
       nix.settings.experimental-features = ["nix-command" "flakes"];
-
       services.openssh = {
         enable = true;
         ports = [2222 2223];
@@ -73,7 +71,6 @@ in {
         restartIfChanged = false;
         reloadIfChanged = true;
       };
-
       users.users.aster = {
         isNormalUser = true;
         home = "/home/aster";
@@ -81,9 +78,48 @@ in {
         openssh.authorizedKeys.keys = meta.sshAuthorizedKeys;
         shell = pkgs.fish;
       };
-
-      programs.fish.enable = true;
-      programs.zoxide.enable = true;
+      programs = {
+        direnv = {
+          enable = true;
+          nix-direnv.enable = true;
+        };
+        fish = {
+          enable = true;
+          shellAliases = {
+            "..." = "cd ../..";
+            "...." = "cd ../../..";
+            "....." = "cd ../../../..";
+            "......" = "cd ../../../../..";
+            h = "hx";
+            zel = "zellij";
+          };
+        };
+        starship = {
+          enable = true;
+          settings = import ./starship.nix;
+        };
+        git = {
+          enable = true;
+          config.alias = {
+            sync = "fetch --prune --all";
+            behead = ''
+              !bash -c '
+                set -euo pipefail
+                git fetch --prune --all
+                git switch -d $(git symbolic-ref refs/remotes/''${1:-origin}/HEAD)
+              ' _
+            '';
+            b = "branch";
+            detach = "switch --detach";
+            u = "push --set-upstream origin HEAD";
+            vacuum = "!git branch | grep -v --fixed-string '*' | xargs --no-run-if-empty git branch -d";
+            gf = "fetch --prune";
+            gl = "pull";
+            gs = "status -s";
+          };
+        };
+        zoxide.enable = true;
+      };
       environment.systemPackages = workspacePackages ++ [fhs];
 
       fileSystems."/run/workspace-secrets" = {
