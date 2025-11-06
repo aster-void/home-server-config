@@ -3,7 +3,9 @@
 in {
   age.secrets."carbon-wifi-pass" = {
     file = ../../../secrets/wifi/carbon-wifi.age;
-    owner = "root"; group = "root"; mode = "0400";
+    owner = "root";
+    group = "root";
+    mode = "0400";
   };
 
   networking.networkmanager.unmanaged = ["wlp2s0"];
