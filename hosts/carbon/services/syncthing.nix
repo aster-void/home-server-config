@@ -32,12 +32,20 @@ in {
         "Wallpapers" = {
           path = wallpaperDir;
           type = "sendreceive";
-          devices = ["amberwood" "server" "dusk"];
+          devices = [
+            "amberwood"
+            "server"
+            "dusk"
+          ];
         };
         "School" = {
           path = schoolDocsDir;
           type = "sendreceive";
-          devices = ["amberwood" "server" "dusk"];
+          devices = [
+            "amberwood"
+            "server"
+            "dusk"
+          ];
         };
       };
       globalAnnounceEnabled = true;

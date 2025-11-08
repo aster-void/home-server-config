@@ -44,13 +44,20 @@ in {
       "domain-needed" = true;
       "bogus-priv" = true;
       "dhcp-range" = "10.88.0.10,10.88.0.100,12h";
-      "dhcp-option" = ["3,10.88.0.1" "6,1.1.1.1"];
+      "dhcp-option" = [
+        "3,10.88.0.1"
+        "6,1.1.1.1"
+      ];
       server = ["1.1.1.1"];
     };
   };
 
   networking.firewall.allowedTCPPorts = [53];
-  networking.firewall.allowedUDPPorts = [53 67 68];
+  networking.firewall.allowedUDPPorts = [
+    53
+    67
+    68
+  ];
 
   networking.nat = {
     enable = true;

@@ -1,5 +1,5 @@
 {
-  meta,
+  config,
   pkgs,
   ...
 }: {
@@ -14,7 +14,7 @@
     enable = true;
     config = {
       pull.rebase = true;
-      user.name = "aster@${meta.hostname}";
+      user.name = "aster@${config.meta.hostname}";
       user.email = "137767097+aster-void@users.noreply.github.com";
     };
   };

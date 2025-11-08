@@ -21,7 +21,14 @@
   };
 
   # Minecraft server ports
-  networking.firewall.allowedTCPPorts = [25565 25566 25567 25568 25569 25570];
+  networking.firewall.allowedTCPPorts = [
+    25565
+    25566
+    25567
+    25568
+    25569
+    25570
+  ];
 
   # Minecraft server configuration
   imports = [
@@ -29,13 +36,9 @@
     inputs.nix-minecraft.nixosModules.minecraft-servers
   ];
 
-  nixpkgs.overlays = [
-    inputs.nix-minecraft.overlay
-  ];
+  nixpkgs.overlays = [inputs.nix-minecraft.overlay];
 
-  environment.systemPackages = with pkgs; [
-    minecraftctl
-  ];
+  environment.systemPackages = [pkgs.minecraftctl];
 
   services.minecraft-servers = {
     enable = true;

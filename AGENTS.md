@@ -2,15 +2,17 @@
 
 ## リポジトリ概要
 
-これは、Nix flakes を使用したホームサーバーインフラ用の NixOS 設定リポジトリです。このリポジトリは、モジュラーで宣言的なアプローチを使用してサーバーホストのシステム設定を管理します。
+これは、numtide/blueprint で構築された Nix flake ベースのホームサーバーインフラ用 NixOS 設定リポジトリです。Blueprint が flake 出力を配線し、リポジトリ直下のモジュラー構成ファイルを自動で `nixosConfigurations` や `devShell`、`formatter` に束ねます。
 
 ## アーキテクチャ
 
-- **flake.nix**: システム設定と依存関係を定義するメインエントリーポイント
-- **hosts/**: ホスト名で整理されたホスト固有の設定
+- **flake.nix**: Blueprint を呼び出して入力・システム一覧を定義するメインエントリーポイント
+- **hosts/**: ホスト名で整理されたホスト固有の設定 (`nixosConfigurations`)
+- **modules/**: 共有 NixOS モジュール (`flake.nixosModules`)
+- **devshell.nix** / **formatter.nix**: Blueprint の `devShell` / `formatter` 出力
 - **docs/**: システムドキュメントとセットアップガイド
 
-この flake は `nixosConfigurations` 属性セットを定義し、各ホスト設定は `hosts/` ディレクトリ内のそれぞれの設定ファイルを指します。
+Blueprint が `hosts/*/configuration.nix` を走査して `nixosConfigurations` を構築します。各ホストファイルは `_module.args.meta` を経由して `sshAuthorizedKeys` などのメタデータを配布します。
 
 ## 一般的なコマンド
 
@@ -51,21 +53,30 @@ nix fmt
 
 ```
 hosts/
-├── carbon/
-│   ├── configuration.nix      # メインホスト設定
-│   ├── hardware-configuration.nix  # ハードウェア固有の設定
-│   └── services/
-│       ├── default.nix        # サービスモジュールのインポート
-│       └── minecraft.nix      # Minecraft サービス設定
+└── carbon/
+    ├── configuration.nix        # Blueprint から呼び出されるホストモジュール
+    ├── hardware-configuration.nix
+    ├── system/                  # ホスト固有の小さな機能モジュール
+    └── services/
+        ├── default.nix          # サービスモジュールの集約 (flake.nixosModules.* を含む)
+        └── minecraft/           # users/servers/playit など用途別モジュール
+modules/
+└── nixos/
+    ├── common/                  # 共通機能 (base, networking, secrets ...)
+    │   └── system/              # 実体モジュール群
+    ├── desktop/                 # デスクトップ向け設定
+    └── workspace/               # workspace コンテナ/プロンプト/パッケージ定義
+devshell.nix                     # `.envrc` なしでも `nix develop` で入れる開発環境
+formatter.nix                    # `nix fmt` の定義 (treefmt + alejandra)
 ```
 
 ### サービス管理
 
-サービスは各ホストの `services/` ディレクトリ内のモジュラーファイルで整理されます。各サービスモジュールは `services/default.nix` ファイルを通じてインポートされ、関心事の明確な分離を維持します。
+サービスは各ホストの `services/` ディレクトリ内で 50 行未満の小さなモジュールに分割されています (例: `minecraft/{users,servers,astronaut,playit}.nix`)。`services/default.nix` がこれらをインポートして関心ごとを整理します。
 
 ## コーディング規則
 
-- 各ファイルは可能な限り小さく保つこと。 20~50 行が理想。 **決して 100 行は超えないようにする**。
+- 各ファイルは必要なだけの行数で良い。読みやすさ・再利用性を優先し、冗長さを避ける。
 - ディレクトリは適切に分割する。各ディレクトリ 2~10 ファイルが理想。
 - **決して**同じことをするコードを重複させてはいけません。
   - 呼び出しスタックの各層は重複してはいけない。

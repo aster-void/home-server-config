@@ -1,0 +1,36 @@
+pkgs:
+with pkgs; [
+  coreutils
+  lsof
+  tree
+  gnumake
+  bash
+  openssl
+  openssh
+  curl
+  jq
+  yq-go
+  ripgrep
+  fzf
+  yazi
+  btop
+  nushell
+  zip
+  unzip
+  gnutar
+  ffmpeg
+  imagemagick
+  inkscape
+  lazygit
+  gnused
+  git
+  zellij
+  tmux
+  helix
+  nh
+  claude-code
+  codex
+  kitty.terminfo
+  nil
+  nixd
+]

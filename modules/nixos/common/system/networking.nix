@@ -1,11 +1,11 @@
 {
-  meta,
+  config,
   pkgs,
   ...
 }: {
   # Basic networking setup
   networking.networkmanager.enable = true;
-  networking.hostName = meta.hostname;
+  networking.hostName = config.meta.hostname;
 
   # SSH access
   networking.firewall.allowedTCPPorts = [22];
