@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  packageList = import ./package-list.nix;
+  packageList = import ../../devenv/packages.nix;
   fhsPromptProfile = pkgs.writeTextFile {
     name = "fhs-fish-prompt";
     destination = "/etc/fish/conf.d/fhs-prompt.fish";
@@ -44,7 +44,7 @@ in {
     shell = pkgs.fish;
   };
 
-  environment.systemPackages = (packageList pkgs) ++ [fhs];
+  environment.systemPackages = [fhs];
 
   fileSystems."/run/workspace-secrets" = {
     device = "/var/lib/workspace-secrets";
