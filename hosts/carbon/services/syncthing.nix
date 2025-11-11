@@ -2,6 +2,7 @@
   dataDir = "/var/lib/syncthing";
   wallpaperDir = "${dataDir}/Pictures/Wallpapers";
   schoolDocsDir = "${dataDir}/Documents/School";
+  playlistDir = "${dataDir}/Music/Playlist";
   secretId = "syncthing-password";
   passwordFile = config.age.secrets.${secretId}.path;
 in {
@@ -45,6 +46,16 @@ in {
             "amberwood"
             "server"
             "dusk"
+          ];
+        };
+        "Playlist" = {
+          path = playlistDir;
+          type = "sendreceive";
+          devices = [
+            "amberwood"
+            "server"
+            "dusk"
+            "phone"
           ];
         };
       };
