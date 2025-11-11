@@ -14,6 +14,7 @@
         "......" = "cd ../../../../..";
         h = "hx";
         zel = "zellij";
+        gd = "git diff";
         gf = "git fetch --prune";
         gl = "git pull";
         gs = "git status -s";
@@ -30,6 +31,7 @@
       config = {
         alias = {
           aa = "add -A";
+          amend = "commit --amend --no-edit";
           sync = "fetch --prune --all";
           behead = ''
             !bash -c '
@@ -39,6 +41,7 @@
             ' _
           '';
           b = "branch";
+          sw = "switch";
           detach = "switch --detach";
           u = "push --set-upstream origin HEAD";
           vacuum = "!git branch | grep -v --fixed-string '*' | xargs --no-run-if-empty git branch -d";
