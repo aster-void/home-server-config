@@ -3,9 +3,7 @@
   pkgs,
   ...
 }: let
-  packagesFor = import ./packages.nix;
-  programsConfig = import ./programs.nix;
-  workspacePackages = packagesFor pkgs;
+  packageList = import ./package-list.nix;
   fhsPromptProfile = pkgs.writeTextFile {
     name = "fhs-fish-prompt";
     destination = "/etc/fish/conf.d/fhs-prompt.fish";
@@ -13,10 +11,12 @@
   };
   fhs = pkgs.buildFHSEnv {
     name = "fhs";
-    targetPkgs = pkgs': (packagesFor pkgs') ++ [pkgs'.nix fhsPromptProfile];
+    targetPkgs = pkgs': (packageList pkgs') ++ [pkgs'.nix fhsPromptProfile];
     runScript = "fish";
   };
 in {
+  imports = [./programs.nix];
+
   networking.hostName = "workspace";
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -46,12 +46,7 @@ in {
     shell = pkgs.fish;
   };
 
-  programs =
-    programsConfig
-    // {
-      nix-ld.enable = true;
-    };
-  environment.systemPackages = workspacePackages ++ [fhs];
+  environment.systemPackages = (packageList pkgs) ++ [fhs];
 
   fileSystems."/run/workspace-secrets" = {
     device = "/var/lib/workspace-secrets";
