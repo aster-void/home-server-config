@@ -24,6 +24,7 @@ with pkgs; [
   lazygit
   gnused
   git
+  ghq
   zellij
   tmux
   helix
