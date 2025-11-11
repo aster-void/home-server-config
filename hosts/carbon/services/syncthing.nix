@@ -77,6 +77,10 @@ in {
           id = "HPGTUXX-BA563I2-QEOJJLQ-RXD7JJ7-DUOAJGT-HAYAWMG-3IWBVFR-QMIOZQ7";
           name = "amberwood";
         };
+        "phone" = {
+          id = "ROAQQAR-OKJTF2C-GMRXN5O-A5NC4NN-5FJM7VQ-CIYJCV7-W6OMYAO-DT2YLAF";
+          name = "phone";
+        };
       };
     };
 
