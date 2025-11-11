@@ -44,6 +44,8 @@
         last = "log -1 HEAD";
       };
       ghq.root = "~/workspace";
+      diff.external = "difft";
+      pager.difftool = true;
     };
   };
 

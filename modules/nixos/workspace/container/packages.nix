@@ -25,6 +25,7 @@ with pkgs; [
   gnused
   git
   ghq
+  difftastic
   zellij
   tmux
   helix
