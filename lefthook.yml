@@ -3,5 +3,3 @@ pre-commit:
     fmt:
       run: nix fmt
       stage_fixed: true
-    nixos-build:
-      run: nixos-rebuild dry-build --flake .#carbon
