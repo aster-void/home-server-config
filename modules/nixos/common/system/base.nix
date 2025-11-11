@@ -38,6 +38,9 @@
   programs.fish.enable = true;
   programs.zoxide.enable = true;
 
+  # Enable nix-ld for running unpatched binaries
+  programs.nix-ld.enable = true;
+
   # Nix configuration
   nix.settings.experimental-features = [
     "nix-command"

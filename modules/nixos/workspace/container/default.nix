@@ -46,7 +46,11 @@ in {
     shell = pkgs.fish;
   };
 
-  programs = programsConfig;
+  programs =
+    programsConfig
+    // {
+      nix-ld.enable = true;
+    };
   environment.systemPackages = workspacePackages ++ [fhs];
 
   fileSystems."/run/workspace-secrets" = {
