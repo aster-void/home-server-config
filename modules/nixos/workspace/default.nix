@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  flake,
+  ...
+}: {
   containers.workspace = {
     autoStart = true;
     privateNetwork = false;
@@ -7,6 +11,7 @@
         sshAuthorizedKeys = config.meta.sshAuthorizedKeys;
       };
       imports = [
+        flake.nixosModules.devenv
         ./container/default.nix
       ];
     };
