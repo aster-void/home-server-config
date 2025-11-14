@@ -9,6 +9,7 @@
     config = {
       _module.args = {
         sshAuthorizedKeys = config.meta.sshAuthorizedKeys;
+        inputs = flake.inputs;
       };
       imports = [
         flake.nixosModules.devenv
