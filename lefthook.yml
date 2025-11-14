@@ -3,3 +3,8 @@ pre-commit:
     fmt:
       run: nix fmt
       stage_fixed: true
+
+pre-push:
+  commands:
+    dry-build:
+      run: nh os build . --hostname carbon
