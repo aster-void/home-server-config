@@ -35,4 +35,5 @@ with pkgs; [
   kitty.terminfo
   nil
   nixd
+  nix-prefetch-scripts
 ]
