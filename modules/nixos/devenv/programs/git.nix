@@ -17,6 +17,7 @@
         sw = "switch";
         detach = "switch --detach";
         u = "push --set-upstream origin HEAD";
+        uncommit = "reset --soft HEAD~1";
         vacuum = "!git branch | grep -v --fixed-string '*' | xargs --no-run-if-empty git branch -d";
         last = "log -1 HEAD";
       };
