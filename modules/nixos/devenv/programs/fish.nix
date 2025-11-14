@@ -12,6 +12,7 @@
       gf = "git fetch --prune";
       gl = "git pull";
       gs = "git status -s";
+      lg = "lazygit";
     };
   };
 }
