@@ -31,6 +31,7 @@
     };
 
     nix-dokploy.url = "github:el-kurto/nix-dokploy";
+    mcp-nixos.url = "github:utensils/mcp-nixos";
   };
 
   outputs = inputs:
