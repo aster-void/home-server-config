@@ -12,5 +12,5 @@
 
 ```sh
 # ビルド
-nh os build . --hostname carbon
+nh os build . --hostname carbon --no-nom
 ```
