@@ -36,4 +36,7 @@ with pkgs; [
   nil
   nixd
   nix-prefetch-scripts
+  gopls
+  alejandra
+  pkgs.inputs.nix-repository.packages.${system}.mcp-language-server
 ]

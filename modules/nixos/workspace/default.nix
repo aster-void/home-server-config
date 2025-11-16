@@ -11,6 +11,11 @@
         sshAuthorizedKeys = config.meta.sshAuthorizedKeys;
         inputs = flake.inputs;
       };
+      nixpkgs.overlays = [
+        (_final: _prev: {
+          inputs = flake.inputs;
+        })
+      ];
       imports = [
         flake.nixosModules.devenv
         ./container/default.nix

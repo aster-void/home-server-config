@@ -32,6 +32,13 @@
 
     nix-dokploy.url = "github:el-kurto/nix-dokploy";
     mcp-nixos.url = "github:utensils/mcp-nixos";
+
+    nix-repository.url = "github:aster-void/nix-repository";
+    nix-repository.inputs = {
+      nixpkgs.follows = "nixpkgs";
+      blueprint.follows = "blueprint";
+      treefmt-nix.follows = "treefmt-nix";
+    };
   };
 
   outputs = inputs:
@@ -42,6 +49,11 @@
         "aarch64-linux"
         "x86_64-darwin"
         "aarch64-darwin"
+      ];
+      nixpkgs.overlays = [
+        (_final: _prev: {
+          inherit inputs;
+        })
       ];
     };
 }
