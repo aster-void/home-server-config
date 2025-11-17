@@ -12,4 +12,6 @@
     ++ [
       inputs.mcp-nixos.packages.${pkgs.system}.default
     ];
+
+  environment.variables.EDITOR = "hx";
 }
