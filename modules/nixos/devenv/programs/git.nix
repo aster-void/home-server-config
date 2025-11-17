@@ -16,8 +16,12 @@
         b = "branch";
         sw = "switch";
         detach = "switch --detach";
+        ls = "ls-files";
         u = "push --set-upstream origin HEAD";
-        uncommit = "reset --soft HEAD~1";
+        uncommit = "reset HEAD~";
+        unstage = "reset HEAD --";
+        nuke = "!git checkout -f HEAD && git clean -f";
+        recommit = "commit --amend";
         vacuum = "!git branch | grep -v --fixed-string '*' | xargs --no-run-if-empty git branch -d";
         last = "log -1 HEAD";
       };
