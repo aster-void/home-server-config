@@ -6,6 +6,7 @@
   containers.workspace = {
     autoStart = true;
     privateNetwork = false;
+    enableTun = true;
     config = {
       _module.args = {
         sshAuthorizedKeys = config.meta.sshAuthorizedKeys;
