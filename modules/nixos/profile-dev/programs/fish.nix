@@ -13,6 +13,8 @@
       gl = "git pull";
       gs = "git status -s";
       lg = "lazygit";
+      gp = "git push";
+      flake = "nix flake";
     };
   };
 }

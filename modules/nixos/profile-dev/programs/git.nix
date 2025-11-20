@@ -2,6 +2,10 @@
   programs.git = {
     enable = true;
     config = {
+      user = {
+        name = "aster";
+        email = "137767097+aster-void@users.noreply.github.com";
+      };
       alias = {
         aa = "add -A";
         amend = "commit --amend --no-edit";

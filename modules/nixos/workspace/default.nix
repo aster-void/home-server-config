@@ -18,7 +18,7 @@
         })
       ];
       imports = [
-        flake.nixosModules.devenv
+        flake.nixosModules.profile-dev
         ./container/default.nix
       ];
     };

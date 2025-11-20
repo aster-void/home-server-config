@@ -24,6 +24,7 @@ with pkgs; [
   lazygit
   gnused
   git
+  gh
   ghq
   difftastic
   zellij

@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  packageList = import ../../devenv/packages.nix;
+  packageList = import ../../profile-dev/packages.nix;
   fhsPromptProfile = pkgs.writeTextFile {
     name = "fhs-fish-prompt";
     destination = "/etc/fish/conf.d/fhs-prompt.fish";
