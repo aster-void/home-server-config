@@ -18,6 +18,7 @@
           ' _
         '';
         b = "branch";
+        co = "checkout";
         sw = "switch";
         detach = "switch --detach";
         ls = "ls-files";
