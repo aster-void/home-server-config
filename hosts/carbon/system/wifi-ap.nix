@@ -29,8 +29,11 @@ in {
       networks.wlp2s0 = {
         ssid = "carbon-wifi";
         authentication = {
-          mode = "wpa3-sae";
+          mode = "wpa3-sae-transition";
+          # WPA3 password (for WPA3-capable devices)
           saePasswordsFile = wifiSecret.path;
+          # WPA2 password (for older devices like Samsung S22)
+          wpaPasswordFile = wifiSecret.path;
         };
       };
     };
