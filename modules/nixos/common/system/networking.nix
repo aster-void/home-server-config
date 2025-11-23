@@ -44,12 +44,4 @@
     restartIfChanged = false;
     reloadIfChanged = true;
   };
-
-  # Firewall auto-restart on exit
-  systemd.services.firewall = {
-    serviceConfig = {
-      Restart = "always";
-      RestartSec = "5s";
-    };
-  };
 }
