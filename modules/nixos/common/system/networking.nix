@@ -23,8 +23,6 @@
     enable = true;
     nssmdns4 = true;
     openFirewall = true;
-    # Exclude Docker and virtual interfaces to prevent interference
-    denyInterfaces = ["veth*" "docker*"];
     publish = {
       enable = true;
       addresses = true;
