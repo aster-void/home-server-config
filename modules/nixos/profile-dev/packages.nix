@@ -65,5 +65,8 @@ with pkgs; [
   # AI assistants
   claude-code
   codex
+
+  # MCP servers
   pkgs.inputs.nix-repository.packages.${system}.mcp-language-server
+  pkgs.inputs.nix-repository.packages.${system}.kiri
 ]
