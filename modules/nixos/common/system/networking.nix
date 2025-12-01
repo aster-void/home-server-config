@@ -22,7 +22,6 @@
   services.avahi = {
     enable = true;
     nssmdns4 = true;
-    openFirewall = true;
     publish = {
       enable = true;
       addresses = true;
@@ -39,9 +38,5 @@
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "yes";
     };
-  };
-  systemd.services.sshd = {
-    restartIfChanged = false;
-    reloadIfChanged = true;
   };
 }
