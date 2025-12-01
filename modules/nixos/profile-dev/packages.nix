@@ -1,43 +1,69 @@
 pkgs:
 with pkgs; [
+  # Core utilities
   coreutils
-  lsof
-  tree
-  gnumake
   bash
-  openssl
-  openssh
-  curl
-  jq
-  yq-go
+  gnused
+  gnumake
+  tree
+  lsof
+
+  # File search & navigation
   ripgrep
   fzf
   yazi
+
+  # System monitoring
   btop
-  nushell
+
+  # Network & Archive tools
+  curl
+  openssl
+  openssh
   zip
   unzip
   gnutar
+
+  # Data processing & query
+  jq
+  yq-go
+  nushell
+
+  # Multimedia
   ffmpeg
   imagemagick
   inkscape
-  lazygit
-  gnused
+
+  # Terminal
+  kitty.terminfo
+
+  # Terminal multiplexers
+  zellij
+  tmux
+
+  # Editors
+  helix
+
+  # Git & version control
   git
   gh
   ghq
+  lazygit
   difftastic
-  zellij
-  tmux
-  helix
-  nh
-  claude-code
-  codex
-  kitty.terminfo
+
+  # Language servers & Formatter
+  gopls
+  typescript-language-server
   nil
   nixd
-  nix-prefetch-scripts
-  gopls
   alejandra
+
+  # Nix CLI
+  nh
+  nix-prefetch-scripts
+
+  # AI assistants
+  claude-code
+  codex
   pkgs.inputs.nix-repository.packages.${system}.mcp-language-server
 ]
