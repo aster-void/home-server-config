@@ -8,6 +8,7 @@
     privateNetwork = false;
     enableTun = true;
     config = {
+      networking.firewall.enable = false;
       _module.args = {
         sshAuthorizedKeys = config.meta.sshAuthorizedKeys;
         inputs = flake.inputs;
