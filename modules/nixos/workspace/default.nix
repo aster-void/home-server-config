@@ -4,7 +4,7 @@
   ...
 }: let
   hmModule = flake.inputs.home-manager.nixosModules.home-manager;
-  profileDevHome = ../../home/profile-dev/default.nix;
+  profileDevHome = flake.homeModules.profile-dev;
 in {
   containers.workspace = {
     autoStart = true;
