@@ -68,5 +68,7 @@ with pkgs; [
 
   # MCP servers
   pkgs.inputs.nix-repository.packages.${system}.mcp-language-server
+  pkgs.inputs.nix-repository.packages.${system}.chrome-devtools-mcp
   pkgs.inputs.nix-repository.packages.${system}.kiri
+  pkgs.inputs.nix-repository.packages.${system}.osgrep
 ]
