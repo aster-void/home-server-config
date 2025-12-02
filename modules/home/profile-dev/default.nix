@@ -17,7 +17,7 @@ in {
   ];
 
   home = {
-    stateVersion = lib.mkDefault "24.11";
+    stateVersion = lib.mkDefault "26.05";
     packages = packages;
     sessionVariables.EDITOR = "hx";
   };

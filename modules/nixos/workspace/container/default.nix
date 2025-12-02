@@ -2,9 +2,12 @@
   sshAuthorizedKeys,
   pkgs,
   inputs,
+  flake,
   ...
-}: let
-  packageList = pkgs':
+}:
+let
+  packageList =
+    pkgs':
     import ../../../home/profile-dev/packages.nix {
       pkgs = pkgs';
       inherit inputs;
@@ -16,17 +19,48 @@
   };
   fhs = pkgs.buildFHSEnv {
     name = "fhs";
-    targetPkgs = pkgs': (packageList pkgs') ++ [pkgs'.nix fhsPromptProfile];
+    targetPkgs =
+      pkgs':
+      (packageList pkgs')
+      ++ [
+        pkgs'.nix
+        fhsPromptProfile
+      ];
     runScript = "fish";
   };
-in {
+in
+{
   networking.hostName = "workspace";
+  networking.firewall.enable = false;
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  # Home Manager
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+  ];
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {
+      inherit flake inputs;
+    };
+    users.aster = {
+      imports = [
+        flake.homeModules.profile-dev
+      ];
+    };
+  };
 
   services.openssh = {
     enable = true;
-    ports = [2222 2223];
+    ports = [
+      2222
+      2223
+    ];
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "no";
@@ -44,19 +78,23 @@ in {
   users.users.aster = {
     isNormalUser = true;
     home = "/home/aster";
-    extraGroups = ["wheel"];
+    createHome = true;
+    extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = sshAuthorizedKeys;
     shell = pkgs.fish;
   };
 
   programs.fish.enable = true;
 
-  environment.systemPackages = [fhs];
+  environment.systemPackages = [ fhs ];
 
   fileSystems."/run/workspace-secrets" = {
     device = "/var/lib/workspace-secrets";
     fsType = "none";
-    options = ["bind" "ro"];
+    options = [
+      "bind"
+      "ro"
+    ];
   };
 
   system.stateVersion = "25.05";
