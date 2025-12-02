@@ -4,10 +4,8 @@
   inputs,
   flake,
   ...
-}:
-let
-  packageList =
-    pkgs':
+}: let
+  packageList = pkgs':
     import ../../../home/profile-dev/packages.nix {
       pkgs = pkgs';
       inherit inputs;
@@ -19,8 +17,7 @@ let
   };
   fhs = pkgs.buildFHSEnv {
     name = "fhs";
-    targetPkgs =
-      pkgs':
+    targetPkgs = pkgs':
       (packageList pkgs')
       ++ [
         pkgs'.nix
@@ -28,8 +25,7 @@ let
       ];
     runScript = "fish";
   };
-in
-{
+in {
   networking.hostName = "workspace";
   networking.firewall.enable = false;
   nixpkgs.config.allowUnfree = true;
@@ -79,14 +75,14 @@ in
     isNormalUser = true;
     home = "/home/aster";
     createHome = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     openssh.authorizedKeys.keys = sshAuthorizedKeys;
     shell = pkgs.fish;
   };
 
   programs.fish.enable = true;
 
-  environment.systemPackages = [ fhs ];
+  environment.systemPackages = [fhs];
 
   fileSystems."/run/workspace-secrets" = {
     device = "/var/lib/workspace-secrets";
