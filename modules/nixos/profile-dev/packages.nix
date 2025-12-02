@@ -34,6 +34,10 @@ with pkgs; [
   netcat-gnu
   bind.dnsutils
   traceroute
+  iputils
+  iproute2
+  nettools
+  mosh
   zip
   unzip
   gnutar
