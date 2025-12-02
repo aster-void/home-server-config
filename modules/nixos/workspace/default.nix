@@ -2,24 +2,19 @@
   inputs,
   flake,
   ...
-}:
-{
-  config,
-  ...
-}:
-{
+}: {config, ...}: {
   containers.workspace = {
     autoStart = true;
     privateNetwork = false;
     enableTun = true;
+    specialArgs = {
+      inherit flake inputs;
+      sshAuthorizedKeys = config.meta.sshAuthorizedKeys;
+    };
     config = {
       imports = [
         ./container
       ];
-      _module.args = {
-        inherit flake inputs;
-        sshAuthorizedKeys = config.meta.sshAuthorizedKeys;
-      };
       nixpkgs.overlays = [
         (_final: _prev: {
           inputs = flake.inputs;
