@@ -7,7 +7,7 @@
     enable = true;
     defaultEditor = false;
     settings = {
-      theme = "dark+";
+      theme = "catppuccin_mocha";
       editor = {
         "auto-format" = true;
         "line-number" = "relative";
