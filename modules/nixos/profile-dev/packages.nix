@@ -8,6 +8,7 @@ with pkgs; [
   tree
   lsof
   file
+  psmisc
 
   # File search & navigation
   ripgrep
@@ -22,6 +23,7 @@ with pkgs; [
   procs
   ncdu
   bandwhich
+  inotify-tools
 
   # Network & Archive tools
   curl
@@ -40,6 +42,7 @@ with pkgs; [
   nettools
   mosh
   whois
+  rsync
   zip
   unzip
   gnutar
@@ -49,6 +52,7 @@ with pkgs; [
   yq-go
   sd
   jless
+  moreutils
   nushell
 
   # Multimedia
@@ -72,6 +76,8 @@ with pkgs; [
   ghq
   lazygit
   difftastic
+  act
+  wrkflw
 
   # Language servers & Formatter
   gopls
