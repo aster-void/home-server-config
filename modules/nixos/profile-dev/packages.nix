@@ -7,6 +7,7 @@ with pkgs; [
   gnumake
   tree
   lsof
+  file
 
   # File search & navigation
   ripgrep
@@ -38,6 +39,7 @@ with pkgs; [
   iproute2
   nettools
   mosh
+  whois
   zip
   unzip
   gnutar
