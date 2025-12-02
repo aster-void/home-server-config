@@ -10,16 +10,30 @@ with pkgs; [
 
   # File search & navigation
   ripgrep
+  fd
+  eza
+  bat
   fzf
   yazi
 
   # System monitoring
   btop
+  procs
+  ncdu
+  bandwhich
 
   # Network & Archive tools
   curl
   openssl
   openssh
+  mtr
+  iperf3
+  nmap
+  tcpdump
+  socat
+  netcat-gnu
+  bind.dnsutils
+  traceroute
   zip
   unzip
   gnutar
@@ -27,6 +41,8 @@ with pkgs; [
   # Data processing & query
   jq
   yq-go
+  sd
+  jless
   nushell
 
   # Multimedia
@@ -54,6 +70,15 @@ with pkgs; [
   # Language servers & Formatter
   gopls
   typescript-language-server
+  bash-language-server
+  fish-lsp
+  rust-analyzer
+  pyright
+  yaml-language-server
+  dockerfile-language-server-nodejs
+  lua-language-server
+  taplo
+  vscode-langservers-extracted
   nil
   nixd
   alejandra
@@ -61,6 +86,7 @@ with pkgs; [
   # Nix CLI
   nh
   nix-prefetch-scripts
+  nix-search-cli
 
   # AI assistants
   claude-code
