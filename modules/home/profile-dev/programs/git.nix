@@ -1,8 +1,7 @@
 {...}: {
   programs.git = {
     enable = true;
-    config = {
-      pull.rebase = true;
+    settings = {
       user = {
         name = "aster";
         email = "137767097+aster-void@users.noreply.github.com";
@@ -31,6 +30,7 @@
         vacuum = "!git branch | grep -v --fixed-string '*' | xargs --no-run-if-empty git branch -d";
         last = "log -1 HEAD";
       };
+      pull.rebase = true;
       ghq.root = "~/workspace";
       diff.external = "difft";
       pager.difftool = true;

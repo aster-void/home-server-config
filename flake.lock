@@ -193,6 +193,26 @@
         "type": "github"
       }
     },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1764636297,
+        "narHash": "sha256-S41K55kw+hWgDfgKmZ9/fMZ3F0BQDMvqFfE120fMHeE=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "ff067cfc619fdf6f82d50344e7d19ff2323f0827",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "mc-astronaut-mods": {
       "flake": false,
       "locked": {
@@ -481,6 +501,7 @@
         "agenix": "agenix",
         "blueprint": "blueprint",
         "comin": "comin",
+        "home-manager": "home-manager_2",
         "mc-astronaut-mods": "mc-astronaut-mods",
         "mc-astronaut-server": "mc-astronaut-server",
         "mcp-nixos": "mcp-nixos",

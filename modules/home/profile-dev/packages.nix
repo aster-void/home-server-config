@@ -1,0 +1,147 @@
+{
+  pkgs,
+  inputs ? null,
+}: let
+  inherit (pkgs) lib system;
+  nixRepo =
+    if pkgs ? inputs && pkgs.inputs ? "nix-repository"
+    then pkgs.inputs."nix-repository"
+    else if inputs != null && inputs ? "nix-repository"
+    then inputs."nix-repository"
+    else throw "nix-repository input is required";
+  nixRepoPkgs =
+    if builtins.hasAttr system nixRepo.packages
+    then nixRepo.packages.${system}
+    else nixRepo.packages.${builtins.currentSystem};
+in
+  with pkgs;
+    [
+      # Core utilities
+      coreutils
+      bash
+      gnused
+      gnumake
+      tree
+      lsof
+      file
+      psmisc
+      gettext # i18n utilities
+      appimage-run # run AppImage apps
+
+      # File search & navigation
+      ripgrep
+      fd
+      eza
+      bat
+      fzf
+      yazi
+
+      # System monitoring
+      btop
+      procs
+      ncdu
+      bandwhich
+      inotify-tools
+
+      # Network & Archive tools
+      curl
+      openssl
+      openssh
+      mtr
+      iperf3
+      nmap
+      tcpdump
+      socat
+      netcat-gnu
+      bind.dnsutils
+      traceroute
+      iputils
+      iproute2
+      nettools
+      mosh
+      whois
+      xh # friendly HTTP client
+      wget # classic downloader
+      avahi # mDNS/DNS-SD CLI tools
+      speedtest-cli # network speed test
+      cloudflared # Cloudflare tunnel/client CLI
+      rsync
+      zip
+      unzip
+      gnutar
+
+      # Data processing & query
+      jq
+      yq-go
+      sd
+      jless
+      moreutils
+      nushell
+
+      # Multimedia
+      ffmpeg
+      imagemagick
+      inkscape
+
+      # Terminal
+      kitty.terminfo
+
+      # Terminal multiplexers
+      zellij
+      tmux
+
+      # Editors
+      helix
+
+      # Git & version control
+      git
+      gh
+      ghq
+      lazygit
+      difftastic
+      tokei # code statistics
+      act
+      wrkflw
+
+      # Language servers & Formatter
+      gopls
+      typescript-language-server
+      javascript-typescript-langserver
+      bash-language-server
+      fish-lsp
+      rust-analyzer
+      pyright
+      yaml-language-server
+      dockerfile-language-server
+      lua-language-server
+      taplo
+      vscode-langservers-extracted
+      astro-language-server
+      emmet-ls
+      markdown-oxide
+      superhtml
+      svelte-language-server
+      tailwindcss-language-server
+      nil
+      nixd
+      alejandra
+      biome
+      prettier
+      typstyle
+      elixir
+
+      # Nix CLI
+      nh
+      nix-prefetch-scripts
+      nix-search-cli
+
+      # AI assistants
+      claude-code
+      codex
+
+      # MCP servers
+      nixRepoPkgs.mcp-language-server
+      nixRepoPkgs.chrome-devtools-mcp
+      nixRepoPkgs.kiri
+    ]
+    ++ lib.optional (nixRepoPkgs ? osgrep) nixRepoPkgs.osgrep

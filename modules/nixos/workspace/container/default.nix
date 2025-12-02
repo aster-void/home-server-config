@@ -1,9 +1,14 @@
 {
   sshAuthorizedKeys,
   pkgs,
+  inputs,
   ...
 }: let
-  packageList = import ../../profile-dev/packages.nix;
+  packageList = pkgs':
+    import ../../../home/profile-dev/packages.nix {
+      pkgs = pkgs';
+      inherit inputs;
+    };
   fhsPromptProfile = pkgs.writeTextFile {
     name = "fhs-fish-prompt";
     destination = "/etc/fish/conf.d/fhs-prompt.fish";
@@ -43,6 +48,8 @@ in {
     openssh.authorizedKeys.keys = sshAuthorizedKeys;
     shell = pkgs.fish;
   };
+
+  programs.fish.enable = true;
 
   environment.systemPackages = [fhs];
 

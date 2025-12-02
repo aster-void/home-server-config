@@ -2,7 +2,10 @@
   config,
   flake,
   ...
-}: {
+}: let
+  hmModule = flake.inputs.home-manager.nixosModules.home-manager;
+  profileDevHome = ../../home/profile-dev/default.nix;
+in {
   containers.workspace = {
     autoStart = true;
     privateNetwork = false;
@@ -19,9 +22,22 @@
         })
       ];
       imports = [
-        flake.nixosModules.profile-dev
+        hmModule
         ./container/default.nix
       ];
+
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        extraSpecialArgs = {
+          inputs = flake.inputs;
+        };
+        users.aster = {
+          imports = [
+            profileDevHome
+          ];
+        };
+      };
     };
   };
 
