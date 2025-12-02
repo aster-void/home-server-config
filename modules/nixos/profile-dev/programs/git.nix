@@ -2,6 +2,7 @@
   programs.git = {
     enable = true;
     config = {
+      pull.rebase = true;
       user = {
         name = "aster";
         email = "137767097+aster-void@users.noreply.github.com";
