@@ -9,6 +9,8 @@ with pkgs; [
   lsof
   file
   psmisc
+  gettext # i18n utilities
+  appimage-run # run AppImage apps
 
   # File search & navigation
   ripgrep
@@ -42,6 +44,11 @@ with pkgs; [
   nettools
   mosh
   whois
+  xh # friendly HTTP client
+  wget # classic downloader
+  avahi # mDNS/DNS-SD CLI tools
+  speedtest-cli # network speed test
+  cloudflared # Cloudflare tunnel/client CLI
   rsync
   zip
   unzip
@@ -76,6 +83,7 @@ with pkgs; [
   ghq
   lazygit
   difftastic
+  tokei # code statistics
   act
   wrkflw
 
