@@ -1,116 +1,175 @@
-{pkgs ? null}: ''
-  # Language servers
-  [language-server.gopls]
-  command = "gopls"
+{lib, ...}: let
+  inherit (lib) mapAttrsToList optionalAttrs;
 
-  [language-server.rust-analyzer]
-  command = "rust-analyzer"
+  languages = {
+    nix = {
+      language-servers = ["nil"];
+      formatter = [
+        "alejandra"
+        "-q"
+      ];
+    };
 
-  [language-server.bash]
-  command = "bash-language-server"
-  args = ["start"]
+    go = {
+      language-servers = ["gopls"];
+      formatter = ["gofmt"];
+    };
 
-  [language-server.fish]
-  command = "fish-lsp"
+    rust = {
+      language-servers = ["rust-analyzer"];
+      formatter = ["rustfmt"];
+    };
 
-  [language-server.nil]
-  command = "nil"
+    bash = {
+      language-servers = ["bash"];
+      formatter = [
+        "shfmt"
+        "-i"
+        "2"
+        "-ci"
+      ];
+    };
 
-  [language-server.typescript]
-  command = "typescript-language-server"
-  args = ["--stdio"]
+    fish = {
+      language-servers = ["fish"];
+      formatter = ["fish_indent"];
+    };
 
-  [language-server.yaml]
-  command = "yaml-language-server"
-  args = ["--stdio"]
+    typescript = {
+      language-servers = ["typescript"];
+      formatter = [
+        "prettier"
+        "--parser"
+        "typescript"
+      ];
+    };
 
-  [language-server.json]
-  command = "vscode-json-language-server"
-  args = ["--stdio"]
+    tsx = {
+      language-servers = ["typescript"];
+      formatter = [
+        "prettier"
+        "--parser"
+        "typescript"
+      ];
+    };
 
-  [language-server.taplo]
-  command = "taplo"
-  args = ["lsp", "stdio"]
+    javascript = {
+      language-servers = ["typescript"];
+      formatter = [
+        "prettier"
+        "--parser"
+        "babel"
+      ];
+    };
 
-  [language-server.lua]
-  command = "lua-language-server"
+    json = {
+      language-servers = ["json"];
+      formatter = [
+        "jq"
+        "."
+      ];
+    };
 
-  [language-server.docker]
-  command = "docker-langserver"
-  args = ["--stdio"]
+    yaml = {
+      language-servers = ["yaml"];
+      formatter = [
+        "prettier"
+        "--parser"
+        "yaml"
+      ];
+    };
 
-  [language-server.pyright]
-  command = "pyright-langserver"
-  args = ["--stdio"]
+    toml = {
+      language-servers = ["taplo"];
+      formatter = [
+        "taplo"
+        "format"
+        "-"
+      ];
+    };
 
-  # Languages and formatters
-  [[language]]
-  name = "nix"
-  language-servers = ["nil"]
-  formatter = { command = "alejandra", args = ["-q"] }
+    lua = {
+      language-servers = ["lua"];
+      formatter = [
+        "stylua"
+        "-"
+      ];
+    };
 
-  [[language]]
-  name = "go"
-  language-servers = ["gopls"]
-  formatter = { command = "gofmt" }
+    dockerfile = {
+      language-servers = ["docker"];
+    };
 
-  [[language]]
-  name = "rust"
-  language-servers = ["rust-analyzer"]
-  formatter = { command = "rustfmt" }
+    python = {
+      language-servers = ["pyright"];
+      formatter = [
+        "black"
+        "-"
+      ];
+    };
+  };
 
-  [[language]]
-  name = "bash"
-  language-servers = ["bash"]
-  formatter = { command = "shfmt", args = ["-i", "2", "-ci"] }
-
-  [[language]]
-  name = "fish"
-  language-servers = ["fish"]
-  formatter = { command = "fish_indent" }
-
-  [[language]]
-  name = "typescript"
-  language-servers = ["typescript"]
-  formatter = { command = "prettier", args = ["--parser", "typescript"] }
-
-  [[language]]
-  name = "tsx"
-  language-servers = ["typescript"]
-  formatter = { command = "prettier", args = ["--parser", "typescript"] }
-
-  [[language]]
-  name = "javascript"
-  language-servers = ["typescript"]
-  formatter = { command = "prettier", args = ["--parser", "babel"] }
-
-  [[language]]
-  name = "json"
-  language-servers = ["json"]
-  formatter = { command = "jq", args = ["."] }
-
-  [[language]]
-  name = "yaml"
-  language-servers = ["yaml"]
-  formatter = { command = "prettier", args = ["--parser", "yaml"] }
-
-  [[language]]
-  name = "toml"
-  language-servers = ["taplo"]
-  formatter = { command = "taplo", args = ["format", "-"] }
-
-  [[language]]
-  name = "lua"
-  language-servers = ["lua"]
-  formatter = { command = "stylua", args = ["-"] }
-
-  [[language]]
-  name = "dockerfile"
-  language-servers = ["docker"]
-  # no widely used formatter for dockerfile; rely on LSP diagnostics
-
-  [[language]]
-  name = "python"
-  language-servers = ["pyright"]
-  formatter = { command = "black", args = ["-"] }
-''
+  language-server = {
+    gopls.command = "gopls";
+    rust-analyzer.command = "rust-analyzer";
+    bash = {
+      command = "bash-language-server";
+      args = ["start"];
+    };
+    fish.command = "fish-lsp";
+    nil.command = "nil";
+    typescript = {
+      command = "typescript-language-server";
+      args = ["--stdio"];
+    };
+    yaml = {
+      command = "yaml-language-server";
+      args = ["--stdio"];
+    };
+    json = {
+      command = "vscode-json-language-server";
+      args = ["--stdio"];
+    };
+    taplo = {
+      command = "taplo";
+      args = [
+        "lsp"
+        "stdio"
+      ];
+    };
+    lua.command = "lua-language-server";
+    docker = {
+      command = "docker-langserver";
+      args = ["--stdio"];
+    };
+    pyright = {
+      command = "pyright-langserver";
+      args = ["--stdio"];
+    };
+  };
+in {
+  programs.helix.languages = {
+    language-server = language-server;
+    language =
+      mapAttrsToList (
+        name: def:
+          {
+            inherit name;
+            auto-format = def.auto-format or true;
+          }
+          // optionalAttrs (def ? language-servers) {
+            language-servers = def.language-servers;
+          }
+          // optionalAttrs (def ? formatter) {
+            formatter =
+              {
+                command = builtins.head def.formatter;
+              }
+              // optionalAttrs (builtins.length def.formatter > 1) {
+                args = builtins.tail def.formatter;
+              };
+          }
+      )
+      languages;
+  };
+}
