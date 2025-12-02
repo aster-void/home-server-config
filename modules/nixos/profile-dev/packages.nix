@@ -90,6 +90,7 @@ with pkgs; [
   # Language servers & Formatter
   gopls
   typescript-language-server
+  javascript-typescript-langserver
   bash-language-server
   fish-lsp
   rust-analyzer
@@ -99,9 +100,19 @@ with pkgs; [
   lua-language-server
   taplo
   vscode-langservers-extracted
+  astro-language-server
+  emmet-ls
+  markdown-oxide
+  superhtml
+  svelte-language-server
+  tailwindcss-language-server
   nil
   nixd
   alejandra
+  biome
+  prettier
+  typstyle
+  elixir
 
   # Nix CLI
   nh

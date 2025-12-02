@@ -1,173 +1,223 @@
 {lib, ...}: let
-  inherit (lib) mapAttrsToList optionalAttrs;
+  inherit (lib) concatStringsSep filterAttrs mapAttrs mapAttrsToList unique;
+  removeNullAttrs = attrs: filterAttrs (_: v: v != null) attrs;
+
+  formatters = {
+    alejandra = ["alejandra" "-" "--quiet"];
+    biome = ext: ["biome" "format" "--stdin-file-path=a.${ext}"];
+    prettier = parser: ["prettier" "--parser" parser];
+    mix = ext: ["mix" "format" "--stdin-filename" "a.${ext}" "-"];
+    typstyle = ["typstyle"];
+  };
 
   languages = {
     nix = {
-      language-servers = ["nil"];
-      formatter = [
-        "alejandra"
-        "-q"
+      language-servers = [
+        "nil"
+        "nixd"
+      ];
+      formatter = formatters.alejandra;
+      auto-pairs = {
+        "(" = ")";
+        "{" = "}";
+        "[" = "]";
+        "\"" = "\"";
+        "`" = "`";
+        "=" = ";";
+      };
+    };
+
+    markdown = {
+      auto-format = true;
+    };
+
+    mdx = {
+      auto-format = true;
+      file-types = ["mdx"];
+      scope = ".mdx";
+      language-servers = ["markdown-oxide"];
+    };
+
+    html = {
+      language-servers = [
+        "emmet-ls"
+        "tailwind"
+        "superhtml"
+        "vscode-html-language-server"
       ];
     };
 
-    go = {
-      language-servers = ["gopls"];
-      formatter = ["gofmt"];
-    };
-
-    rust = {
-      language-servers = ["rust-analyzer"];
-      formatter = ["rustfmt"];
-    };
-
-    bash = {
-      language-servers = ["bash"];
-      formatter = [
-        "shfmt"
-        "-i"
-        "2"
-        "-ci"
+    css = {
+      language-servers = [
+        "vscode-css-language-server"
+        "tailwind"
       ];
-    };
-
-    fish = {
-      language-servers = ["fish"];
-      formatter = ["fish_indent"];
     };
 
     typescript = {
-      language-servers = ["typescript"];
-      formatter = [
-        "prettier"
-        "--parser"
-        "typescript"
+      formatter = formatters.biome "ts";
+      language-servers = [
+        {
+          name = "typescript-language-server";
+          except-features = ["format"];
+        }
+        {
+          name = "biome";
+          except-features = ["format"];
+        }
       ];
     };
 
     tsx = {
-      language-servers = ["typescript"];
-      formatter = [
-        "prettier"
-        "--parser"
-        "typescript"
+      language-servers = [
+        "biome"
+        "emmet-ls"
+        "typescript-language-server"
+        "tailwind"
       ];
     };
 
-    javascript = {
-      language-servers = ["typescript"];
-      formatter = [
-        "prettier"
-        "--parser"
-        "babel"
+    svelte = {
+      formatter = formatters.prettier "svelte";
+      language-servers = [
+        "emmet-ls"
+        "tailwind"
+        "svelteserver"
+        "typescript-language-server"
       ];
     };
 
-    json = {
-      language-servers = ["json"];
-      formatter = [
-        "jq"
-        "."
+    astro = {
+      formatter = formatters.prettier "astro";
+      scope = "source.astro";
+      injection-regex = "astro";
+      file-types = ["astro"];
+      roots = [
+        "package.json"
+        "astro.config.mjs"
+      ];
+      language-servers = [
+        "tailwind"
+        "astro-ls"
       ];
     };
 
-    yaml = {
-      language-servers = ["yaml"];
-      formatter = [
-        "prettier"
-        "--parser"
-        "yaml"
-      ];
-    };
-
-    toml = {
-      language-servers = ["taplo"];
-      formatter = [
-        "taplo"
-        "format"
-        "-"
-      ];
-    };
-
-    lua = {
-      language-servers = ["lua"];
-      formatter = [
-        "stylua"
-        "-"
-      ];
-    };
-
-    dockerfile = {
-      language-servers = ["docker"];
-    };
-
-    python = {
-      language-servers = ["pyright"];
-      formatter = [
-        "black"
-        "-"
-      ];
-    };
+    typst.formatter = formatters.typstyle;
+    elixir.formatter = formatters.mix "elixir";
+    heex.formatter = formatters.mix "heex";
   };
 
-  language-server = {
-    gopls.command = "gopls";
-    rust-analyzer.command = "rust-analyzer";
-    bash = {
-      command = "bash-language-server";
-      args = ["start"];
+  language-servers = {
+    astro-ls.command = [
+      "astro-ls"
+      "--stdio"
+    ];
+    biome.command = [
+      "bun"
+      "biome"
+      "lsp-proxy"
+    ];
+    deno.command = [
+      "deno"
+      "lsp"
+    ];
+    emmet-ls.command = ["emmet-ls"];
+    javascript-typescript-langserver.command = [
+      "javascript-typescript-langserver"
+      "--stdio"
+    ];
+    markdown-oxide.command = ["markdown-oxide"];
+    superhtml.command = ["superhtml" "lsp"];
+    nil.command = ["nil"];
+    nixd.command = ["nixd"];
+    rust-analyzer = {
+      command = ["rust-analyzer"];
+      config.checkOnSave.command = "clippy";
     };
-    fish.command = "fish-lsp";
-    nil.command = "nil";
-    typescript = {
-      command = "typescript-language-server";
-      args = ["--stdio"];
-    };
-    yaml = {
-      command = "yaml-language-server";
-      args = ["--stdio"];
-    };
-    json = {
-      command = "vscode-json-language-server";
-      args = ["--stdio"];
-    };
-    taplo = {
-      command = "taplo";
-      args = [
-        "lsp"
-        "stdio"
-      ];
-    };
-    lua.command = "lua-language-server";
-    docker = {
-      command = "docker-langserver";
-      args = ["--stdio"];
-    };
-    pyright = {
-      command = "pyright-langserver";
-      args = ["--stdio"];
-    };
+    svelteserver.command = ["svelteserver"];
+    tailwind.command = [
+      "tailwindcss-language-server"
+      "--stdio"
+    ];
+    typescript-language-server.command = [
+      "typescript-language-server"
+      "--stdio"
+    ];
+    vscode-css-language-server.command = [
+      "vscode-css-language-server"
+      "--stdio"
+    ];
+    vscode-html-language-server.command = [
+      "vscode-html-language-server"
+      "--stdio"
+    ];
   };
+
+  toCmdAttrs = cmdList:
+    if cmdList == null
+    then null
+    else
+      removeNullAttrs {
+        command = builtins.head cmdList;
+        args =
+          if builtins.length cmdList > 1
+          then builtins.tail cmdList
+          else null;
+      };
+
+  serverNameRefs = servers:
+    builtins.map (server:
+      if builtins.isString server
+      then server
+      else server.name)
+    servers;
+
+  referencedLanguageServers = builtins.concatMap (
+    def:
+      if def ? language-servers
+      then serverNameRefs def.language-servers
+      else []
+  ) (builtins.attrValues languages);
+
+  missingLanguageServers =
+    unique (builtins.filter (name: !(builtins.hasAttr name language-servers)) referencedLanguageServers);
 in {
+  assertions = [
+    {
+      assertion = missingLanguageServers == [];
+      message = "Undefined Helix language servers referenced: " + concatStringsSep ", " missingLanguageServers;
+    }
+  ];
   programs.helix.languages = {
-    language-server = language-server;
+    language-server =
+      mapAttrs (
+        _: server: removeNullAttrs (toCmdAttrs server.command // {config = server.config or null;})
+      )
+      language-servers;
     language =
       mapAttrsToList (
-        name: def:
-          {
-            inherit name;
-            auto-format = def.auto-format or true;
-          }
-          // optionalAttrs (def ? language-servers) {
-            language-servers = def.language-servers;
-          }
-          // optionalAttrs (def ? formatter) {
-            formatter =
-              {
-                command = builtins.head def.formatter;
-              }
-              // optionalAttrs (builtins.length def.formatter > 1) {
-                args = builtins.tail def.formatter;
-              };
+        name: {
+          auto-format ? true,
+          language-servers ? null,
+          formatter ? null,
+          auto-pairs ? null,
+          scope ? null,
+          roots ? null,
+          file-types ? null,
+          injection-regex ? null,
+        }:
+          removeNullAttrs {
+            inherit
+              name
+              auto-format
+              auto-pairs
+              language-servers
+              scope
+              roots
+              file-types
+              injection-regex
+              ;
+            formatter = toCmdAttrs formatter;
           }
       )
       languages;
