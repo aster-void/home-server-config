@@ -11,6 +11,7 @@ pkgs.mkShell {
     inputs.playit-nixos-module.outputs.packages.${system}.playit-cli
     inputs.nix-minecraft.outputs.packages.${system}.minecraftctl
     pkgs.lefthook
+    pkgs.alejandra
     pkgs.bun
   ];
   shellHook = ''
