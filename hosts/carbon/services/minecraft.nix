@@ -41,47 +41,26 @@
   environment.systemPackages = [pkgs.minecraftctl];
 
   services.minecraft-servers = {
-    enable = true;
+    enable = false;
     eula = true;
     openFirewall = true;
 
-    servers =
-      {
-        hardcore = {
-          enable = true;
-          package = pkgs.paperServers.paper;
-          serverProperties = {
-            server-port = 25566;
-            gamemode = 0;
-            hardcore = true;
-          };
-          enableReload = true;
-          extraReload = ''
-            minecraftctl send hardcore reload
-            minecraftctl send hardcore whitelist reload
-          '';
+    servers = {
+      hardcore = {
+        enable = true;
+        package = pkgs.paperServers.paper;
+        serverProperties = {
+          server-port = 25566;
+          gamemode = 0;
+          hardcore = true;
         };
-      }
-      // (
-        let
-          mkServer = package: port: manager: {
-            enable = true;
-            inherit package;
-            serverProperties = {
-              server-port = port;
-              gamemode = 1;
-              difficulty = 0;
-            };
-            managementSystem.tmux.enable = manager == "tmux";
-            managementSystem.systemd-socket.enable = manager == "systemd-socket";
-          };
-        in {
-          van = mkServer pkgs.vanillaServers.vanilla 25567 "tmux";
-          fab = mkServer pkgs.fabricServers.fabric 25568 "systemd-socket";
-          qui = mkServer pkgs.quiltServers.quilt 25569 "tmux";
-          vel = mkServer pkgs.velocityServers.velocity 25570 "systemd-socket";
-        }
-      );
+        enableReload = true;
+        extraReload = ''
+          minecraftctl send hardcore reload
+          minecraftctl send hardcore whitelist reload
+        '';
+      };
+    };
   };
 
   services.minecraft = {
