@@ -2,7 +2,6 @@
   pkgs,
   inputs,
 }: let
-  inherit (pkgs) lib;
   inherit (pkgs.stdenv) system;
   nix-repository = inputs.nix-repository.packages.${system};
 in
@@ -68,6 +67,7 @@ in
     jless
     moreutils
     nushell
+    postgresql
 
     # Multimedia
     ffmpeg
@@ -120,6 +120,7 @@ in
     prettier
     typstyle
     elixir
+    postgres-lsp
 
     # Nix CLI
     nh
