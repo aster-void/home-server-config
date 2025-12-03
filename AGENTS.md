@@ -1,45 +1,106 @@
 # CLAUDE.md / AGENTS.md
 
-This file provides guidance all kinds of coding agents when working with code in this repository.
+This file provides guidance for all kinds of coding agents when working with code in this repository.
 
-## リポジトリ概要
+## リポジトリの目的
 
-このリポジトリは、Blueprint を使用した NixOS flake ベースのホームサーバー構成管理システムです。
-NixOS システム設定と Home Manager によるユーザー環境設定を統合的に管理します。
+このリポジトリは、**宣言的で再現可能なホームサーバー環境**を実現するための NixOS flake 構成です。
+以下の原則に基づいて設計されています：
 
-主要な依存関係：
-- Blueprint: Flake 構造の簡素化
-- Home Manager: ユーザー環境管理
-- agenix: 秘密情報の暗号化管理
-- comin: 自動デプロイメント
-- playit-nixos-module: ゲームサーバートンネリング
-- nix-minecraft: Minecraft サーバー管理
+1. **宣言的構成管理**: すべてのシステム状態をコードで表現
+2. **レイヤー分離**: ホスト固有設定と再利用可能モジュールの明確な分離
+3. **再現可能性**: どのマシンでも同じ構成を再現可能
+4. **秘密情報の安全管理**: 暗号化された状態でのバージョン管理
 
-## ディレクトリ構造
+## アーキテクチャの全体像
 
-- `hosts/carbon/`: ホスト固有の設定
-  - `configuration.nix`: メインのホスト設定（モジュールのインポート）
-  - `services/`: サービス設定（Docker, Dokploy, Minecraft, Syncthing等）
-  - `system/`: システム設定（ネットワーク、電源、ユーザー、WiFi AP）
+システムは3つの主要レイヤーで構成されています：
 
-- `modules/nixos/`: 再利用可能な NixOS モジュール
-  - `common/`: 共通システム設定（base, nix, networking, users, secrets等）
-  - `desktop/`: デスクトップ環境設定
-  - `workspace/`: 開発用コンテナ設定
+```
+┌─────────────────────────────────────┐
+│  hosts/                             │  ← ホスト固有層
+│  (特定マシンの具体的な設定)          │     - 実際に動作するサービス
+│                                     │     - ハードウェア固有の設定
+└─────────────────────────────────────┘
+              ↓ imports
+┌─────────────────────────────────────┐
+│  modules/nixos/                     │  ← システム共通層
+│  (再利用可能なシステムモジュール)    │     - OS レベルの基盤設定
+│                                     │     - 複数ホストで共有可能
+└─────────────────────────────────────┘
+              ↓ imports
+┌─────────────────────────────────────┐
+│  modules/home/                      │  ← ユーザー環境層
+│  (ユーザー環境とツールの設定)        │     - シェル、エディタ等
+│                                     │     - 開発ツール設定
+└─────────────────────────────────────┘
+```
 
-- `modules/home/`: Home Manager 設定
-  - `profile-dev/`: 開発者プロファイル（Helix, Git, Fish, Starship等のツール設定）
+## ディレクトリ構造と設計思想
 
-- `secrets/`: agenix による暗号化された秘密情報
+### `hosts/` - ホスト固有層
 
-## 開発環境
+**目的**: 特定の物理/仮想マシンで実際に動作する構成
 
-devshell には以下のツールが含まれています：
-- `agenix`: 秘密情報の暗号化・復号化
-- `minecraftctl`: Minecraft サーバー管理CLI
-- `playit-cli`: playit.gg トンネリングCLI
-- `lefthook`: Git hooks 管理（自動でインストールされます）
-- `bun`: JavaScript/TypeScript ランタイム
+各ホストディレクトリ（例: `hosts/carbon/`）には：
+- `configuration.nix`: エントリーポイント（必要なモジュールをインポート）
+- `services/`: このホストで動作させる具体的なサービス群
+- `system/`: このホストのハードウェア・ネットワーク固有設定
+
+**設計方針**:
+- ホスト間で共通化できない設定のみをここに配置
+- 再利用可能な部分は `modules/` へ抽出
+
+### `modules/nixos/` - システム共通層
+
+**目的**: 複数ホストで再利用可能な NixOS システムレベルモジュール
+
+- `common/`: すべてのホストで共有する基盤設定
+  - システムの基本構成、ユーザー管理、ネットワーク基盤等
+- `desktop/`: デスクトップ環境関連の機能群
+- `workspace/`: 開発環境・コンテナ関連の機能群
+
+**設計方針**:
+- ホスト固有の値はパラメータ化
+- モジュールは独立して有効化/無効化可能
+- OS レベルの設定のみ（ユーザー環境は `modules/home/` へ）
+
+### `modules/home/` - ユーザー環境層
+
+**目的**: Home Manager を通じたユーザーレベルの環境設定
+
+- `profile-*`: 役割ごとのプロファイル（開発者、管理者等）
+  - シェル環境、エディタ、CLI ツール等の設定
+
+**設計方針**:
+- システム設定と独立して管理
+- プロファイル単位で一括適用可能
+- dotfiles の宣言的管理
+
+### `secrets/` - 秘密情報管理
+
+**目的**: agenix による暗号化された機密情報の安全な管理
+
+- パスワード、API キー、証明書等
+- 暗号化された状態で Git 管理
+- ビルド時に復号化
+
+## 拡張と保守のガイドライン
+
+### 新しいサービスを追加する場合
+
+1. 複数ホストで使う可能性がある → `modules/nixos/` にモジュール作成
+2. このホスト専用 → `hosts/{hostname}/services/` に直接配置
+
+### 設定を共通化する場合
+
+1. 同じ設定が2ホスト以上で重複 → `modules/nixos/common/` へ抽出
+2. パラメータ化して柔軟性を確保
+
+### ユーザーツールを追加する場合
+
+- `modules/home/profile-*/programs/` に配置
+- システムへの影響がない限り Home Manager で管理
 
 # システムの編集について
 
