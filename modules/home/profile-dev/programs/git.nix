@@ -35,5 +35,8 @@
       diff.external = "difft";
       pager.difftool = true;
     };
+    ignores = [
+      ".claude/settings.local.json"
+    ];
   };
 }
