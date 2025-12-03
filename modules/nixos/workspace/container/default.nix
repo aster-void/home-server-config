@@ -60,6 +60,7 @@ in {
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "no";
+      GatewayPorts = "clientspecified";
     };
     extraConfig = ''
       Match LocalPort 2223
