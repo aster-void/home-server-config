@@ -26,7 +26,7 @@
   ];
 
   # Enable comprehensive terminal support
-  environment.enableAllTerminfo = true;
+  # environment.enableAllTerminfo = true; # cannot currently build
 
   # Enable systemd for service management
   systemd.enableEmergencyMode = false;
