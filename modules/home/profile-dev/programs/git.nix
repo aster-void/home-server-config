@@ -34,6 +34,7 @@
       ghq.root = "~/workspace";
       diff.external = "difft";
       pager.difftool = true;
+      init.defaultBranch = "main";
     };
     ignores = [
       ".claude/settings.local.json"

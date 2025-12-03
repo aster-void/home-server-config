@@ -105,6 +105,9 @@
     typst.formatter = formatters.typstyle;
     elixir.formatter = formatters.mix "elixir";
     heex.formatter = formatters.mix "heex";
+
+    json.formatter = formatters.biome "json";
+    jsonc.formatter = formatters.biome "jsonc";
   };
 
   language-servers = {
