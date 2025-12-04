@@ -34,6 +34,7 @@
   imports = [
     inputs.nix-mc.nixosModules.nix-mc
     inputs.nix-minecraft.nixosModules.minecraft-servers
+    inputs.playit-nixos-module.nixosModules.default
   ];
 
   nixpkgs.overlays = [inputs.nix-minecraft.overlay];
