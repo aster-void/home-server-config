@@ -33,6 +33,18 @@ in
     bandwhich
     inotify-tools
 
+    # Debug & tracing
+    strace
+    ltrace
+    gdb
+
+    # Development efficiency
+    watchexec
+    hyperfine
+
+    # Containers
+    podman
+
     # Network & Archive tools
     curl
     openssl
@@ -41,6 +53,7 @@ in
     iperf3
     nmap
     tcpdump
+    wireshark-cli # tshark packet analyzer
     socat
     netcat-gnu
     bind.dnsutils
@@ -59,6 +72,9 @@ in
     zip
     unzip
     gnutar
+
+    # Security & encryption
+    age
 
     # Data processing & query
     jq

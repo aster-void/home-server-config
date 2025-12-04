@@ -37,6 +37,7 @@ in {
   # Home Manager
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    flake.nixosModules.profile-dev
   ];
   home-manager = {
     useGlobalPkgs = true;
@@ -85,14 +86,5 @@ in {
 
   environment.systemPackages = [fhs];
 
-  fileSystems."/run/workspace-secrets" = {
-    device = "/var/lib/workspace-secrets";
-    fsType = "none";
-    options = [
-      "bind"
-      "ro"
-    ];
-  };
-
-  system.stateVersion = "25.05";
+  system.stateVersion = "26.05";
 }
