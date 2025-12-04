@@ -36,5 +36,5 @@
 ## コマンド
 
 ```sh
-set -o pipefail && nh os build . --hostname carbon --no-nom --quiet 2>&1 | tail -n 30
+nh os build . --hostname carbon --no-nom --quiet -- --quiet
 ```

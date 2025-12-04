@@ -8,4 +8,4 @@ pre-commit:
 pre-push:
   commands:
     dry-build:
-      run: set -o pipefail && nh os build . --hostname carbon --no-nom --quiet 2>&1 | tail -n 30
+      run: nh os build . --hostname carbon --no-nom --quiet -- --quiet
