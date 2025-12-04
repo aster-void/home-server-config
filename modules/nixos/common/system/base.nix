@@ -42,6 +42,7 @@
   programs.nix-ld.enable = true;
 
   # Nix configuration
+  nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -77,10 +78,7 @@
     LC_TELEPHONE = "ja_JP.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
   time.timeZone = "Asia/Tokyo";
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "25.05";
+  system.stateVersion = "26.05";
 }

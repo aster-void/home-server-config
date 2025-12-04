@@ -152,4 +152,7 @@ in
     nix-repository.chrome-devtools-mcp
     nix-repository.kiri
     nix-repository.osgrep
+
+    # Repository management
+    nix-repository.gwq
   ]

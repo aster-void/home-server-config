@@ -36,5 +36,5 @@
 ## コマンド
 
 ```sh
-nh os build . --hostname carbon --no-nom
+nh os build . --hostname carbon --no-nom --quiet
 ```
