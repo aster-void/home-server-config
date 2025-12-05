@@ -14,7 +14,7 @@ in {
     certificateFile = secrets.cloudflared-cert-pem.path;
 
     tunnels = {
-      "carbon" = {
+      carbon = {
         credentialsFile = secrets.cloudflared-carbon.path;
         default = "http_status:404";
         ingress = {

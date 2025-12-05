@@ -9,28 +9,28 @@
     settings = {
       theme = "catppuccin_mocha";
       editor = {
-        "auto-format" = true;
-        "line-number" = "relative";
-        "end-of-line-diagnostics" = "hint";
-        "inline-diagnostics" = {
-          "cursor-line" = "error";
+        auto-format = true;
+        line-number = "relative";
+        end-of-line-diagnostics = "hint";
+        inline-diagnostics = {
+          cursor-line = "error";
         };
-        "cursor-shape" = {
+        cursor-shape = {
           insert = "bar";
           normal = "block";
         };
         mouse = true;
-        "soft-wrap" = {
+        soft-wrap = {
           enable = true;
         };
-        "true-color" = true;
+        true-color = true;
         rulers = [80 100];
-        "indent-guides" = {
+        indent-guides = {
           render = true;
           character = "▏";
-          "skip-levels" = 2;
+          skip-levels = 2;
         };
-        "file-picker" = {
+        file-picker = {
           hidden = false;
         };
         whitespace = {
@@ -44,7 +44,7 @@
       };
       keys = {
         insert = {
-          "C-c" = ["completion"];
+          C-c = ["completion"];
         };
       };
     };

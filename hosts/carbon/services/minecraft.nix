@@ -80,9 +80,9 @@
       };
       startScript = "/var/lib/minecraft/astronaut/run.sh";
       serverProperties = {
-        "server-port" = 25565;
+        server-port = 25565;
         difficulty = "normal";
-        "max-players" = 20;
+        max-players = 20;
         motd = "Astronaut Server - Powered by NixOS";
       };
     };

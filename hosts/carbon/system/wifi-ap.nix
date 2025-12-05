@@ -43,11 +43,11 @@ in {
     enable = true;
     settings = {
       interface = "wlp2s0";
-      "bind-interfaces" = true;
-      "domain-needed" = true;
-      "bogus-priv" = true;
-      "dhcp-range" = "10.88.0.10,10.88.0.100,12h";
-      "dhcp-option" = [
+      bind-interfaces = true;
+      domain-needed = true;
+      bogus-priv = true;
+      dhcp-range = "10.88.0.10,10.88.0.100,12h";
+      dhcp-option = [
         "3,10.88.0.1"
         "6,1.1.1.1"
       ];
