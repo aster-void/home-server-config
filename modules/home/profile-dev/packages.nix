@@ -55,7 +55,7 @@ in
     tcpdump
     wireshark-cli # tshark packet analyzer
     socat
-    netcat-gnu
+    netcat-openbsd
     bind.dnsutils
     traceroute
     iputils
