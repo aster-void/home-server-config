@@ -30,6 +30,9 @@
           character = "▏";
           "skip-levels" = 2;
         };
+        "file-picker" = {
+          hidden = false;
+        };
         whitespace = {
           characters = {
             space = " ";

@@ -1,4 +1,5 @@
 {
+  nix.channel.enable = false;
   nix.settings = {
     substituters = [
       "https://playit-nixos-module.cachix.org"
