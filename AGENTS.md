@@ -1,4 +1,18 @@
-# CLAUDE.md / AGENTS.md
+# AGENTS.md
+
+This file provides guidance to AI coding agents (including Claude Code) when working with code in this repository.
+
+Note: CLAUDE.md is a symlink to this file (AGENTS.md).
+
+## 概要
+
+NixOS ベースのホームサーバーインフラ構成。Blueprint フレームワークで管理。
+
+**主要コンポーネント:**
+- **blueprint**: flake 構造の自動化フレームワーク
+- **comin**: Git ベースの継続的デプロイ（push で自動適用）
+- **agenix**: シークレット管理（age 暗号化）
+- **home-manager**: ユーザー環境管理
 
 ## ディレクトリ構造
 
