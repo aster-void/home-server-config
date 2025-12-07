@@ -7,4 +7,5 @@ in {
   "secrets/syncthing-password.age".publicKeys = publicKeys;
   "secrets/wifi/carbon-wifi.age".publicKeys = publicKeys;
   "secrets/context7-api-key.age".publicKeys = publicKeys;
+  "secrets/nix.conf.age".publicKeys = publicKeys;
 }

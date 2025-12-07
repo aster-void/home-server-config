@@ -33,6 +33,9 @@ in {
     "nix-command"
     "flakes"
   ];
+  nix.extraOptions = ''
+    !include /etc/nix/nix.conf.d/github-token.conf
+  '';
 
   # Home Manager
   imports = [
