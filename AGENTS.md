@@ -64,6 +64,19 @@ attrset の name が `-` を含んでいても "" は不要。動的な name の
 - 2回以上重複 → `modules/nixos/common/` へ抽出
 - ユーザーツール → `modules/home/profile-*/programs/`
 
+**modules/ 命名規則**:
+- `modules/nixos/` - NixOS システムモジュール（複数ホストで再利用可能）
+  - `common/` - 全ホスト共通設定（必須）
+  - `common/system/` - システム基盤（users, networking, nix 等）
+  - `{feature}/` - 機能別モジュール（desktop, workspace 等）
+- `modules/home/` - home-manager モジュール（ユーザー環境）
+  - `profile-{name}/` - プロファイル別設定
+  - `profile-{name}/programs/` - プログラム固有設定
+
+**hosts/{hostname}/ 構造**:
+- `services/` - 外向きサービス（cloudflared, syncthing, minecraft 等）
+- `system/` - 内向きサービス（power, wifi-ap 等ホスト固有のシステム設定）
+
 ## コミット
 
 形式: `{scope}: {説明}` （例: `hosts/carbon: add dokploy service` `meta: slim down AGENTS.md`）

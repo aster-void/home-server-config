@@ -41,7 +41,6 @@ in {
   # Home Manager
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    flake.nixosModules.profile-dev
   ];
   home-manager = {
     useGlobalPkgs = true;
