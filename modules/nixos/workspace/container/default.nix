@@ -29,10 +29,13 @@ in {
   networking.hostName = "workspace";
   networking.firewall.enable = false;
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    trusted-users = ["root" "aster"];
+  };
   nix.extraOptions = ''
     !include /etc/nix/nix.conf.d/github-token.conf
   '';
