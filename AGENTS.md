@@ -74,4 +74,30 @@ attrset の name が `-` を含んでいても "" は不要。動的な name の
 ```sh
 # Don't pipe it. it will hide exit code.
 nh os build . --hostname carbon --no-nom --quiet -- --quiet
+# dry run is usually enough:
+nh os build . --hostname carbon --dry --no-nom --quiet -- --quiet
+```
+
+## Availabel Tools
+
+### Nix Search CLI
+
+Search for nix packages in the https://search.nixos.org index
+
+```sh
+# ... like the web interface
+nix-search python linter
+nix-search --search "python linter"  
+# ... by package name
+nix-search --name python
+nix-search --name 'emacsPackages.*'  
+# ... by version
+nix-search --version 1.20 
+nix-search --version '1.*'
+# ... by installed programs
+nix-search --program python
+nix-search --program "py*"
+# ... with ElasticSearch QueryString syntax
+nix-search --query-string="package_programs:(crystal OR irb)"
+nix-search --query-string='package_description:(MIT Scheme)'
 ```
