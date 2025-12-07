@@ -36,6 +36,7 @@ in {
   nix.extraOptions = ''
     !include /etc/nix/nix.conf.d/github-token.conf
   '';
+  nixpkgs.flake.source = inputs.nixpkgs;
 
   # Home Manager
   imports = [
