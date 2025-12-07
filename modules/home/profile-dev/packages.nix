@@ -111,37 +111,68 @@ in
     wrkflw
 
     # Language servers & Formatter
+    # OCaml
+    ocamlPackages.ocaml-lsp
+    ocamlformat
+    # Crystal
+    crystalline
+    # C#
+    csharp-ls
+    omnisharp-roslyn
+    csharpier
+    # F#
+    fsautocomplete
+    fantomas
+    # Go
     gopls
-    typescript-language-server
-    javascript-typescript-langserver
+    # Shell
     bash-language-server
     fish-lsp
+    # Rust
     rust-analyzer
+    # Python
     pyright
+    # YAML / TOML
     yaml-language-server
-    dockerfile-language-server
-    lua-language-server
     taplo
+    # Docker
+    dockerfile-language-server
+    # Lua
+    lua-language-server
+    # Web (JS/TS/HTML/CSS/JSON)
+    typescript-language-server
+    javascript-typescript-langserver
+    biome
+    prettier
     vscode-langservers-extracted
     astro-language-server
     emmet-ls
-    markdown-oxide
     superhtml
     svelte-language-server
     tailwindcss-language-server
+    # Markdown
+    markdown-oxide
+    # Nix
     nil
     nixd
     alejandra
-    biome
-    prettier
+    # Typst
     typstyle
+    # Elixir
     elixir
-    postgres-lsp
+    # Swift
+    nix-repository.swift-toolchain-bin
+    # SQL
+    postgres-language-server
 
     # Nix CLI
     nh
     nix-prefetch-scripts
     nix-search-cli
+
+    # Development environments
+    devenv
+    devbox
 
     # AI assistants
     claude-code
