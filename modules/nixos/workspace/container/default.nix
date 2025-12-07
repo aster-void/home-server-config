@@ -86,6 +86,7 @@ in {
   };
 
   programs.fish.enable = true;
+  programs.nix-ld.enable = true;
 
   environment.systemPackages = [fhs];
 
