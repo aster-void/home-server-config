@@ -9,10 +9,10 @@ Note: CLAUDE.md is a symlink to this file (AGENTS.md).
 NixOS ベースのホームサーバーインフラ構成。Blueprint フレームワークで管理。
 
 **主要コンポーネント:**
-- **blueprint**: flake 構造の自動化フレームワーク
-- **comin**: Git ベースの継続的デプロイ（push で自動適用）
-- **agenix**: シークレット管理（age 暗号化）
+- **NixOS**: Linux ディストリビューション（宣言的システム構成）
 - **home-manager**: ユーザー環境管理
+- **blueprint**: flake 構造の自動化フレームワーク
+- **agenix**: シークレット管理（age 暗号化）
 - **nix-repository**: カスタム Nix リポジトリ（inputs から利用可能）
 
 ## ディレクトリ構造
