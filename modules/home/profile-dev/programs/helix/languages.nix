@@ -154,6 +154,39 @@
       "vscode-html-language-server"
       "--stdio"
     ];
+
+    # AI language servers
+    lsp-ai = {
+      command = ["lsp-ai"];
+      config.models.model1 = {
+        type = "open_ai";
+        chat_endpoint = "http://127.0.0.1:11434/v1/chat/completions";
+        model = "qwen2.5-coder-7b-instruct-q4_k_m";
+        max_requests_per_second = 1;
+      };
+    };
+
+    llm-ls = {
+      command = ["llm-ls"];
+      config = {
+        backend = "llama_cpp";
+        url = "http://127.0.0.1:11434";
+        model = "qwen2.5-coder-7b-instruct-q4_k_m";
+        context_window = 4096;
+        tls_skip_verify_insecure = false;
+        fim = {
+          enabled = true;
+          prefix = "<|fim_prefix|>";
+          middle = "<|fim_middle|>";
+          suffix = "<|fim_suffix|>";
+        };
+        request_body = {
+          max_tokens = 128;
+          temperature = 0.15;
+          top_p = 0.9;
+        };
+      };
+    };
   };
 
   toCmdAttrs = cmdList:

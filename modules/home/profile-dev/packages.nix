@@ -177,6 +177,8 @@ in
     # AI assistants
     claude-code
     codex
+    lsp-ai
+    llm-ls
 
     # MCP servers
     nix-repository.mcp-language-server
