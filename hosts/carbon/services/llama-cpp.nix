@@ -31,6 +31,7 @@ in {
       "--n-gpu-layers"
       "22"
       "--flash-attn"
+      "on"
       "--cont-batching"
       "--temp"
       "0.15"

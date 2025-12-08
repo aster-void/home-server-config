@@ -4,4 +4,6 @@
     inputs.agenix.nixosModules.default
     ./system
   ];
+
+  home-manager.backupFileExtension = "backup";
 }
