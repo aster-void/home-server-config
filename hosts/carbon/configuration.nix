@@ -1,6 +1,6 @@
 {flake, ...}: {
   imports = [
-    flake.nixosModules.common
+    flake.nixosModules.base
     flake.nixosModules.desktop
     ./hardware-configuration.nix
     ./system/power.nix

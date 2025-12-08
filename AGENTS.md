@@ -26,11 +26,12 @@ NixOS ベースのホームサーバーインフラ構成。Blueprint フレー�
 │   └── system/                     # 内向きサービス - ネットワーク・電源・WiFi 等
 ├── modules/
 │   ├── nixos/                      # 再利用可能なシステムモジュール
-│   │   ├── common/                 # 全ホスト共通のベースシステム
-│   │   ├── desktop/                # デスクトップ環境
-│   │   └── workspace/              # 開発環境コンテナを動かすホスト
+│   │   ├── base/                   # 全ホスト共通のベースシステム
+│   │   └── desktop/                # デスクトップ環境
 │   └── home/                       # 再利用可能なユーザー環境モジュール
 │       └── profile-dev/            # development プロファイル
+├── packages/                       # flake packages
+│   └── fhs/                        # FHS 互換シェル環境
 └── secrets/                        # agenix 暗号化された秘密情報
 ```
 
@@ -61,14 +62,14 @@ attrset の name が `-` を含んでいても "" は不要。動的な name の
 **ファイル配置**:
 - 複数ホスト共有 → `modules/nixos/` または `modules/home/`
 - carbon 専用 → `hosts/carbon/`
-- 2回以上重複 → `modules/nixos/common/` へ抽出
+- 2回以上重複 → `modules/nixos/base/` へ抽出
 - ユーザーツール → `modules/home/profile-*/programs/`
 
 **modules/ 命名規則**:
 - `modules/nixos/` - NixOS システムモジュール（複数ホストで再利用可能）
-  - `common/` - 全ホスト共通設定（必須）
-  - `common/system/` - システム基盤（users, networking, nix 等）
-  - `{feature}/` - 機能別モジュール（desktop, workspace 等）
+  - `base/` - 全ホスト共通設定（必須）
+  - `base/system/` - システム基盤（users, networking, nix 等）
+  - `{feature}/` - 機能別モジュール（desktop 等）
 - `modules/home/` - home-manager モジュール（ユーザー環境）
   - `profile-{name}/` - プロファイル別設定
   - `profile-{name}/programs/` - プログラム固有設定
