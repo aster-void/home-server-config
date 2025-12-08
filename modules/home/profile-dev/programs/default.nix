@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./claude-code.nix
     ./direnv.nix
     ./fish.nix
     ./git.nix

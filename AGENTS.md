@@ -114,3 +114,7 @@ nix-search --program "py*"
 nix-search --query-string="package_programs:(crystal OR irb)"
 nix-search --query-string='package_description:(MIT Scheme)'
 ```
+
+## Tips
+
+- You don't need to specify CWD manually. it's always here, in the root repo. use `.` rather than `/home/:user/path.../home-server-config`
