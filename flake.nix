@@ -36,7 +36,6 @@
     };
 
     nix-dokploy.url = "github:el-kurto/nix-dokploy";
-    mcp-nixos.url = "github:utensils/mcp-nixos";
 
     nix-repository.url = "github:aster-void/nix-repository";
     nix-repository.inputs = {

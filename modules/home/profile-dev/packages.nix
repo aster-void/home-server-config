@@ -192,6 +192,6 @@ in {
     nix-repository.gwq
 
     # MCP NixOS
-    inputs.mcp-nixos.packages.${system}.default
+    mcp-nixos
   ];
 }
