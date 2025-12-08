@@ -13,6 +13,7 @@ NixOS ベースのホームサーバーインフラ構成。Blueprint フレー�
 - **comin**: Git ベースの継続的デプロイ（push で自動適用）
 - **agenix**: シークレット管理（age 暗号化）
 - **home-manager**: ユーザー環境管理
+- **nix-repository**: カスタム Nix リポジトリ（inputs から利用可能）
 
 ## ディレクトリ構造
 
