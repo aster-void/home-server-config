@@ -1,6 +1,6 @@
 {config, ...}: {
   age.secrets.context7-api-key = {
-    file = ../../../../secrets/context7-api-key.age;
+    file = ../../../secrets/context7-api-key.age;
     owner = "aster";
     group = "users";
     mode = "400";

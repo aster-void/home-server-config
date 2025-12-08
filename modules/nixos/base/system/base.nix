@@ -38,9 +38,6 @@
   programs.fish.enable = true;
   programs.zoxide.enable = true;
 
-  # Enable nix-ld for running unpatched binaries
-  programs.nix-ld.enable = true;
-
   # Nix configuration
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [

@@ -69,6 +69,7 @@ attrset の name が `-` を含んでいても "" は不要。動的な name の
 - `modules/nixos/` - NixOS システムモジュール（複数ホストで再利用可能）
   - `base/` - 全ホスト共通設定（必須）
   - `base/system/` - システム基盤（users, networking, nix 等）
+  - `profile-{name}/` - プロファイル別設定
   - `{feature}/` - 機能別モジュール（desktop 等）
 - `modules/home/` - home-manager モジュール（ユーザー環境）
   - `profile-{name}/` - プロファイル別設定
@@ -86,10 +87,8 @@ attrset の name が `-` を含んでいても "" は不要。動的な name の
 ## コマンド
 
 ```sh
-# Don't pipe it. it will hide exit code.
+# Don't pipe it. it will hide the exit code.
 nh os build . --hostname carbon --no-nom --quiet -- --quiet
-# dry run is usually enough:
-nh os build . --hostname carbon --dry --no-nom --quiet -- --quiet
 ```
 
 ## Availabel Tools
