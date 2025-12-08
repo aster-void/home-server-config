@@ -31,6 +31,7 @@ in {
     btop
     procs
     ncdu
+    nitch
     bandwhich
     inotify-tools
 
