@@ -2,7 +2,6 @@
   imports = [
     flake.nixosModules.base
     flake.nixosModules.profile-dev
-    flake.nixosModules.desktop
     ./hardware-configuration.nix
     ./system/power.nix
     ./system/wifi-ap.nix

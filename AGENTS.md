@@ -28,7 +28,7 @@ NixOS ベースのホームサーバーインフラ構成。Blueprint フレー�
 ├── modules/
 │   ├── nixos/                      # 再利用可能なシステムモジュール
 │   │   ├── base/                   # 全ホスト共通のベースシステム
-│   │   └── desktop/                # デスクトップ環境
+│   │   └── desktop/                # 開発用デスクトップ環境 (Hyprland)
 │   └── home/                       # 再利用可能なユーザー環境モジュール
 │       └── profile-dev/            # development プロファイル
 ├── packages/                       # flake packages
