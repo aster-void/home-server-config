@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   llamaVulkan = pkgs.llama-cpp.override {vulkanSupport = true;};
 
   # Qwen2.5-Coder-7B-Instruct Q4_K_M (4.68 GB)
@@ -40,4 +44,20 @@ in {
   };
 
   hardware.graphics.enable = true;
+
+  # Run llama-cpp as unprivileged user
+  users.users.llama-cpp = {
+    isSystemUser = true;
+    group = "llama-cpp";
+  };
+  users.groups.llama-cpp = {};
+
+  systemd.services.llama-cpp = {
+    serviceConfig = {
+      User = "llama-cpp";
+      Group = "llama-cpp";
+      # Allow GPU access
+      SupplementaryGroups = ["video" "render"];
+    };
+  };
 }

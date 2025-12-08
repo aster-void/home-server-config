@@ -1,10 +1,40 @@
-{config, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.age) secrets;
 in {
+  # Cloudflare tunnel user (required for static user instead of DynamicUser)
+  users.users.cloudflared = {
+    isSystemUser = true;
+    group = "cloudflared";
+  };
+  users.groups.cloudflared = {};
+
   # Cloudflare tunnel configuration
   age.secrets = {
-    cloudflared-carbon.file = ../../../secrets/cloudflared/carbon.json.age;
-    cloudflared-cert-pem.file = ../../../secrets/cloudflared/cert.pem.age;
+    cloudflared-carbon = {
+      file = ../../../secrets/cloudflared/carbon.json.age;
+      owner = "cloudflared";
+      group = "cloudflared";
+      mode = "0400";
+    };
+    cloudflared-cert-pem = {
+      file = ../../../secrets/cloudflared/cert.pem.age;
+      owner = "cloudflared";
+      group = "cloudflared";
+      mode = "0400";
+    };
+  };
+
+  # Override DynamicUser to use static cloudflared user for agenix secrets
+  systemd.services."cloudflared-tunnel-carbon" = {
+    serviceConfig = {
+      DynamicUser = lib.mkForce false;
+      User = "cloudflared";
+      Group = "cloudflared";
+    };
   };
 
   services.cloudflared = {
@@ -18,15 +48,13 @@ in {
         credentialsFile = secrets.cloudflared-carbon.path;
         default = "http_status:404";
         ingress = {
-          "carbon.aster-void.dev" = "ssh://localhost:22"; # ssh
+          "carbon.aster-void.dev" = "ssh://localhost:22";
           "dokploy.aster-void.dev" = "http://127.0.0.1:3000";
           "habit.aster-void.dev" = "http://127.0.0.1:3005";
           "syncthing.aster-void.dev" = {
             service = "http://127.0.0.1:8384";
             originRequest.httpHostHeader = "127.0.0.1";
           };
-          "workspace.aster-void.dev" = "ssh://localhost:2222";
-          "fhs.aster-void.dev" = "ssh://localhost:2223";
         };
       };
     };

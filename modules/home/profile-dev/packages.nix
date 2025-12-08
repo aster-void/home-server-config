@@ -1,11 +1,12 @@
 {
   pkgs,
   inputs,
+  ...
 }: let
   inherit (pkgs.stdenv) system;
   nix-repository = inputs.nix-repository.packages.${system};
-in
-  with pkgs; [
+in {
+  home.packages = with pkgs; [
     # Core utilities
     coreutils
     bash
@@ -189,4 +190,8 @@ in
 
     # Repository management
     nix-repository.gwq
-  ]
+
+    # MCP NixOS
+    inputs.mcp-nixos.packages.${system}.default
+  ];
+}

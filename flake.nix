@@ -55,6 +55,7 @@
         "x86_64-darwin"
         "aarch64-darwin"
       ];
+      nixpkgs.config.allowUnfree = true;
       nixpkgs.overlays = [
         (_final: _prev: {
           inherit inputs;
