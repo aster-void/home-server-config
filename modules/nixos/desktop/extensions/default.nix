@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./glue
-    ./caelestia
+    ./gaming
   ];
 }

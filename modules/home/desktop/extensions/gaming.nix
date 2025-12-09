@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  cfg = config.my.extensions.gaming;
+  cfg = config.my.desktop.gaming;
 in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [

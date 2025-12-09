@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{config, ...}: let
   cfg = config.my.hyprland;
 in {
   imports = [
@@ -13,29 +9,6 @@ in {
     ./hyprpaper.nix
     ./hypridle.nix
   ];
-
-  options.my.hyprland = {
-    primaryMonitor = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      description = "Primary monitor name (e.g., eDP-1, DP-1)";
-    };
-    scale = lib.mkOption {
-      type = lib.types.str;
-      default = "1.0";
-      description = "Monitor scale factor";
-    };
-    sensitivity = lib.mkOption {
-      type = lib.types.str;
-      default = "0";
-      description = "Mouse sensitivity";
-    };
-    touchpadScrollFactor = lib.mkOption {
-      type = lib.types.str;
-      default = "1.0";
-      description = "Touchpad scroll factor";
-    };
-  };
 
   config = {
     xdg.portal.config.common.default = "*";

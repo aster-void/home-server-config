@@ -8,7 +8,7 @@
     glue.enable = true;
     glue.type = "glassy";
   };
-  my.extensions.gaming.enable = true;
+  my.desktop.gaming.enable = true;
   my.hyprland = {
     primaryMonitor = "DP-1";
     sensitivity = "0.3";

@@ -1,11 +1,7 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   imports = [
     ./users.nix
-    ./context7.nix
+    ./env.nix
   ];
 
   # Enable nix-ld for running unpatched binaries
