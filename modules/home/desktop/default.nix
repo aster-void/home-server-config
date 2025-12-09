@@ -13,7 +13,6 @@
     ./apps
     ./i18n
     ./secrets
-    ./shell
     ./hyprland
     ./shells
     ./extensions

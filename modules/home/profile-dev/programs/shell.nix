@@ -26,7 +26,6 @@
       gsv = "git diff --cached";
       gd = "git diff";
       lg = "lazygit";
-      zz = "cd $(ghq root)/$(ghq list | fzf)";
 
       dush = "du -sh";
       fetch = "nitch";
@@ -79,29 +78,6 @@ in {
     nushell = {
       enable = true;
       shellAliases = mkShellAliases "nushell";
-    };
-
-    zoxide = {
-      enable = true;
-
-      enableBashIntegration = true;
-      enableNushellIntegration = true;
-      enableZshIntegration = true;
-    };
-
-    direnv = {
-      enable = true;
-      enableBashIntegration = true;
-      nix-direnv.enable = true;
-    };
-
-    fish = {
-      enable = true;
-      shellAliases = mkShellAliases "fish";
-      interactiveShellInit = ''
-        set -g fish_greeting
-        set -g __starship_fish_use_job_groups "false"
-      '';
     };
   };
 }
