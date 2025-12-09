@@ -41,7 +41,6 @@ in {
       curl
       wget
       netcat-gnu
-      openssh
       openssl
       cloudflared
 

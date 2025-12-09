@@ -50,7 +50,6 @@ in {
     # Network & Archive tools
     curl
     openssl
-    openssh
     mtr
     iperf3
     nmap
