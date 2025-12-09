@@ -1,7 +1,10 @@
-{...}: {
+{pkgs, ...}: {
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
+    matchBlocks."*.aster-void.dev" = {
+      proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
+    };
     matchBlocks."*" = {
       # Multiplexing
       controlMaster = "auto";
