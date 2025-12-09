@@ -192,6 +192,7 @@ in {
 
     # Repository management
     nix-repository.gwq
+    nix-repository.zz
 
     # MCP NixOS
     mcp-nixos

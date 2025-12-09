@@ -574,11 +574,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765180007,
-        "narHash": "sha256-2PnteIQP2Kb27Ty8SrkLnH4l8F0a6EmJD0tta8ODOIU=",
+        "lastModified": 1765249702,
+        "narHash": "sha256-R1KcVpGpW7GEpsQJKGN0LC3ZFt2sRfYpu0lCvIef1sQ=",
         "owner": "aster-void",
         "repo": "nix-repository",
-        "rev": "72ba119454848a047e0fd1c3b409b67f598d3033",
+        "rev": "1ea6111d166f2aaa4277891f9248504e190537f4",
         "type": "github"
       },
       "original": {
