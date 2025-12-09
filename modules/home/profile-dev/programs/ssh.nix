@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  home.file.".ssh/sockets/.keep".text = "";
+
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
