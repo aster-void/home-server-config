@@ -1,4 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  vscodePackage =
+    if config.programs.vscode.enable
+    then config.programs.vscode.package
+    else pkgs.vscode;
+in {
   xdg.desktopEntries = {
     slack = {
       name = "Slack";
@@ -13,8 +23,7 @@
     vscode = {
       name = "VS Code";
       exec = "code --enable-wayland-ime %U";
-      # TODO: use config.programs.vscode.package if it exists
-      icon = "${pkgs.vscode}/share/pixmaps/vscode.png";
+      icon = "${vscodePackage}/share/pixmaps/vscode.png";
     };
   };
 }

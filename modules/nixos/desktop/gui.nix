@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  # meta,
   ...
 }: let
   cfg = config.my.profiles.desktop;
@@ -15,11 +14,7 @@ in {
     };
   };
   services = lib.mkIf cfg.enable {
-    # speechd
     speechd.enable = true;
-
-    # displayManager.autoLogin.user = meta.username;
-    # displayManager.defaultSession = "hyprland-uwsm"; # disabled to allow session selection at login
     xserver.enable = true;
     libinput.enable = true;
     xserver.displayManager.setupCommands = ''
@@ -34,10 +29,9 @@ in {
   qt = lib.mkIf cfg.enable {
     enable = true;
   };
-  # XDG portals (I'm not sure what this is)
+
   xdg.portal = lib.mkIf cfg.enable {
     enable = true;
-    # xdgOpenUsePortal = true;
     config.common.default = "*";
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk

@@ -20,50 +20,7 @@
         '';
       };
     };
-    shellAliases = {
-      # Navigation
-      ".." = "cd ../";
-      "..." = "cd ../../";
-      "...." = "cd ../../../";
-      "....." = "cd ../../../../";
-
-      # Editor
-      h = "hx";
-      "h." = "hx .";
-
-      # Git shortcuts
-      g = "git";
-      gs = "git status -s";
-      gd = "git diff";
-      gsv = "git diff --cached";
-      ga = "git add -A";
-      gp = "git push";
-      gl = "git pull";
-      lg = "lazygit";
-
-      # Utilities
-      dush = "du -sh";
-      fetch = "nitch";
-
-      # Typo fixes
-      claer = "clear";
-      cl = "clear";
-      c = "clear";
-      sl = "ls";
-
-      # ls replacements
-      la = "ls -a";
-      ez = "eza --icons --group-directories-first";
-
-      # Nix shortcuts
-      flake = "nix flake";
-      home = "home-manager";
-      nixgc = "nix-collect-garbage";
-
-      # Other tools
-      yz = "yazi";
-      zel = "zellij";
-      sd = "shutdown";
-    };
+    # Shell aliases are defined in desktop/shell/default.nix
+    # This module only provides dev-specific fish functions
   };
 }

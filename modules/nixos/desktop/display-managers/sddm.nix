@@ -14,6 +14,7 @@ in {
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
+      # Force KDE's sddm package for Qt6/Wayland compatibility
       package = lib.mkForce pkgs.kdePackages.sddm;
       theme = "sddm-astronaut-theme";
       extraPackages = with pkgs; [
