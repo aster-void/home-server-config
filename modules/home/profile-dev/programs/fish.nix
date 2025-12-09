@@ -12,7 +12,7 @@
           set -l session_name (basename $repo)
 
           # Check if session exists
-          if zellij list-sessions 2>/dev/null | rg -q "^$session_name "
+          if zellij list-sessions -s 2>/dev/null | rg -qx "$session_name"
               zellij attach $session_name
           else
               zellij -s $session_name options --default-cwd $repo_path
