@@ -63,10 +63,11 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
 
   # Locale settings
-  i18n.defaultLocale = "ja_JP.UTF-8";
+  # Language: English, Other formats (currency, time, etc.): Japanese
+  i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
-    LC_IDENTIFICATION = "ja_JP.UTF-8";
     LC_ADDRESS = "ja_JP.UTF-8";
+    LC_IDENTIFICATION = "ja_JP.UTF-8";
     LC_MEASUREMENT = "ja_JP.UTF-8";
     LC_MONETARY = "ja_JP.UTF-8";
     LC_NAME = "ja_JP.UTF-8";
