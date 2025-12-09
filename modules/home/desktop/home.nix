@@ -1,5 +1,6 @@
 {...}: {
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config is set at NixOS level (modules/nixos/base/system/base.nix)
+  # to avoid conflict with home-manager.useGlobalPkgs
 
   home.sessionVariables = {
     EDITOR = "hx";
