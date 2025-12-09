@@ -81,11 +81,6 @@ in {
       shellAliases = mkShellAliases "nushell";
     };
 
-    starship = {
-      enable = true;
-      enableTransience = false;
-      settings = import ./starship.nix;
-    };
     zoxide = {
       enable = true;
 
