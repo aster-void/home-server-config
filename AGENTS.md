@@ -82,16 +82,36 @@ attrset の name が `-` を含んでいても "" は不要。動的な name の
   - `desktop/` - デスクトップ環境（WM, ハードウェア, サービス等）
   - `profile-{name}/` - プロファイル別設定
 - `modules/home/` - home-manager モジュール
-  - `desktop/` - デスクトップユーザー環境（hyprland, シェル, GUI, アプリ等）
+  - `desktop/` - デスクトップユーザー環境（hyprland, GUI アプリ等）
   - `profile-{name}/` - プロファイル別設定
   - `profile-{name}/programs/` - プログラム固有設定
+
+**各モジュール構造**:
+各エントリは任意 (optional)。
+- `modules/{home|nixos}/{module}/`
+  - `default.nix` - 各サブモジュールを `imports`
+  - `options.nix` - モジュールの options. `my.{module}` で設定する。 `enable` オプションはない (デフォルトで有効)
+  - `programs/` - 各プログラム・アプリなど
+  - `services/` - 外向きサービス (SSHd など)
+  - `system/` - 内向き systemd service、hardware 設定など。概念または具体的なプログラムの名前をつける。
+  - `extensions/` - `options.nix` で設定可能なプログラム。 `my.{module}.{extension}.enable` で有効化。
+  - `{category}/default.nix` - `{category}/*.nix` を `imports`
+  - `env.nix` - 環境変数
+  - `xdg.nix` - XDG 設定
+  - `users.nix` - normal user 設定
+  - `packages.nix` - パッケージインストールのみ
 
 **hosts/{hostname}/ 構造**:
 - `configuration.nix` - ホストのエントリーポイント
 - `hardware-configuration.nix` - ハードウェア固有設定
 - `services/` - 外向きサービス（サーバーホストのみ）
 - `system/` - ホスト固有のシステム設定
-- `users/` - ユーザー固有のhome-manager設定
+- `users/` - home-manager設定 (blueprint により自動で読み込まれる)
+
+その他のルール:
+- `import` で Nix 式を直接持ってくるより、モジュールを配置し、ユーザー側で `imports` で取得する方を優先する。
+- このように、一つのプログラムに関する設定は一箇所にまとめる (DRY)。配置場所は誰がどのタイミングで使うかで判断する。
+
 
 ## コミット
 
