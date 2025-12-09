@@ -101,6 +101,7 @@ in {
           workspace_swipe_invert = true;
           workspace_swipe_forever = false;
           workspace_swipe_create_new = true;
+          gesture = "3, horizontal, workspace";
         };
 
         cursor.no_hardware_cursors = false;
