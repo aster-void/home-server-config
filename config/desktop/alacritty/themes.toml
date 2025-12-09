@@ -1,0 +1,33 @@
+[general]
+# see https://github.com/alacritty/alacritty-theme for more info
+import = [
+  # Dark Theme
+  # default also looks good
+  "./themes/themes/catppuccin_frappe.toml",
+  # "./themes/themes/catppuccin_mocha.toml",
+  #? "./themes/themes/mariana.toml",
+  # "./themes/themes/material_theme.toml",
+  # "./themes/themes/nightfly.toml",
+  # "./themes/themes/nightfox.toml",
+  # "./themes/themes/one_dark.toml",
+  # "./themes/themes/github_dark_high_contrast.toml",
+  # "./themes/themes/theme.toml",
+  # "./themes/themes/theme.toml",
+  # "./themes/themes/theme.toml",
+  # "./themes/themes/theme.toml",
+  # "./themes/themes/theme.toml",
+
+  # Light Theme
+  # "./themes/themes/catppuccin_latte.toml",
+  # "./themes/themes/everforest_light.toml",
+  # "./themes/themes/ashes_light.toml", # pale
+  # "./themes/themes/atom_one_light.toml", # vivid
+  # "./themes/themes/ayu_light.toml", # I like it
+  # "./themes/themes/theme.toml",
+  # "./themes/themes/theme.toml",
+  # "./themes/themes/theme.toml",
+  # "./themes/themes/theme.toml",
+  # "./themes/themes/theme.toml",
+  # "./themes/themes/theme.toml",
+  # "./themes/themes/theme.toml",
+]

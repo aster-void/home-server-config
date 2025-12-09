@@ -1,0 +1,7 @@
+[window]
+decorations = "None"
+# opacity = 0.6
+
+[font]
+normal.family = "MesloLGMNerdFont"
+size = 16

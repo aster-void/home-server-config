@@ -1,0 +1,4 @@
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[tasks]
+image_bound = [65535, 65535]

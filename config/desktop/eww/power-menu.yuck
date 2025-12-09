@@ -1,0 +1,43 @@
+(defwindow power-menu
+  :monitor 0
+  :stacking "overlay"
+  :geometry (geometry
+    :anchor "center"
+    :width "300px"
+    :height "200px")
+  (power-menu-widget))
+
+(defwidget power-menu-widget []
+  (box :class "power-menu"
+       :orientation "v"
+       :space-evenly false
+       :spacing 20
+    (label :class "power-menu-title" :text "電源メニュー")
+    (box :class "power-menu-buttons"
+         :orientation "v"
+         :spacing 10
+      (button :class "power-button shutdown"
+              :onclick "systemctl poweroff"
+              (box :spacing 10 :space-evenly false
+                (label :class "icon" :text "󰐥")
+                (label :text "シャットダウン")))
+      (button :class "power-button reboot"
+              :onclick "systemctl reboot"
+              (box :spacing 10 :space-evenly false
+                (label :class "icon" :text "󰜉")
+                (label :text "再起動")))
+      (button :class "power-button logout"
+              :onclick "hyprctl dispatch exit"
+              (box :spacing 10 :space-evenly false
+                (label :class "icon" :text "󰍃")
+                (label :text "ログアウト")))
+      (button :class "power-button lock"
+              :onclick "hyprlock"
+              (box :spacing 10 :space-evenly false
+                (label :class "icon" :text "󰌾")
+                (label :text "ロック")))
+      (button :class "power-button cancel"
+              :onclick "eww close power-menu"
+              (box :spacing 10 :space-evenly false
+                (label :class "icon" :text "󰜺")
+                (label :text "キャンセル"))))))

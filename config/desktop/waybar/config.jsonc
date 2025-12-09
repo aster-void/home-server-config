@@ -1,0 +1,213 @@
+{
+	"layer": "top",
+	"name": "topbar",
+	"position": "top",
+	"margin": "0 0 0 0",
+	"spacing": 8,
+	"height": 24,
+	"modules-left": [
+		"custom/launcher",
+		"hyprland/workspaces",
+		"hyprland/mode",
+		"group/player",
+		"custom/cava-bar"
+	],
+	"modules-center": ["hyprland/window"],
+	"modules-right": [
+		"group/tray",
+		"group/time",
+		"custom/power"
+	],
+	"group/player": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/player#prev",
+			"custom/player#play",
+			"custom/player#next"
+			// "custom/player#main"
+		],
+		"children-class": "seg"
+	},
+	"group/tray": {
+		"orientation": "horizontal",
+		"modules": [
+			"tray",
+			"network",
+			"pulseaudio",
+			"bluetooth",
+			"backlight"
+		],
+		"children-class": "seg"
+	},
+	"group/time": {
+		"orientation": "horizontal",
+		"modules": [
+			"battery",
+			"clock#date",
+			"clock#clock"
+		],
+		"children-class": "seg"
+	},
+	"hyprland/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+		"format": "{name}",
+		"format-icons": {
+			"active": "●",
+			"default": "◯"
+		}
+	},
+	"custom/player#main": {
+		"exec": "playerctl metadata --format '{{ title }}' 2>/dev/null || echo ''",
+		"interval": 5,
+		"max-length": 50
+	},
+	"custom/player#prev": {
+		"format": "",
+		"on-click": "playerctl previous"
+	},
+	"custom/player#play": {
+		"exec": "playerctl status 2>/dev/null || echo 'Stopped'",
+		"interval": 1,
+		"on-click": "playerctl play-pause",
+		"format": "{}"
+	},
+	"custom/player#next": {
+		"format": "",
+		"on-click": "playerctl next"
+	},
+	"custom/cava-bar": {
+		"exec": "sh ~/.config/waybar/modules/cava.sh",
+		"format": "{}",
+		"tooltip": false,
+		"on-click": "systemctl --user restart waybar",
+		"layer": "below",
+		"output": "all"
+	},
+	"hyprland/window": {
+		"format": "{}",
+		"max-length": 50
+	},
+	"tray": {
+		"icon-size": 12
+	},
+	"clock#clock": {
+		"format": "{:%I:%M'%S\" %p}",
+		"interval": 1
+	},
+	"clock#date": {
+		"tooltip-format": "<span size='x-large'><b>🌟 {calendar} 🌟</b></span>",
+		"calendar": {
+			"mode": "month",
+			"mode-mon-col": 3,
+			"weeks-pos": "right",
+			"on-scroll": 1,
+			"on-click-right": "mode",
+			"format": {
+				"months": "<span color='#c6a0f6' size='large' weight='bold'>   {}   </span>",
+				"days": "<span color='#b7bdf8' size='medium' weight='normal'> {} </span>",
+				"weeks": "<span color='#91d7e3' size='small' weight='bold'>W{}</span>",
+				"weekdays": "<span color='#eed49f' size='medium' weight='bold'> {} </span>",
+				"today": "<span color='#f5a97f' size='medium' weight='bold'> {} </span>"
+			}
+		},
+		"actions": {
+			"on-click": "shift_down",
+			"on-click-right": "shift_up",
+			"on-scroll-up": "shift_up",
+			"on-scroll-down": "shift_down"
+		},
+		"format": "{:%b %d / %a}",
+		"interval": 60
+	},
+	"cpu": {
+		"format": "{usage: >3}%",
+		"on-click": "alacritty --option font.size=8 -e btop",
+		"tooltip-format": "CPU Usage: {usage}%\nLoad: {load}\nClick to open btop"
+	},
+	"memory": {
+		"format": "{: >3}%",
+		"on-click": "alacritty --option font.size=8 -e btop",
+		"tooltip-format": "Memory Usage: {percentage}%\nUsed: {used}GiB / {total}GiB\nAvailable: {avail}GiB\nClick to open btop"
+	},
+	"temperature": {
+		"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+		"critical-threshold": 80,
+		"on-click": "alacritty --option font.size=8 -e btop",
+		"format": " {temperatureC}°C"
+	},
+	"backlight": {
+		"format": "{icon} {percent: >3}%",
+		"format-icons": [""],
+		"on-scroll-up": "brightnessctl set 1%+",
+		"on-scroll-down": "brightnessctl set 1%-",
+	},
+	"battery": {
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity: >3}%",
+		"format-icons": ["", "", "", "", ""]
+	},
+	"bluetooth": {
+		"format": " {status}",
+		"format-disabled": "",
+		"format-off": "",
+		"format-on": "",
+		"format-connected": " {device_alias}",
+		"format-connected-battery": " {device_alias} ({device_battery_percentage}%)",
+		"tooltip-format": "Bluetooth: {status}\nConnected devices: {num_connections}",
+		"tooltip-format-connected": "Bluetooth: {status}\nConnected: {device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}",
+		"tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage}%)",
+		"on-click": "blueman-manager",
+		"on-scroll-up": ":",
+		"on-scroll-down": ":",
+	},
+	"network": {
+		"format": "! Disabled",
+		"format-wifi": "  {essid}",
+		"format-ethernet": "  Wired",
+		"format-disconnected": "!  Disconnected",
+		"on-click": "nm-connection-editor",
+		"on-scroll-up": ":",
+		"on-scroll-down": ":",
+	},
+	"pulseaudio": {
+		"scroll-step": 1,
+		"format": "{icon} {volume: >3}%",
+		"format-bluetooth": "{icon} {volume: >3}%",
+		"format-muted": " muted",
+		"format-icons": {
+			"headphones": "",
+			"handsfree": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", ""]
+		},
+		"on-click": "pavucontrol"
+		,
+		"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+		"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%"
+	},
+	"custom/power": {
+		"format": "⏻",
+		"on-click": "eww open power-menu",
+		"tooltip": false
+	},
+	"custom/keyboard-layout": {
+		"interval": 1,
+		"format": "  {}",
+		"signal": 1,
+		"tooltip": false,
+		"on-click": "~/.config/waybar/scripts/keyhint.sh"
+	},
+	"custom/launcher": {
+		"format": " ",
+		"on-click": "exec nwg-drawer -c 7 -is 70 -spacing 23",
+		"tooltip": false
+	}
+}

@@ -1,0 +1,117 @@
+[global]
+    monitor = 0
+    follow = mouse
+    
+    # Geometry
+    width = 350
+    height = 100
+    origin = top-right
+    offset = 15x45
+    
+    # Appearance
+    notification_limit = 3
+    progress_bar = true
+    progress_bar_height = 3
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    
+    # Text
+    font = "Inter 11"
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+    
+    # Icons
+    icon_position = left
+    min_icon_size = 24
+    max_icon_size = 48
+    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/16x16/apps/
+    
+    # History
+    sticky_history = yes
+    history_length = 20
+    
+    # Misc/Advanced
+    dmenu = /usr/bin/dmenu -p dunst:
+    browser = /usr/bin/xdg-open
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    corner_radius = 12
+    ignore_dbusclose = false
+    force_xwayland = false
+    force_xinerama = false
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+    
+    # Frame
+    frame_width = 0
+    frame_color = "#1e1e2e"
+    separator_height = 2
+    separator_color = frame
+    
+    # Padding
+    padding = 16
+    horizontal_padding = 20
+    text_icon_padding = 16
+    
+    # Transparency
+    transparency = 0
+    
+    # Animations
+    animation_duration = 300
+    animation_easing = ease-out-quart
+    animation_direction = slide-down
+
+[urgency_low]
+    background = "#181825"
+    foreground = "#cdd6f4"
+    frame_color = "#313244"
+    timeout = 5
+    
+[urgency_normal]
+    background = "#181825"
+    foreground = "#cdd6f4"
+    frame_color = "#89b4fa"
+    timeout = 8
+    
+[urgency_critical]
+    background = "#181825"
+    foreground = "#f38ba8"
+    frame_color = "#f38ba8"
+    timeout = 0
+    
+# Application-specific rules
+[volume]
+    appname = "volume"
+    format = "%s\n%b"
+    background = "#181825"
+    foreground = "#89b4fa"
+    frame_color = "#89b4fa"
+    timeout = 3
+    
+[brightness]
+    appname = "brightness"
+    format = "%s\n%b"
+    background = "#181825"
+    foreground = "#f9e2af"
+    frame_color = "#f9e2af"
+    timeout = 3
+    
+[network]
+    appname = "NetworkManager"
+    format = "%s\n%b"
+    background = "#181825"
+    foreground = "#a6e3a1"
+    frame_color = "#a6e3a1"
+    timeout = 5

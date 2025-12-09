@@ -1,0 +1,23 @@
+{
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Macchiato",
+    "dark": "One Dark"
+  },
+  "languages": {
+    "JavaScript": {
+      "formatter": "prettier",
+      "format_on_save": "on"
+    },
+    "JSON": {
+      "formatter": "prettier",
+      "format_on_save": "on"
+    }
+  },
+  "format_on_save": "on",
+  "ui_font_family": "CodeNewRoman Nerd Font Mono",
+  "vim_mode": true,
+  "helix_mode": true
+}

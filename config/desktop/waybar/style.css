@@ -1,0 +1,227 @@
+/**
+ターゲット: Apple Liquid Glass (macOS/iOS 26 style)
+構造:
+#waybar > ? > .modules-* > ? > pill (group) > module
+#waybar > ? > .modules-* > ? > standalone module
+*/
+
+@import url("macchiato.css");
+
+window#waybar.topbar {
+  background: transparent;
+  font-family: "SF Pro Display", "MesloLGM Nerd Font", "sans-serif";
+  font-weight: 500;
+  font-size: 13px;
+}
+
+* {
+  background: transparent;
+  border: none;
+  border-radius: 14px;
+  color: rgba(15, 15, 15, 0.92);
+  transition: opacity 0.55s cubic-bezier(0.28, 0, 0.16, 1),
+    box-shadow 0.55s cubic-bezier(0.28, 0, 0.16, 1),
+    background 0.55s cubic-bezier(0.28, 0, 0.16, 1),
+    border 0.55s cubic-bezier(0.28, 0, 0.16, 1);
+}
+
+/**
+ * Apple Liquid Glass ホバー効果 (macOS/iOS 26)
+ */
+#tray *:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#battery:hover,
+#network:hover,
+#pulseaudio:hover,
+#bluetooth:hover,
+#backlight:hover,
+#clock.date:hover,
+#clock.clock:hover,
+#player *:hover,
+#custom-launcher:hover,
+#custom-power:hover,
+/* #window:hover, */
+#workspaces button:hover {
+  background: linear-gradient(145deg,
+      rgba(200, 200, 200, 0.12) 0%,
+      rgba(200, 200, 200, 0.22) 48%,
+      rgba(200, 200, 200, 0.18) 52%,
+      rgba(200, 200, 200, 0.10) 100%);
+  box-shadow:
+    0 10px 32px -4px rgba(0, 0, 0, 0.09),
+    0 4px 12px -2px rgba(0, 0, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.03),
+    inset 0 0 20px rgba(255, 255, 255, 0.06);
+}
+
+/** active (but not interactive) liquid glass */
+
+#workspaces button.active {
+  background: linear-gradient(145deg,
+      rgba(200, 200, 200, 0.10) 0%,
+      rgba(200, 200, 200, 0.18) 48%,
+      rgba(200, 200, 200, 0.15) 52%,
+      rgba(200, 200, 200, 0.08) 100%);
+  box-shadow:
+    0 4px 16px -4px rgba(0, 0, 0, 0.06),
+    0 2px 6px -2px rgba(0, 0, 0, 0.04),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.20),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.02),
+    inset 0 0 12px rgba(255, 255, 255, 0.04),
+    0 0 0 0.5px rgba(255, 255, 255, 0.10);
+}
+
+/**
+ * Apple Liquid Glass Pill デザイン (macOS/iOS 26)
+ */
+#player,
+.modules-right>*>*,
+#custom-launcher,
+#custom-power,
+#window>*,
+#workspaces {
+  border: 0.5px solid rgba(255, 255, 255, 0.34);
+  border-radius: 14px;
+
+  background: linear-gradient(145deg,
+      rgba(128, 128, 128, 0.16) 0%,
+      rgba(128, 128, 128, 0.20) 48%,
+      rgba(128, 128, 128, 0.18) 52%,
+      rgba(128, 128, 128, 0.14) 100%);
+  box-shadow:
+    0 12px 40px -6px rgba(0, 0, 0, 0.08),
+    0 5px 16px -3px rgba(0, 0, 0, 0.05),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.40),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.025),
+    inset 0 0 24px rgba(255, 255, 255, 0.075);
+
+  margin: 4px 0;
+  padding: 0 8px;
+  transition: all 0.35s cubic-bezier(0.28, 0, 0.16, 1);
+}
+
+/* 個別スタイル */
+
+#player * {
+  margin: 2px 0;
+  padding: 0 6px;
+  min-width: 22px;
+}
+
+#custom-launcher,
+#custom-power {
+  min-width: 16px;
+}
+
+#window {
+  margin: 4px 5px;
+}
+
+#cpu,
+#memory,
+#temperature,
+#battery,
+#network,
+#pulseaudio,
+#bluetooth,
+#backlight,
+#clock.date,
+#clock.clock {
+  color: rgba(15, 15, 15, 0.92);
+  padding: 0 6px;
+  margin: 4px 0;
+  border-radius: 14px;
+}
+
+.modules-right>*>#tray {
+  padding: 2px 8px;
+}
+
+#tray>* {
+  margin: 8px 0;
+}
+
+#tray * {
+  border-radius: 8px;
+  font-size: 12px;
+  padding: 0px 4px;
+}
+
+
+/* ------------------------------
+ * 微調整
+ * ------------------------------ */
+#battery.warning {
+  border: 0.5px solid rgba(238, 212, 159, 0.5);
+  background: linear-gradient(145deg,
+      rgba(238, 212, 159, 0.18) 0%,
+      rgba(238, 212, 159, 0.30) 48%,
+      rgba(238, 212, 159, 0.26) 52%,
+      rgba(238, 212, 159, 0.16) 100%);
+  box-shadow:
+    0 12px 40px -6px rgba(238, 212, 159, 0.12),
+    0 5px 16px -3px rgba(238, 212, 159, 0.08),
+    inset 0 1px 0 rgba(238, 212, 159, 0.40),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.03),
+    inset 0 0 24px rgba(238, 212, 159, 0.10);
+  color: @yellow;
+}
+
+#battery.critical {
+  border: 0.5px solid rgba(237, 135, 150, 0.6);
+  background: linear-gradient(145deg,
+      rgba(237, 135, 150, 0.20) 0%,
+      rgba(237, 135, 150, 0.34) 48%,
+      rgba(237, 135, 150, 0.30) 52%,
+      rgba(237, 135, 150, 0.18) 100%);
+  box-shadow:
+    0 12px 40px -6px rgba(237, 135, 150, 0.16),
+    0 5px 16px -3px rgba(237, 135, 150, 0.12),
+    inset 0 1px 0 rgba(237, 135, 150, 0.45),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.04),
+    inset 0 0 24px rgba(237, 135, 150, 0.12);
+  color: @red;
+}
+
+#workspaces button {
+  min-width: 0;
+  border-radius: 10px;
+  padding: 0 8px;
+  margin: 2px 0;
+}
+
+#pulseaudio {
+  min-width: 72px;
+}
+
+#clock,
+#clock.date {
+  min-width: 62px;
+  margin: 5px 0px;
+}
+
+/* ------------------------------
+ * Apple Liquid Glass Tooltip (macOS/iOS 26)
+ * ------------------------------ */
+tooltip {
+  background: linear-gradient(145deg,
+      rgba(128, 128, 128, 0.18) 0%,
+      rgba(128, 128, 128, 0.22) 48%,
+      rgba(128, 128, 128, 0.20) 52%,
+      rgba(128, 128, 128, 0.16) 100%);
+  color: rgba(15, 15, 15, 0.92);
+  border: 0.5px solid rgba(255, 255, 255, 0.36);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow:
+    0 14px 42px -4px rgba(0, 0, 0, 0.10),
+    0 6px 18px -2px rgba(0, 0, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.03),
+    inset 0 0 28px rgba(255, 255, 255, 0.08);
+}
