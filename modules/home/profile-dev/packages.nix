@@ -161,8 +161,6 @@ in {
     typstyle
     # Elixir
     elixir
-    # Swift
-    nix-repository.swift-toolchain-bin
     # SQL
     postgres-language-server
 
@@ -184,7 +182,6 @@ in {
     # MCP servers
     nix-repository.mcp-language-server
     nix-repository.chrome-devtools-mcp
-    nix-repository.context7-mcp
     nix-repository.climcp
     nix-repository.kiri
     nix-repository.osgrep

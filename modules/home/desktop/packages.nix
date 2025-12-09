@@ -40,7 +40,6 @@ in {
       ## network
       curl
       wget
-      netcat-gnu
       openssl
       cloudflared
 
@@ -170,7 +169,6 @@ in {
       nil
       nixd
       statix
-      nix-search
       diffoscope # useful for determining non-reproducibility
 
       ## Scala

@@ -87,7 +87,9 @@
         })
         # hyprshot fix overlay
         (final: prev: {
-          hyprshot = prev.callPackage ./overlays/hyprshot-fix/package.nix {};
+          hyprshot = prev.callPackage ./overlays/hyprshot-fix/package.nix {
+            hyprshot = prev.hyprshot;
+          };
         })
       ];
     };
