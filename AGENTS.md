@@ -92,7 +92,7 @@ attrset の name が `-` を含んでいても "" は不要。動的な name の
   - `default.nix` - 各サブモジュールを `imports`
   - `options.nix` - モジュールの options. `my.{module}` で設定する。 `enable` オプションはない (デフォルトで有効)
   - `programs/` - 各プログラム・アプリなど
-  - `services/` - 外向きサービス (SSHd など)
+  - `services/` - 外向きサービス (web サーバー, sshd など)
   - `system/` - 内向き systemd service、hardware 設定など。概念または具体的なプログラムの名前をつける。
   - `extensions/` - `options.nix` で設定可能なプログラム。 `my.{module}.{extension}.enable` で有効化。
   - `{category}/default.nix` - `{category}/*.nix` を `imports`
